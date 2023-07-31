@@ -2,16 +2,34 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>editor on Home</title>
-    <link>https://sokinpui.github.io/blog-sokinpui/tags/editor/</link>
+    <link>https://sokinpui.github.io/Blog/tags/editor/</link>
     <description>Recent content in editor on Home</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 02 May 2023 21:41:24 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/blog-sokinpui/tags/editor/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Jul 2023 22:33:51 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/tags/editor/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The productivity of &#39;workflow&#39;</title>
+      <link>https://sokinpui.github.io/Blog/post/11-toyeditor/</link>
+      <pubDate>Wed, 19 Jul 2023 22:33:51 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/11-toyeditor/</guid>
+      <description>Editor is only useful for editing the configuration file of the editor</description>
+      <content:encoded><![CDATA[<h1 id="toy-editor">Toy Editor</h1>
+<p>Editor, is for editing text, to get the job done, editing code, notes, configuration file. Some editor have the ultimatly extenability or customizability, like neovim, Emacs or vscode. Often we prepare too much to make our editor prefect, making our editor more than just an editor, convert it into something like git client, terminal, even a social recognition. The idea of hackable editor is great, many of us can get benefits from the scriptability to automation or add handy features. However, extenability come with cost. Emacs, the most extenable editor which come with the powerful extention language, Lisp, with Lisp everything related to text is possible to be implemented. You can, however, the biggest pain is you need to know how to, which involve time and practice to know the api and the language itself.</p>
+<p><strong>Don&rsquo;t be the one who use their editor only for editing their configuration file.</strong></p>
+<h1 id="toy-note-system">Toy note system</h1>
+<p>Note system is another time sink, because building a note system is much more complex than build a prefect editor. Note system including editor, viewer, a clipper to collect some snippets, the bridge that integrate all your tools, or a all-in-one workspace. Since building note system is much more interesting than writing, review and organize notes, time is easy go to build a superficially clever system that input and output nothing.</p>
+<h1 id="the-truth-of-configuration">The truth of configuration</h1>
+<p>Yes, one can build their prefect system that will suit their workflow, if their workflow never change, it is not the truth, right? The best note system should always be the next. Your information system will evolve as you behaviour and workflow change.</p>
+<p>Implement the change only when you need it, don&rsquo;t even try to make you system prefect, it won&rsquo;t.</p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Waste too much time to upgrade productivity</title>
-      <link>https://sokinpui.github.io/blog-sokinpui/post/blog4-choose-of-tools/</link>
+      <link>https://sokinpui.github.io/Blog/post/4-choose-of-tools/</link>
       <pubDate>Tue, 02 May 2023 21:41:24 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/blog-sokinpui/post/blog4-choose-of-tools/</guid>
+      <guid>https://sokinpui.github.io/Blog/post/4-choose-of-tools/</guid>
       <description>There are too much time spend on configure my tools, replace a more efficiently tool with the less efficient one. It takes me so long to understand those apps doesn&amp;rsquo;t matter if just want to take a notes
 Time spending on notes taking app Effie When I have to take notes, I fisrt using Effie, but then I find it don&amp;rsquo;t have good image insert support, give up. Their idea is great, notes or writing apps should be clean enough and later I find every notes app say they are clean.</description>
       <content:encoded><![CDATA[<p>There are too much time spend on configure my tools, replace a more efficiently

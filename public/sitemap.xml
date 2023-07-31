@@ -2,93 +2,135 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/</loc>
+    <loc>https://sokinpui.github.io/Blog/</loc>
+    <lastmod>2023-07-29T23:58:37+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/tags/lazy.nvim/</loc>
+    <lastmod>2023-07-29T23:58:37+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/tags/neovim/</loc>
+    <lastmod>2023-07-29T23:58:37+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/post/</loc>
+    <lastmod>2023-07-29T23:58:37+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/tags/</loc>
+    <lastmod>2023-07-29T23:58:37+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/post/vim4/</loc>
+    <lastmod>2023-07-29T23:58:37+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/vim-series/4-lazy.nvim/</loc>
+    <lastmod>2023-07-29T23:58:37+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/tags/vim/</loc>
+    <lastmod>2023-07-29T23:58:37+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/tags/vim-plug/</loc>
+    <lastmod>2023-07-29T23:58:37+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/vim-series/</loc>
+    <lastmod>2023-07-29T23:58:37+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/post/vim-3/</loc>
+    <lastmod>2023-07-23T18:24:05+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/vim-series/3-plugins/</loc>
+    <lastmod>2023-07-23T18:24:05+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/post/vim-2/</loc>
+    <lastmod>2023-07-23T10:18:20+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/vim-series/2-tips/</loc>
+    <lastmod>2023-07-23T10:18:20+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/post/vim-1/</loc>
+    <lastmod>2023-07-21T14:53:36+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/vim-series/1-basci-vim-setting/</loc>
+    <lastmod>2023-07-21T14:53:36+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/tags/editor/</loc>
+    <lastmod>2023-07-19T22:33:51+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/tags/emacs/</loc>
+    <lastmod>2023-07-19T22:33:51+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/post/11-toyeditor/</loc>
+    <lastmod>2023-07-19T22:33:51+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/post/10/</loc>
     <lastmod>2023-07-15T17:34:00+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/post/</loc>
-    <lastmod>2023-07-15T17:34:00+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/post/blog10/</loc>
-    <lastmod>2023-07-15T17:34:00+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/post/blog9-prettyvim/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/9-prettyvim/</loc>
     <lastmod>2023-06-30T10:25:46+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/post/blog8-vimpluginrecommend/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/8-vimpluginrecommend/</loc>
     <lastmod>2023-06-29T14:00:02+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/post/blog7-tryevil/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/7-tryevil/</loc>
     <lastmod>2023-06-23T11:24:42+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/categories/</loc>
+    <loc>https://sokinpui.github.io/Blog/categories/</loc>
     <lastmod>2023-06-21T10:51:38+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/post/blog6-frommactothinkpad/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/6-frommactothinkpad/</loc>
     <lastmod>2023-06-21T10:51:38+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/tags/habbit/</loc>
+    <loc>https://sokinpui.github.io/Blog/tags/habbit/</loc>
     <lastmod>2023-06-21T10:51:38+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/tags/linux/</loc>
+    <loc>https://sokinpui.github.io/Blog/tags/linux/</loc>
     <lastmod>2023-06-21T10:51:38+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/tags/mac/</loc>
+    <loc>https://sokinpui.github.io/Blog/tags/mac/</loc>
     <lastmod>2023-06-21T10:51:38+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/categories/operating-system/</loc>
+    <loc>https://sokinpui.github.io/Blog/categories/operating-system/</loc>
     <lastmod>2023-06-21T10:51:38+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/tags/</loc>
+    <loc>https://sokinpui.github.io/Blog/tags/thinkpad/</loc>
     <lastmod>2023-06-21T10:51:38+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/tags/thinkpad/</loc>
+    <loc>https://sokinpui.github.io/Blog/categories/tools/</loc>
     <lastmod>2023-06-21T10:51:38+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/categories/tools/</loc>
-    <lastmod>2023-06-21T10:51:38+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/tags/editor/</loc>
+    <loc>https://sokinpui.github.io/Blog/tags/notes-app/</loc>
     <lastmod>2023-05-02T21:41:24+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/tags/notes-app/</loc>
+    <loc>https://sokinpui.github.io/Blog/tags/tools/</loc>
     <lastmod>2023-05-02T21:41:24+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/tags/tools/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/4-choose-of-tools/</loc>
     <lastmod>2023-05-02T21:41:24+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/post/blog4-choose-of-tools/</loc>
-    <lastmod>2023-05-02T21:41:24+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/tags/78-keyboard/</loc>
+    <loc>https://sokinpui.github.io/Blog/tags/78-keyboard/</loc>
     <lastmod>2023-04-07T17:43:58+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/post/blog3-dyn-num-sym/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/3-dyn-num-sym/</loc>
     <lastmod>2023-04-07T17:43:58+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/tags/keyboard/</loc>
+    <loc>https://sokinpui.github.io/Blog/tags/keyboard/</loc>
     <lastmod>2023-04-07T17:43:58+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/tags/keyboard-layout/</loc>
+    <loc>https://sokinpui.github.io/Blog/tags/keyboard-layout/</loc>
     <lastmod>2023-04-07T17:43:58+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/tags/vim/</loc>
-    <lastmod>2023-04-07T17:43:58+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/post/blog2-goku/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/2-goku/</loc>
     <lastmod>2023-03-31T17:27:25+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/tags/goku/</loc>
+    <loc>https://sokinpui.github.io/Blog/tags/goku/</loc>
     <lastmod>2023-03-31T17:27:25+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/tags/karabiner-elements/</loc>
+    <loc>https://sokinpui.github.io/Blog/tags/karabiner-elements/</loc>
     <lastmod>2023-03-31T17:27:25+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/post/blog1-layout/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/1-layout/</loc>
     <lastmod>2023-03-26T19:23:56+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/about/</loc>
+    <loc>https://sokinpui.github.io/Blog/about/</loc>
     <lastmod>2023-03-26T13:38:30+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/blog-sokinpui/search/</loc>
+    <loc>https://sokinpui.github.io/Blog/search/</loc>
   </url>
 </urlset>

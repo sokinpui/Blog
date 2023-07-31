@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>notes app on Home</title>
-    <link>https://sokinpui.github.io/blog-sokinpui/tags/notes-app/</link>
+    <link>https://sokinpui.github.io/Blog/tags/notes-app/</link>
     <description>Recent content in notes app on Home</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 02 May 2023 21:41:24 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/blog-sokinpui/tags/notes-app/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 02 May 2023 21:41:24 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/tags/notes-app/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Waste too much time to upgrade productivity</title>
-      <link>https://sokinpui.github.io/blog-sokinpui/post/blog4-choose-of-tools/</link>
+      <link>https://sokinpui.github.io/Blog/post/4-choose-of-tools/</link>
       <pubDate>Tue, 02 May 2023 21:41:24 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/blog-sokinpui/post/blog4-choose-of-tools/</guid>
+      <guid>https://sokinpui.github.io/Blog/post/4-choose-of-tools/</guid>
       <description>There are too much time spend on configure my tools, replace a more efficiently tool with the less efficient one. It takes me so long to understand those apps doesn&amp;rsquo;t matter if just want to take a notes
 Time spending on notes taking app Effie When I have to take notes, I fisrt using Effie, but then I find it don&amp;rsquo;t have good image insert support, give up. Their idea is great, notes or writing apps should be clean enough and later I find every notes app say they are clean.</description>
       <content:encoded><![CDATA[<p>There are too much time spend on configure my tools, replace a more efficiently

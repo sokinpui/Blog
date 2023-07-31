@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>tools on Home</title>
-    <link>https://sokinpui.github.io/blog-sokinpui/categories/tools/</link>
+    <link>https://sokinpui.github.io/Blog/categories/tools/</link>
     <description>Recent content in tools on Home</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 21 Jun 2023 10:51:38 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/blog-sokinpui/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Jun 2023 10:51:38 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/categories/tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>From Macbook to Thinkpad</title>
-      <link>https://sokinpui.github.io/blog-sokinpui/post/blog6-frommactothinkpad/</link>
+      <link>https://sokinpui.github.io/Blog/post/6-frommactothinkpad/</link>
       <pubDate>Wed, 21 Jun 2023 10:51:38 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/blog-sokinpui/post/blog6-frommactothinkpad/</guid>
+      <guid>https://sokinpui.github.io/Blog/post/6-frommactothinkpad/</guid>
       <description>From Mac to Thinkpad 2020 Macbook Air with M1 chips, my first computer used in univserity. There is three reasons I brought it, light weight, no fans and long battery life. But surprisingly, I discover that they are no gaming changer when I get into univserity.
 There is charger everywhere in univserity library, I don&amp;rsquo;t often move my computer, and I don&amp;rsquo;t have heavier work on my computer.
 Switching is not correct in my situation, I don&amp;rsquo;t sold my Macbook, instead I brough a second hand Thinkpad x1 carbon 6th 2019.</description>
@@ -31,7 +31,7 @@ Switching is not correct in my situation, I don&amp;rsquo;t sold my Macbook, ins
 <p>Before doing meaningful stuff on computer, we first make ourself look cool, where 99% of time tweaking the desktop environment, remaining 1% doing real stuff.Tilling windows look cool, like hacker sitting in front of multiple screens. I use <a href="https://github.com/koekeishiya/yabai">yabai</a> on mac, before I try linux I have seen a lot of tilling windows manager screenshots sharing. They are really cool. But, most of the tilling windows manager are keyboard oriented, while the keyboard size of laptop are usually small, which mean I have to press keys with modifiers together, at the beginning, I am fine, but after a while, my little pinky finger suffer. I have rarely at the situation that have to switch between windows, of course no need for dynamic management of windows. I find floating windows is a more intuitive way to manage windows, and pinky-friendly.</p>
 <h2 id="from-40-keyboard-fans-to-87-to-100-to-200">From 40% keyboard fans to 87% to 100% to 200%?</h2>
 <p>40% keyboard look cool, it hold you hand in four main rows, so it is more efficient. Um&hellip;, that how I used to be thought about 40% keyboard, while saving thousand of miles finger move, I have to press every special symbols and numbers by modifiers, hold many key together, untypable if I move to new keyboard or new laptop. Currently I don&rsquo;t get the philosophy of low profile keyboard, instead I prefer double keyboard now. Literaly high profile keyboard, 180% keyboard. Those extra keys are used as marcos. I saved those handy shortcut combination into single keys, like I have map &ldquo;7&rdquo; on numpad as &ldquo;C-c C-t C-v enter&rdquo;, &ldquo;4&rdquo; on numpad as my univserity mail address. I am so naive that I have implmented a 40% keyboard on Macbook keyboard, leaving the number rows unused HAHA.
-<img loading="lazy" src="/blog-sokinpui/post/blog6-frommactothinkpad/wombat.1268.png" type="" alt="Wombat 200% keyboard"  />
+<img loading="lazy" src="/Blog/post/6-frommactothinkpad/wombat.1268.png" type="" alt="Wombat 200% keyboard"  />
 (Wombat 200% keyboard)</p>
 ]]></content:encoded>
     </item>
