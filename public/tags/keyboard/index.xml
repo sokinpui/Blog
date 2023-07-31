@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>keyboard on Home</title>
+    <link>https://sokinpui.github.io/blog-sokinpui/tags/keyboard/</link>
+    <description>Recent content in keyboard on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 07 Apr 2023 17:43:58 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/blog-sokinpui/tags/keyboard/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dynamic number-symbol row in vim</title>
+      <link>https://sokinpui.github.io/blog-sokinpui/post/blog3-dyn-num-sym/</link>
+      <pubDate>Fri, 07 Apr 2023 17:43:58 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/blog-sokinpui/post/blog3-dyn-num-sym/</guid>
+      <description>Abstraction Provide a way to dynamic swap numbers and symbols in vim according to current mode.
+How this idea come When I write code or writing, I often find the symbols should be easily type as single key stroke, while in vim normal mode I find I would like to press number in single mode instead of pressing with shift. At first, I searched online for solution, many of them suggested to swap numbers and symbols, and I agree it may convient while coding.</description>
+      <content:encoded><![CDATA[<h1 id="abstraction">Abstraction</h1>
+<p>Provide a way to dynamic swap numbers and symbols in vim according to current
+mode.</p>
+<h1 id="how-this-idea-come">How this idea come</h1>
+<p>When I write code or writing, I often find the symbols should be easily type as
+single key stroke, while in vim normal mode I find I would like to press number
+in single mode instead of pressing with <code>shift</code>. At first, I searched online for
+solution, many of them suggested to swap numbers and symbols, and I agree it may
+convient while coding. However, I am not coding all day, even during coding, in
+vim normal mode something it is handy to use number for <code>[count]</code> and command
+together. So swapping force you to choose one of them for more convenience
+typing. Another solution is to use number pad layer, I would say it is same as
+swapping, since I have to press with another key to use numbers, the problem
+havn&rsquo;t been solved.</p>
+<p>One day, When I was editing code, the idea of toggling nubmer-symbol row come in
+my mind, then I implement it, and find it solve the problem quite well regarding
+not prefect.</p>
+<h1 id="number-symbols-toggle">Number-symbols toggle</h1>
+<p>Well, it is actually a dead key leader, when I press the <code>toggle key</code> which is
+<code>equal sign</code> of my keyboard. The nubmer row will swap to symbol row, press
+again, back to number.</p>
+<h1 id="dynamic-number-symbols-row-in-vim">Dynamic Number-symbols row in vim</h1>
+<p>Since vim is modual, when insert mode, I prefer using symbols over numbers, when
+normal mode, I prefer the opposite. Then I add some rules for the toggle keys.</p>
+<p>Back to normal mode, which is equivalent to press the <code>esc</code> key, so when press
+<code>esc</code> key, define <code>nst</code> to False. It means toggle number rows.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[:escape :left_control nil {:alone [ [&#34;nst&#34; 0] [&#34;n-layer&#34; 0] :escape  ]} ]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The above snippets is goku code, a config layer on top of <a href="https://karabiner-elements.pqrs.org/">Download
+Karabiner Elements</a>, which is a tools for
+Mac to remap keyboard layouts.</p>
+<p>Enter insert mode, is equivalent to <code>a</code>, <code>i</code>, <code>s</code>, <code>A</code>, <code>I</code>, <code>S</code>, <code>o</code>, <code>O</code>, <code>c</code>,
+<code>C</code>. Then turn <code>nst</code> to True when type those key.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[:i                           [:i  [&#34;nst&#34; 1]]]   
+</span></span><span class="line"><span class="cl">[:a                           [:a  [&#34;nst&#34; 1]]]   
+</span></span><span class="line"><span class="cl">[:s                           [:s  [&#34;nst&#34; 1]]]   
+</span></span><span class="line"><span class="cl">[:c                           [:c  [&#34;nst&#34; 1]]]   
+</span></span><span class="line"><span class="cl">[:o                           [:o  [&#34;nst&#34; 1]]]   
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The above code define <code>nst</code> to True when type <code>i</code> ( not <code>I</code> ).</p>
+<p>Furthur more, there is a few more situation I would prefer symbols over number,
+they are searching and command mode. Then I add those lines also.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[:semicolon                   [:semicolon [&#34;nst&#34; 1]]]   
+</span></span><span class="line"><span class="cl">[:slash                       [:slash [&#34;nst&#34; 1]] ]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="inprefect">Inprefect</h1>
+<p>Since the layer is define outside vim, it can not avoid symbols row toggle
+during normal mode, when I type <code>yip</code> in normal mode, the symbol row toggle.
+Although I can have some line like <code>inoremap 1 !</code> and <code>cnoremap 2 @</code>, I don&rsquo;t
+want to pollute my mapping to much, I give up to implement this in pure vim way.
+I am interesting to find how to let karabiner know that I am in vim normal mode,
+so that avoid toggle symbol row accidently.</p>
+<p>I have remap <code>equal sign</code> to the <code>caps lock</code>, so it is possible for me to have
+one dead key, if you want to implement also, you may find your own.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Define layer using Karabiner Elements togther with Goku</title>
+      <link>https://sokinpui.github.io/blog-sokinpui/post/blog2-goku/</link>
+      <pubDate>Fri, 31 Mar 2023 17:27:25 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/blog-sokinpui/post/blog2-goku/</guid>
+      <description>If you don&amp;rsquo;t know the basic syntax of Goku, please see the offical tutorial.
+What is Karabiner Elements? Karabiner Elements is a keyboard modifier on MacOS, which support key blindings remap and define layer, or in another form, complex modification. Download Karabiner Elements.
+What is Goku? Goku is a config file that ease the configuration in Karabiner Elements. In Karabiner Elements, if you want to implement complex modification, you will need to edit the json file, which is wired, it is very likely loss for beginners who don&amp;rsquo;t know the sturcture of modification of Karabiner Elements.</description>
+      <content:encoded><![CDATA[<p>If you don&rsquo;t know the basic syntax of Goku, please see the <a href="https://github.com/yqrashawn/GokuRakuJoudo/blob/master/tutorial.md">offical
+tutorial</a>.</p>
+<h1 id="what-is-karabiner-elements">What is Karabiner Elements?</h1>
+<p>Karabiner Elements is a keyboard modifier on MacOS, which support key blindings
+remap and define layer, or in another form, complex modification. <a href="https://karabiner-elements.pqrs.org/">Download
+Karabiner Elements</a>.</p>
+<h1 id="what-is-goku">What is Goku?</h1>
+<p>Goku is a config file that ease the configuration in Karabiner Elements. In
+Karabiner Elements, if you want to implement complex modification, you will need
+to edit the json file, which is wired, it is very likely loss for beginners who
+don&rsquo;t know the sturcture of modification of Karabiner Elements. Also, time is
+limited, why don&rsquo;t use an easier tools that already on top of Karabiner Elements
+to make life easier? <a href="https://github.com/yqrashawn/GokuRakuJoudo">Goku on
+github</a></p>
+<h1 id="define-your-customized-layer">Define your customized layer</h1>
+<h2 id="1-why-define-layer">1. Why define layer</h2>
+<p>The functionality of keyboard can be exteneded, one way is to define your own
+layers. With layers, you can shorten the key blindings in some &ldquo;shortcut&rdquo;
+usually require pressing three to four keys together. Or build an symbols layer
+if you stuck in the current <code>number + shift</code> way.</p>
+<h2 id="2-different-types-of-layers">2. Different types of layers</h2>
+<h3 id="traditional-layers">Traditional layers</h3>
+<p>Traditional layers like the layers of QMK mod-tap feature, a key&rsquo;s function is
+divide into two, when you held down, it is modifier, and you loss its tap&rsquo;s
+function, and vice verse.</p>
+<h3 id="simlayers">Simlayers</h3>
+<p>In Goku, <strong>simlayer</strong>(simultianeous-layer) differ from traditional layers which
+you would not loss key&rsquo;s original fucniton. <strong>For example, if you define <code>f</code> as
+your simlayer, if you held down <code>f</code>, stream of <code>f</code> will be inserted. Conversely,
+if you define <code>f</code> as tranditional layers, no <code>f</code> is insertd even you held it
+down.</strong></p>
+<p>In the
+<a href="https://github.com/yqrashawn/GokuRakuJoudo/blob/master/tutorial.md">tutorial</a>
+of goku, author states the problems of traditional layers. But to me, they are
+the benefits, since simalayer have delayed display and require really fast right
+key followed. So, in this page, I would suggest you to use traditional layers.</p>
+<h1 id="implement-layers-with-goku">Implement layers with Goku</h1>
+<h2 id="1-define-variables">1. define variables.</h2>
+<p>Variable help karabiner element know the state of your keyboard to act in
+performs different events in each states.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[</span><span class="s2">&#34;name of variable&#34;</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>It is a sturcture of variable, doble quoted name, 0 or 1 state.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[:</span><span class="n">fookey</span>   <span class="p">[</span><span class="s2">&#34;foovar-set&#34;</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">]</span>   <span class="p">[</span><span class="s2">&#34;foovar-cd&#34;</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">]]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>It is conditional event, the last one is the condition, the middle one is <code>to  event</code>, which set <code>foovar-set</code> to 0 or 1 if the condition is met.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[:</span><span class="n">fookey</span>   <span class="p">[[</span><span class="s2">&#34;foovar1&#34;</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="s2">&#34;foovar2&#34;</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">]]</span>     <span class="p">[</span><span class="s2">&#34;foovar&#34;</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">]]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>It is same strcture of above but with extended <code>to event</code>, which set two
+variable in sequence, the condition part can also be extened in vector <code>[[&quot;foo1&quot;  1] [&quot;foo2&quot; 1]]</code>, vector can expand as much as you want.</p>
+<h2 id="2-mod-tap-layers">2. mod-tap Layers</h2>
+<p>This type of layer active if you held down fookey. inactive if you release.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[:</span><span class="n">w</span> <span class="p">[</span><span class="s2">&#34;tap_fookey&#34;</span> <span class="mi">1</span><span class="p">]</span> <span class="n">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="p">:</span><span class="n">alone</span> <span class="p">[:</span><span class="n">w</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="p">:</span><span class="n">afterup</span> <span class="p">[</span><span class="s2">&#34;tap_fookey&#34;</span> <span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="n">tap_fookey</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">period</span>  <span class="p">:</span><span class="mi">1</span>  <span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The first <code>[&quot;tap_fookey&quot; 1]</code> is the key event if you held down, <code>alone</code> is the
+key event if you tap single. <code>:afterup</code> is after key up event. The last line
+<code>:tap_fookey</code> tells karabiner to perform the following events if <code>&quot;tap_fookey&quot;</code>
+is met, In this example, it is <code>w+. -&gt; 1</code> it is like the conditions.</p>
+<h2 id="3-dead-keys">3. dead keys</h2>
+<p>This type of layer active if you press fookeys, inactive if you press the
+fooleavekey.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[:</span><span class="n">fookey</span>            <span class="p">[</span><span class="s2">&#34;dead_foo&#34;</span> <span class="mi">1</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">fooleavekey</span>       <span class="p">[</span><span class="s2">&#34;dead_foo&#34;</span> <span class="mi">0</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="n">dead_foo</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">foo_from</span>       <span class="p">[:</span><span class="n">foo_to</span> <span class="p">[</span><span class="s2">&#34;dead_foo&#34;</span> <span class="mi">0</span><span class="p">]]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">foo_from</span>       <span class="p">:</span><span class="n">foo_to</span> <span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Dead key is actually a simple layer checked with variales state, the first event
+in dead_foo will leave layer after press the <code>foo_from</code>, while the second
+won&rsquo;t.<!-- raw HTML omitted -->
+If you wish to leave the layer with the same keys you can:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[:</span><span class="n">comma</span>  <span class="p">[</span><span class="s2">&#34;taped&#34;</span> <span class="mi">0</span><span class="p">]</span>  <span class="p">[</span><span class="s2">&#34;taped&#34;</span> <span class="mi">1</span> <span class="p">]</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">comma</span>  <span class="p">[</span><span class="s2">&#34;taped&#34;</span> <span class="mi">1</span><span class="p">]</span>  <span class="p">[</span><span class="s2">&#34;taped&#34;</span> <span class="mi">0</span> <span class="p">]</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="n">taped</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">period</span>  <span class="p">:</span><span class="mi">1</span>  <span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="double-tap-layer">double tap layer</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">;;</span> <span class="n">check</span> <span class="n">double</span> <span class="n">tap</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">right_shift</span>  <span class="p">[</span><span class="s2">&#34;two&#34;</span> <span class="mi">1</span><span class="p">]</span>  <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">1</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;;</span> <span class="n">chekc</span> <span class="n">single</span> <span class="n">tap</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">right_shift</span> <span class="p">:</span><span class="n">right_shift</span> <span class="n">nil</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{:</span><span class="n">alone</span>  <span class="p">[:</span><span class="n">right_shift</span> <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">1</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">:</span><span class="n">delayed</span> <span class="p">{:</span><span class="n">invoked</span> <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">0</span><span class="p">]</span> <span class="p">:</span><span class="n">canceled</span> <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">0</span><span class="p">]}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">:</span><span class="n">params</span> <span class="p">{:</span><span class="n">delay</span> <span class="mi">1000</span><span class="p">}}]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="n">two</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">period</span>  <span class="p">:</span><span class="mi">1</span>  <span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This layer keep the function of <code>right shift</code>, but I don&rsquo;t know why it fail to
+use <code>right shift</code> to escape.<!-- raw HTML omitted -->
+The single tap check is a little bit complicate, nil is introduced in mod-tap
+layer which extended the <code>to event</code>, new <code>:delayed</code> control the behaviour after
+the key tapped, <code>:invoked</code> and <code>:canceled</code> work as their name.  <code>:params {:delay  1000}</code> denote the time for the accepted delay time, <code>invoked</code> event trigger
+before that time, <code>canceled</code> event trigger after that time.<!-- raw HTML omitted -->
+<strong>The double tap check should be put before single tap check.</strong><!-- raw HTML omitted -->
+To escape the layer use the same key use the follow snippet instead:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="p">;;</span> <span class="n">check</span> <span class="n">double</span> <span class="n">tap</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[:</span><span class="n">right_shift</span>  <span class="p">[</span><span class="s2">&#34;two&#34;</span> <span class="mi">1</span><span class="p">]</span>  <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">1</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="p">;;</span> <span class="n">chekc</span> <span class="n">single</span> <span class="n">tap</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[:</span><span class="n">right_shift</span> <span class="p">[:</span><span class="n">right_shift</span> <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">1</span><span class="p">]]</span> <span class="p">[</span><span class="s2">&#34;two&#34;</span> <span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{:</span><span class="n">delayed</span> <span class="p">{:</span><span class="n">invoked</span> <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">0</span><span class="p">]</span> <span class="p">:</span><span class="n">canceled</span> <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">0</span><span class="p">]}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">:</span><span class="n">params</span> <span class="p">{:</span><span class="n">delay</span> <span class="mi">1000</span><span class="p">}}]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">:</span><span class="n">two</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[:</span><span class="n">right_shift</span>  <span class="p">[</span><span class="s2">&#34;two&#34;</span> <span class="mi">0</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[:</span><span class="n">period</span>  <span class="p">:</span><span class="mi">1</span>  <span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>It first check that if right_shift is tap twice and once, and leave if tap twice
+already. But this cannot perserve the function of <code>right shift</code>, so it cannnot
+be act like modifier anymore, to be noted, the last example that perserve <code>right  shift</code> can replace by othey with variables, so as mod-tap layer and double
+tapped layer at the same time.</p>
+<h2 id="marco">Marco</h2>
+<p>This is actually not a layer, but a collection of keys. I have defined a layer
+to shorten repetitive keys sequence into single press.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[:</span><span class="n">i</span>     <span class="p">[:</span><span class="n">i</span> <span class="p">:</span><span class="n">n</span> <span class="p">:</span><span class="n">s</span> <span class="p">:</span><span class="n">e</span> <span class="p">:</span><span class="n">r</span> <span class="p">:</span><span class="n">t</span> <span class="p">:</span><span class="n">spacebar</span> <span class="p">:</span><span class="n">a</span> <span class="p">:</span><span class="n">spacebar</span> <span class="p">:</span><span class="n">j</span> <span class="p">:</span><span class="n">o</span> <span class="p">:</span><span class="n">k</span> <span class="p">:</span><span class="n">e</span><span class="p">]]</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Which will insert <code>insert a joke</code> with space if you press <code>i</code>.</p>
+<h2 id="my-karabieredn">My karabier.edn</h2>
+<p>Here is a
+<a href="https://github.com/sokinpui/config/blob/main/karabiner.edn">reference</a> for your
+own implementation.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Programmer MacBook Keyboard layout</title>
+      <link>https://sokinpui.github.io/blog-sokinpui/post/blog1-layout/</link>
+      <pubDate>Sun, 26 Mar 2023 19:23:56 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/blog-sokinpui/post/blog1-layout/</guid>
+      <description>Abstruct 2023 is a start of AI era, with more strong AI tools explore to our life, typing maybe replaced by voice input one day, where natural language programming become true. But until now, typing is still not replacable. From daily usage to programming, the location of the keys may significantly effect the comfortable of long time typing. Here is a brief solution that hope to enhance the experience when typing on standard 78% keyboard.</description>
+      <content:encoded><![CDATA[<h1 id="abstruct">Abstruct</h1>
+<p>2023 is a start of AI era, with more strong AI tools explore to our life, typing
+maybe replaced by voice input one day, where natural language programming become
+true. But until now, typing is still not replacable. From daily usage to
+programming, the location of the keys may significantly effect the comfortable
+of long time typing. Here is a brief solution that hope to enhance the
+experience when typing on standard 78% keyboard.</p>
+<h1 id="reason-to-redesign">Reason to redesign.</h1>
+<p>I use Macbook Air as my main machine, stick to it and cannot use an customizable
+keyboard like <strong>planck&rsquo;s keyboard</strong> and <strong>hhkb keyboard</strong> for the desire of
+protable. The plain of using standard 78% keyboard on Macbook is the overusage
+of pinky, <code>Backspace</code>, <code>[</code>, <code>]</code>, <code>-</code>, <code>=</code> and <code>Enter</code> are all handled by right
+pinky. As my right pinky is much weaker than left, which make typing long time a
+difficult, inefficient and tired task. I believe it is true for other user who
+programming a lot with Macbook.</p>
+<p>There are so many plans and existing well designed layouts on the Internet,
+while they are mainly for one who use a external non-standard keyboards instead
+of standard. So I hope there will be more disscusion about configuration of
+trivail standard keyboard.</p>
+<h1 id="choose-of-base-layer-qwerty">Choose of base layer, Qwerty</h1>
+<p>Not Colemak, Dvoark and any non-Qwerty. I have tried Colemak and Dvoark, but the
+musale memory of Qwerty is too strong that make me feel more natural and
+comfortalbe typing on Qwerty. Moreover, the change of layout may not bring
+significant advantages and comfor for typing, 10 keys on homerow is never
+enough, whatever layouts, your fingers still need to move along three rows to
+type characters. The analysis of those Qwerty alternative always be to ideal,
+without mention of muscale memory and symbols make such change not really solve
+the plain. Another reason is that the time cost is too high and the improvement
+is not that big, there is not need to explain why the time cost is high as it is
+well explained by those Qwetrty touch typer how share their experience of
+switching to non-Qwerty.</p>
+<h1 id="analysis-before-design">Analysis before design</h1>
+<p>Except the function row, all row is easier to reach even for number rows. I
+don&rsquo;t touch type numbers rows using pinky fingers. Instead, I use ring fingers
+which are much longers then pinky fingers. So the keyboard layout don&rsquo;t need to
+relay on layers heavily like 40% planck&rsquo;s keyboard.</p>
+<p>Let counts the key we need:</p>
+<ol>
+<li>30 characters on the main area of the keyboard including <code>,</code>, <code>.</code>, <code>/</code> and
+<code>;</code>.</li>
+<li>13 keys on numbers</li>
+<li>8 modifier keys, <code>capslock</code>, <code>left right option</code>, <code>left right command</code>, <code>left  shift</code>, <code>control</code>, <code>fn</code> I don&rsquo;t count right shift since I never use it.</li>
+<li>4 special keys, including <code>space</code>, <code>reutrn</code>, <code>tab</code> and <code>delete</code>.</li>
+<li>4 arrow keys, I don&rsquo;t want to use home row arrow keys, since I seldom use
+them, there is no need to prepare a layer for them.</li>
+</ol>
+<p>61 keys is already sweat enough for daily used, for those shortcut, I usually
+reduce them from three or above keys into two keys by define a customizing
+layer.</p>
+<h1 id="layers">Layers</h1>
+<p>There are two types of layers, dead keys and modifers</p>
+<h2 id="dead-keys">Dead keys</h2>
+<p>The layout of keyboard is chagned permanently untill you press other keys or the
+inactive keys. One of the exmaple are the comma of
+<a href="https://github.com/workman-layout/Workman/tree/master/mac">workman-dead</a>.</p>
+<h2 id="modifers">modifers</h2>
+<p>The layout is changed temporary, the layout return to default after release. One
+of the example is <code>shift</code>.</p>
+<h2 id="my-solution">My solution</h2>
+<p>There are some keys that is underused, like space, tab and return. There are
+much space that can be leveraged. They should perform tap-mode, which provide
+two funciton when tap and held them down.</p>
+<ol>
+<li>Remap <code>space</code> to <code>space</code> when tap, <code>shift</code> when held.
+It is much comfortable compare to use pinky finger to press shift.</li>
+<li>Remap <code>left shift</code> to <code>escape</code> when tap, <code>control</code> when held. I use vim.</li>
+<li>swap numbers and symbols for programming.</li>
+<li>remap <code>caps lock</code> to <code>=</code> when tap, switch layer when held.</li>
+<li>swap quote <code>'</code> and double quote <code>'</code>, and locate at the original position of
+open bracket.</li>
+<li>move hyphen and underscore to the original position of quote.</li>
+<li>move backslash and pipe to the original position of hyphen.</li>
+</ol>
+<p><strong>Layers:</strong><!-- raw HTML omitted -->
+caps lock layers(held down caps lock):<!-- raw HTML omitted -->
+u: ]<!-- raw HTML omitted -->
+i: [<!-- raw HTML omitted -->
+j: }<!-- raw HTML omitted -->
+k: {<!-- raw HTML omitted --></p>
+<h2 id="macro-sequences">Macro sequences</h2>
+<p>You can define a simple key that perform a sequence of key. It is better put
+them in a layer to avoid error when typing.<!-- raw HTML omitted -->
+I have defined some in the caps lock layer.<!-- raw HTML omitted -->
+d: -&gt;<!-- raw HTML omitted -->
+f: !=<!-- raw HTML omitted -->
+:: @:<!-- raw HTML omitted --></p>
+<h1 id="implementation">Implementation</h1>
+<p>You may wonder how to implement those change on Mac, you may use <a href="https://karabiner-elements.pqrs.org/">Karabiner
+Elements</a> together with
+<a href="https://github.com/yqrashawn/GokuRakuJoudo">Goku</a> to define your own keyboard
+layout.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>There are lots of method to increase comfortable and efficiency to get the job
+done, before typing to modify your keyboard, make sure you have tried to use
+<strong>good tools</strong> like Vim, IDE, auto compeletion, snippets and scritping to
+reduece typing. Single modification of keyboard won&rsquo;t make you a better typer.<br>
+With the help of snippets and auto completion, I now write code with less demand
+to type all the symbols manually, therefor a entire symbols layers on homerow is
+no needed(Previously I have one, use space to active, convert home row into
+common used symbols.)</p>
+<p>
+
+
+</p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

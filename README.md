@@ -1,0 +1,1 @@
+blog powered by hugo.

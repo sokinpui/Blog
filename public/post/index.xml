@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on Home</title>
+    <link>https://sokinpui.github.io/blog-sokinpui/post/</link>
+    <description>Recent content in Posts on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 15 Jul 2023 17:34:00 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/blog-sokinpui/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tmux key bndings less suffer</title>
+      <link>https://sokinpui.github.io/blog-sokinpui/post/blog10/</link>
+      <pubDate>Sat, 15 Jul 2023 17:34:00 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/blog-sokinpui/post/blog10/</guid>
+      <description>Do you use tmux? Do you think the default key bndings of tmux unacceptalbe? Here are some tips I have collected.
+TIPS 1: Skip prefix After change some key bndings like prefix from C-b to something like C-space, you may still find annoying to press prefix for some handy shortcut like switching windows. To skips the needs of prefix, you may add the option -n before the command To switch windows without prefix using M-n 1 bind -n M-n select-window -t :+ 2: Keyboard Macros Macros are collection of keys sequence, you may find some key on your keyboard is less used like right alt, then you can convert this key as tmux specify modifier key, press this key will do a sequence of shortcut.</description>
+      <content:encoded><![CDATA[<p>Do you use tmux? Do you think the default key bndings of tmux unacceptalbe? Here are some tips I have collected.</p>
+<h1 id="tips">TIPS</h1>
+<h2 id="1-skip-prefix">1: Skip prefix</h2>
+<p>After change some key bndings like prefix from <code>C-b</code> to something like <code>C-space</code>, you may still find annoying to press prefix for some handy shortcut like switching windows.
+To skips the needs of prefix, you may add the option <code>-n</code> before the command <!-- raw HTML omitted -->
+To switch windows without prefix using <code>M-n</code> <!-- raw HTML omitted --></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bind -n M-n select-window -t :+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2-keyboard-macros">2: Keyboard Macros</h2>
+<p>Macros are collection of keys sequence, you may find some key on your keyboard is less used like <code>right alt</code>, then you can convert this key as tmux specify modifier key, press this key will do a sequence of shortcut. To achieve this, you may need a key mappings application, on Linux I recommand <a href="https://github.com/kmonad/kmonad">kmonad</a>; on Macos, I recommand <a href="https://karabiner-elements.pqrs.org/">Karabiner elements</a>. If you use karabiner elements, use <a href="https://github.com/yqrashawn/GokuRakuJoudo">goku</a> to configure Karabiner elements JSON file easier, life saver!</p>
+<h2 id="3-open-new-window-under-current-directory">3: open new window under current directory</h2>
+<p>It is especially great working on small screen laptop, if you spawn new pane, then you are in the same directory, however, if you spawn a new window, you will by default at <code>$HOME</code>. <!-- raw HTML omitted -->
+You can use <!-- raw HTML omitted --></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bind -n M-o new-window -c &#34;#{pane_current_path}&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>to map <code>Alt-o</code> to open new window udner current directory.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Markdown writing, Obsidian &#43; Vim, not vim-mode</title>
+      <link>https://sokinpui.github.io/blog-sokinpui/post/blog9-prettyvim/</link>
+      <pubDate>Fri, 30 Jun 2023 10:25:46 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/blog-sokinpui/post/blog9-prettyvim/</guid>
+      <description>Obsidian is a local note-taking apps, all the files are saved as .md or .pdf format. Vim or Neovim are great editors that allow you config all days without writing any real code
+Obsidian has vim-mode, which support Vim modal editing out of the box. However, due to the font size is not unqiue in obsidian, Like the heading has bigger size, the code block is not at the beginning of the line.</description>
+      <content:encoded><![CDATA[<p><a href="https://obsidian.md/">Obsidian</a> is a local note-taking apps, all the files are saved as <code>.md</code> or <code>.pdf</code> format.
+<a href="https://www.vim.org/">Vim</a> or <a href="https://neovim.io/">Neovim</a> are great editors that allow you config all days without writing any real code</p>
+<p>Obsidian has vim-mode, which support Vim modal editing out of the box. However, due to the font size is not unqiue in obsidian, Like the heading has bigger size, the code block is not at the beginning of the line. Sometimes got confused when using jk to move up and down, you move up may not be where you want to go. Vim modal editing editing works better with mono font, regardly, mono font has less readibility than non-mono font where obsidian used by default. What&rsquo;s more, obsidian vim-mode is not clone of vim, still implement as a vim emulation. You may have <a href="https://github.com/esm7/obsidian-vimrc-support">obsidian vimrc support plugin</a>, so to unlock the power of mapping in obsidian, but you still got a lot limitation. In terms of editing, a real Vim should be better than any vim-emulation, and in terms of notes-taking, any note-taking app should work better than Vim+shell, you don&rsquo;t have notes structure visualization without some extra tweaks.</p>
+<h1 id="editing-in-vim">Editing in Vim</h1>
+<p>With Vim, you can have those convenience over obsidian:</p>
+<ol>
+<li>snippets</li>
+<li>completion</li>
+<li>The best &ldquo;Vim&rdquo; mode</li>
+</ol>
+<p>The last one should have no doubt. The reason I use snippets and completion in note-taking because I am lazy. Retype the same works again and again are really boring and meangless. Obsidian does have some plugins related to <a href="https://github.com/ArianaKhit/text-snippets-obsidian">snippets</a> and <a href="https://github.com/tadashi-aikawa/obsidian-various-complements-plugin">completion</a>, but setup snippets and completion is just easier and more consisent on Vim. In Vim you can have same UI interface and consisent keyblindings.<!-- raw HTML omitted -->
+The plugins I use for snippets and completion are <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> + <a href="https://github.com/SirVer/ultisnips">Ultisnips</a> + <a href="https://github.com/neoclide/coc-snippets">coc.snippets</a>, choosing coc.nvim simply because it have provided solution for snippets together with completion out of the box. Of course, there is so much alternatives avalible. The only missing is the backlink completion. But it is fine, insert backlink in obsidian let me have a look of filenames, so that I won&rsquo;t forget the filename and suck typing.</p>
+<p>Example configuration for snippets and completion:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Plug &#39;neoclide/coc.nvim&#39;, {&#39;branch&#39;: &#39;release&#39;}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34;   coc.nvim
+</span></span><span class="line"><span class="cl">inoremap &lt;silent&gt;&lt;expr&gt; &lt;TAB&gt; coc#pum#visible() 
+</span></span><span class="line"><span class="cl">      \ ? coc#pum#next(1) : 
+</span></span><span class="line"><span class="cl">      \ cocfunc#CheckBackspace() 
+</span></span><span class="line"><span class="cl">      \ ? &#34;\&lt;TAB&gt;&#34; : coc#refresh()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">inoremap &lt;expr&gt;&lt;S-TAB&gt; coc#pum#visible() 
+</span></span><span class="line"><span class="cl">      \ ? coc#pum#prev(1) : &#34;\&lt;S-TAB&gt;&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">inoremap &lt;silent&gt;&lt;expr&gt; &lt;CR&gt; coc#pum#visible() 
+</span></span><span class="line"><span class="cl">      \ ? &#34;\&lt;C-g&gt;u\&lt;CR&gt;\&lt;c-r&gt;=coc#pum#close()\&lt;CR&gt;&#34; 
+</span></span><span class="line"><span class="cl">      \ : &#34;\&lt;C-g&gt;u\&lt;CR&gt;\&lt;c-r&gt;=coc#on_enter()\&lt;CR&gt;&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">inoremap &lt;silent&gt;&lt;expr&gt; &lt;space&gt; coc#pum#visible() 
+</span></span><span class="line"><span class="cl">      \ ? &#34;&lt;esc&gt;a&lt;space&gt;&#34; : &#34;&lt;space&gt;&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34;   coc.snippets
+</span></span><span class="line"><span class="cl">inoremap &lt;C-j&gt; &lt;Plug&gt;(coc-snippets-expand-jump)
+</span></span><span class="line"><span class="cl">vnoremap &lt;C-j&gt; &lt;Plug&gt;(coc-snippets-select)
+</span></span><span class="line"><span class="cl">let g:coc_snippet_next = &#39;&lt;C-j&gt;&#39;
+</span></span><span class="line"><span class="cl">let g:coc_snippet_prev = &#39;&lt;C-k&gt;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>coc.snippets need to be installed separately, after install coc.nvim, run the command <code>:CocInstall coc-snippets</code></p>
+<h1 id="obsidian-the-markdown-viewer">Obsidian, the markdown viewer</h1>
+<p>Insert image in markdown with plugins <a href="https://github.com/nicojeske/mousewheel-image-zoom">image resizer</a> and <a href="https://github.com/reorx/obsidian-paste-image-rename">imager inserter</a> is supar convenient, no doubt better than vim.</p>
+<h2 id="navigation-in-wrapped-line">Navigation in wrapped line</h2>
+<p>Since hard wrapped line will make paragraph look ugly in Obsidian, use soft wrapped line instead, which means one paragraph is actually a long long line. Some mapping will be handy to avoid keep using prefix <code>g</code> again in Vim.</p>
+<p>Example configuration, in <code>~/.vim/ftplugin/markdown.vim:</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">setlocal textwidth=0 wrap formatoptions=tc2n linebreak
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">noremap &lt;buffer&gt; j gj
+</span></span><span class="line"><span class="cl">noremap &lt;buffer&gt; k gk
+</span></span><span class="line"><span class="cl">noremap &lt;buffer&gt; $ g$
+</span></span><span class="line"><span class="cl">noremap &lt;buffer&gt; ^ g^
+</span></span><span class="line"><span class="cl">noremap &lt;buffer&gt; 0 g0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nnoremap &lt;buffer&gt; dd g0vg$D
+</span></span><span class="line"><span class="cl">nnoremap &lt;buffer&gt; D g0vg$D
+</span></span><span class="line"><span class="cl">nnoremap &lt;buffer&gt; V g0vg$
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nnoremap &lt;buffer&gt; I g^i
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">function! IsBlank()
+</span></span><span class="line"><span class="cl">    normal! g$
+</span></span><span class="line"><span class="cl">    var char = getline(&#34;.&#34;)[col(&#34;.&#34;) - 1]
+</span></span><span class="line"><span class="cl">    if char == &#34;\t&#34; || char == &#34; &#34;
+</span></span><span class="line"><span class="cl">        normal! gel
+</span></span><span class="line"><span class="cl">        startinsert
+</span></span><span class="line"><span class="cl">    else
+</span></span><span class="line"><span class="cl">        startinsert!
+</span></span><span class="line"><span class="cl">    endif
+</span></span><span class="line"><span class="cl">deffunction 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nnoremap &lt;buffer&gt; A :call IsBlank()&lt;cr&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The last one help you stop at the last non-blank character in wrapped line, the normal behavior of <code>g$a</code> will stop at the last character including space and tab, sometimes inconvenient.</p>
+<h2 id="psudo-wysiwyg">Psudo WYSIWYG</h2>
+<p>WYSIWYG, what you see is what you get, is one of the highlight of markdown syntax, very simple. To get half experience in Vim, oen can be turn on concealment. <code>set conceallevel=2</code> to convert highlight syntax into unicode character.</p>
+<p>Just let better tools takes the jobs. For text editing, take Vim; For notes managment, take Obsidian; For complex data representaion like chart, embedded image and website page, just take any other tools like Notion.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Vim plugin recommendation</title>
+      <link>https://sokinpui.github.io/blog-sokinpui/post/blog8-vimpluginrecommend/</link>
+      <pubDate>Thu, 29 Jun 2023 14:00:02 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/blog-sokinpui/post/blog8-vimpluginrecommend/</guid>
+      <description>Vacillate vim are really good, after remember some vim command keyblindings, you can start editing or writing immediately. The main benefits of using plugins can avoid use our poor vimscript. Use some great plugin avoid you to rebuild the wheel. Before you are able to write plugin yourself, trust me, any exist plugins is better than yours.
+Plugins recommendation 1. vim-plug vim-plug, a plugin manager that help you install, update and manage your plugins.</description>
+      <content:encoded><![CDATA[<p>Vacillate vim are really good, after remember some vim command keyblindings, you can start editing or writing immediately. The main benefits of using plugins can avoid use our poor vimscript. Use some great plugin avoid you to rebuild the wheel. Before you are able to write plugin yourself, trust me, any exist plugins is better than yours.</p>
+<h1 id="plugins-recommendation">Plugins recommendation</h1>
+<h2 id="1-vim-plughttpsgithubcomjunegunnvim-plug">1. <a href="https://github.com/junegunn/vim-plug">vim-plug</a></h2>
+<p>vim-plug, a plugin manager that help you install, update and <strong>manage</strong> your plugins. Vim come with built-in package manger <code>pack</code>, a subdirectory under <code>.vim/</code>, if don&rsquo;t exist, create it. I usually use build-in <code>pack</code> only for some personal little script, so that I don&rsquo;t have to move forth and back in vim runtime path.</p>
+<p>Vim plug syntax is easy, to add random plugins, add those line in your <code>.vimrc</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">call plug#begin()
+</span></span><span class="line"><span class="cl">&#34; list plugins herer
+</span></span><span class="line"><span class="cl">Plug &#39;junegunn/vim-easy-align&#39;
+</span></span><span class="line"><span class="cl">call plug#end()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Any github repo can be installed, for example, you have write your <em>plugin</em> and push to github at <a href="https://github.com/username/plugin-name">https://github.com/username/plugin-name</a>, you can add this <em>plugin</em> by adding those line in your <code>.vimrc</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">call plug#begin()
+</span></span><span class="line"><span class="cl">&#34; list plugins herer
+</span></span><span class="line"><span class="cl">Plug &#39;username/plugin-name&#39;
+</span></span><span class="line"><span class="cl">call plug#end()
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>After that, save your file by <code>:w</code>, source your <code>.vimrc</code> or leave then reopen your <code>.vimrc</code>, run the command <code>:PlugInstall</code>. Plugins will be installed at <code>~/.vim/plugged</code> by default.</p>
+<p>To save my little pinky finger, I have those mapping for convenience:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nnoremap \i :w&lt;cr&gt;:source ~/.vim/vimrc&lt;cr&gt;:PlugInstall&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap \c :w&lt;cr&gt;:source ~/.vim/vimrc&lt;cr&gt;:PlugClean&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap \u :w&lt;cr&gt;:source ~/.vim/vimrc&lt;cr&gt;:PlugUpdate&lt;cr&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2-vim-sandwichhttpsgithubcommachakannvim-sandwich">2. <a href="https://github.com/machakann/vim-sandwich">vim-sandwich</a></h2>
+<p>vim-sandwich help you to change the surround of text. What is surround? Surround means the pairs that surround text object, like <code>&quot;</code> and <code>(</code>. It is handy to let program do for us, instead of change manually.</p>
+<p><a href="https://github.com/machakann/vim-sandwich">vim-sandwich</a> is an alternative of <a href="https://github.com/tpope/vim-surround">vim-surround</a>, which provide texthighligh, auto-selection, and repeat with <code>.</code> out-of the box. It use less keys than vim-surround, just navigate to the current parenthesis object position and chagne the surround! No need to select the object before change.
+surround style of changing surround:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cs &lt;surround to be changed&gt; &lt;surround to replace&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>sandwich style of changing surround(auto replace):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">srb &lt;surround to be changed&gt; &lt;surround to replace&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I though it is a more intutitive than to surround style of change, as symbol like <code>{</code>, <code>[</code> and <code>(</code> is more difficult to type than navigate to the right position with <code>f</code>, <code>t</code>, <code>F</code> and <code>T</code>.</p>
+<p>The auto-selection of vim-sandwich is highlight of this plugin, I have use this feaatur for all surround editing including add, delete and replace surrounds. I have the following setting so that I can use <code>&lt;leader&gt;+symbols</code> to add surround for one words or selected region</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nmap &lt;leader&gt;( saiw(E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;) saiw)E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;[ saiw[E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;] saiw]E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;{ saiw{E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;} saiw}E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;&#34; saiw&#34;E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;&#39; saiw&#39;E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;&lt; saiw&lt;E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;&gt; saiw&gt;E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;` saiw`E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;$ saiw$E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;* saiw*.E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;~ saiw~.E
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34; visual
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;( sa(
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;) sa)
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;[ sa[
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;] sa]
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;{ sa{
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;} sa}
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;&#34; sa&#34;
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;&#39; sa&#39;
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;&lt; sa&lt;
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;&gt; sa&gt;
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;` sa`
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;$ sa$
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;_ ca_
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;* sa*.
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;~ sa~.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>However, it is a bad habits to make a keyboard macros, the better way would be calling the plugin&rsquo;s function. Coz I am lazy and nothing happen till now, I keep those lines.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="3-clever-fhttpsgithubcomrhysdclever-fvim">3. <a href="https://github.com/rhysd/clever-f.vim">clever-f</a></h2>
+<p><a href="https://github.com/rhysd/clever-f.vim">clever-f</a> is a plugin that improve the smoothness and consisent when navigation with <code>f</code>, <code>t</code>, <code>F</code> and <code>T</code>. You can use <code>f</code> to navigate to next <code>f</code> search, or use <code>F</code> to navigate backwards, instead of using <code>;</code> and <code>,</code>. What&rsquo;s more, you can remap <code>;</code> and <code>,</code> for other purpose. When you press <code>f</code> to navigate <code>f</code> search, you can cross the line, and you can have smart case searching!</p>
+<p>After using this plugin, I won&rsquo;t claim it is more efficient than <code>;</code> and <code>,</code>, but it must be more comfortable.</p>
+<p>You can change the behaviour of the plugins by adding those line to your <code>.vimrc</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34; ignore case unless you specify Upper case 
+</span></span><span class="line"><span class="cl">let g:clever_f_smart_case = 1  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34; allow cross line, set to 1 if you don&#39;t 
+</span></span><span class="line"><span class="cl">let g:clever_f_across_no_line = 0 like it
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34; f; will searhc for all symbols
+</span></span><span class="line"><span class="cl">let g:clever_f_chars_match_any_signs = &#39;;&#39; 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34; f. will repeat you last search
+</span></span><span class="line"><span class="cl">let g:clever_f_repeat_last_char_inputs = [ &#34;\&lt;TAB&gt;&#34; ]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="4-cocnvimhttpsgithubcomneoclidecocnvim">4. <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a></h2>
+<p><a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> make completion in vim like vscode.</p>
+<p>coc.nvim is a plugins framework, so you may find coc-XXX plugin written in Javascript or Typescript. Some of them is unique, some of them is alternative to the existing vim plugins to compatilbe with coc.nvim. One is <a href="https://github.com/neoclide/coc-snippets">coc.snippets</a>, which aims to replace <a href="https://github.com/SirVer/ultisnips">Ultisnips</a> when you use coc.nvim. coc.nvim use is written Javascript and Typescript, you will configure the popup window in JSON file.</p>
+<p>By default, coc.nvim don&rsquo;t come with any keyblindings, you have to configure yourself.</p>
+<p>For example, you can:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;   coc.nvim
+</span></span><span class="line"><span class="cl">inoremap &lt;silent&gt;&lt;expr&gt; &lt;TAB&gt; coc#pum#visible() ? coc#pum#next(1) : 
+</span></span><span class="line"><span class="cl">      \ cocfunc#CheckBackspace() ? &#34;\&lt;TAB&gt;&#34; : coc#refresh()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">inoremap &lt;expr&gt;&lt;S-TAB&gt; coc#pum#visible() ? coc#pum#prev(1) : &#34;\&lt;S-TAB&gt;&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">inoremap &lt;silent&gt;&lt;expr&gt; &lt;CR&gt; coc#pum#visible() ? &#34;\&lt;C-g&gt;u\&lt;CR&gt;\&lt;c-r&gt;=coc#pum#close()\&lt;CR&gt;&#34; 
+</span></span><span class="line"><span class="cl">                              \: &#34;\&lt;C-g&gt;u\&lt;CR&gt;\&lt;c-r&gt;=coc#on_enter()\&lt;CR&gt;&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">inoremap &lt;silent&gt;&lt;expr&gt; &lt;space&gt; coc#pum#visible() ? &#34;&lt;esc&gt;a&lt;space&gt;&#34; 
+</span></span><span class="line"><span class="cl">                              \: &#34;&lt;space&gt;&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34;   coc.snippets
+</span></span><span class="line"><span class="cl">inoremap &lt;C-j&gt; &lt;Plug&gt;(coc-snippets-expand-jump)
+</span></span><span class="line"><span class="cl">vnoremap &lt;C-j&gt; &lt;Plug&gt;(coc-snippets-select)
+</span></span><span class="line"><span class="cl">let g:coc_snippet_next = &#39;&lt;C-j&gt;&#39;
+</span></span><span class="line"><span class="cl">let g:coc_snippet_prev = &#39;&lt;C-k&gt;&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The above example don&rsquo;t require selection, you use <code>&lt;TAB&gt;</code> and <code>&lt;S-TAB&gt;</code> to navigate to the suggestion you want, after that, you can press <code>&lt;space&gt;</code> and <code>&lt;cr&gt;</code> to move and start a new line respectively.</p>
+<h2 id="5-fzfvimhttpsgithubcomjunegunnfzfvim">5. <a href="https://github.com/junegunn/fzf.vim">fzf.vim</a></h2>
+<p><a href="https://github.com/junegunn/fzf.vim">fzf.vim</a> $\times$  vim, a command line tools <a href="https://github.com/junegunn/fzf">fzf</a> vim warpper. You can unlock the power of fuzzy finder in vim nearly anything.</p>
+<p>The syntax of fzf.vim is simple:<!-- raw HTML omitted -->
+:Files [PATH] 	search file in current directory by default <!-- raw HTML omitted -->
+:Buffers 	search opened buffers <!-- raw HTML omitted -->
+:Ag [PATTERN] 	use ag to search pattern <!-- raw HTML omitted -->
+:Rg [PATTERN] 	use rg to search pattern <!-- raw HTML omitted -->
+:Lines [QUERY] 	search lines in loaded buffers <!-- raw HTML omitted -->
+:Marks 	search marks and jump to <!-- raw HTML omitted -->
+:History 	serach for opened files <!-- raw HTML omitted -->
+:History: 	search fo Command history <!-- raw HTML omitted -->
+:History/ 	Search for searching history wiht <code>/</code> <!-- raw HTML omitted -->
+:Commands 	search for avalible Commands <!-- raw HTML omitted -->
+:Maps 	serahc for Normal mode mappings <!-- raw HTML omitted -->
+:Helptags 	fzf for :help XXX, open help buffer <!-- raw HTML omitted --></p>
+<p>you can make your own shortcut like</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">let g:fzf_preview_window = [&#39;right,50%&#39;, &#39;ctrl-/&#39;]
+</span></span><span class="line"><span class="cl">let g:fzf_layout = {&#39;window&#39;: { &#39;width&#39;: 0.9, &#39;height&#39;: 0.9 }}
+</span></span><span class="line"><span class="cl">let g:fzf_buffers_jump = 1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;ff :Files&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;fb :Buffers&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;fs :Lines&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;fp :Rg&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;f/ :History/&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;f: :History:&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;fh :Helptags&lt;cr&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The first line config the location of preview windows, you can have <code>right</code>, <code>left</code>, <code>up</code>, and <code>down</code>. The second line control the size of the popup windows</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Vim emluation on Emacs and Vscode</title>
+      <link>https://sokinpui.github.io/blog-sokinpui/post/blog7-tryevil/</link>
+      <pubDate>Fri, 23 Jun 2023 11:24:42 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/blog-sokinpui/post/blog7-tryevil/</guid>
+      <description>(Edited date: 2023-06-23T11:24:42+08:00)
+Emacs Evil mode, a Vi layer on top of Emacs, in my understanding, Evil is a collection of keys remapping that blinds Emacs function to vi style keys. I love elisp, its powerful expression, the robust ecosystem built on top of elisp, tones of API that help writing my own plugins. I thought it is the most apporach Vim emluation I have tried, if Emacs is start as emacs -nw, it will successly pretend Vim TUI!</description>
+      <content:encoded><![CDATA[<p>(Edited date: 2023-06-23T11:24:42+08:00)</p>
+<p>Emacs Evil mode, a Vi layer on top of Emacs, in my understanding, Evil is a collection of keys remapping that blinds Emacs function to vi style keys. I love elisp, its powerful expression, the robust ecosystem built on top of elisp, tones of API that help writing my own plugins. I thought it is the most apporach Vim emluation I have tried, if Emacs is start as <code>emacs -nw</code>, it will successly pretend Vim TUI!</p>
+<p><a href="https://github.com/vscode-neovim/vscode-neovim">Vscode-Neovim</a>, it uses a fully embedded Neovim instance, so Vscode-Neovim can read the <code>init.vim</code> and <code>init.lua</code>. Which is really cool, don&rsquo;t have to google the API before configuraion.</p>
+<p>However, I feel the gap when using them. They are great emluation of Vim modal editing, however, other than editing, some important values are still not able to copy, like the integration with shell, and relay on third parity plugin on their ecosystem. Moreoever, I don&rsquo;t feel over advantage to use an emluation than native Vim.</p>
+<h1 id="emluation-cant">Emluation can&rsquo;t</h1>
+<p><code>Q</code> to enter ex mode in Evil.<!-- raw HTML omitted -->
+<code>q:</code>, <code>q?</code>, <code>q/</code>in Vscode-Neovim(extremely useful!)
+<code>sh</code> in both.(sometimes I want to copy the previous command output)
+<code>term</code> in Vscode-Neovim to popup an termianl
+<code>:help</code> in Evil.</p>
+<hr>
+<p>(edited at Mon Jun 26 12:49:55 PM CST 2023)</p>
+<h1 id="gravity">Gravity</h1>
+<p>Merge to new editor is harder than I thought, I have tried Vscode and Emacs, while they are great editor, but just required sometimes to copy the workflow from my old editor to new editor. Even copied all the keyblindings, some minor but unacceptable difference keep consumming my time to google a solution. For example, the Tab completion style difference between Vscode, Emacs and Vim, I like the popup window of Vim, the tab YouCompleteMe style tab cycling, to get the same setup on Emacs and Vscode are terrible.</p>
+<p>Also, the greatest gravity fallback to the original editor is no productivity gain from switching. If finally I endup with the same writing and editing experience on other editors, I still reach the same level of speed and productivity, then so what? The core of those editor hasn&rsquo;t changed, editing text, maybe Emacs can extand more than editing text.</p>
+<p>After giving a try to those editors, I finally satisify with my current editor. Just be reason when switching tools that have the same functionality in terms of your workflows, especially there is no issue with the current one.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>From Macbook to Thinkpad</title>
+      <link>https://sokinpui.github.io/blog-sokinpui/post/blog6-frommactothinkpad/</link>
+      <pubDate>Wed, 21 Jun 2023 10:51:38 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/blog-sokinpui/post/blog6-frommactothinkpad/</guid>
+      <description>From Mac to Thinkpad 2020 Macbook Air with M1 chips, my first computer used in univserity. There is three reasons I brought it, light weight, no fans and long battery life. But surprisingly, I discover that they are no gaming changer when I get into univserity.
+There is charger everywhere in univserity library, I don&amp;rsquo;t often move my computer, and I don&amp;rsquo;t have heavier work on my computer.
+Switching is not correct in my situation, I don&amp;rsquo;t sold my Macbook, instead I brough a second hand Thinkpad x1 carbon 6th 2019.</description>
+      <content:encoded><![CDATA[<h1 id="from-mac-to-thinkpad">From Mac to Thinkpad</h1>
+<p>2020 Macbook Air with M1 chips, my first computer used in univserity. There is three reasons I brought it, light weight, no fans and long battery life. But surprisingly, I discover that they are no gaming changer when I get into univserity.</p>
+<p>There is charger everywhere in univserity library, I don&rsquo;t often move my computer, and I don&rsquo;t have heavier work on my computer.</p>
+<p>Switching is not correct in my situation, I don&rsquo;t sold my Macbook, instead I brough a second hand Thinkpad x1 carbon 6th 2019. Nevertheless, I haven&rsquo;t used my Macbook three month ago.</p>
+<p>The reason I starting using thinkpad is so silly. After using Macbook for 9 months at univserity, I start to play with my keyboard, try different keyboard layout, also designed my own keyboard layout, I use <a href="https://karabiner-elements.pqrs.org/">Karabiner-Elements</a> and <a href="https://github.com/yqrashawn/GokuRakuJoudo">Goku</a> to config Karabiner Elements JSON file. Still there are some limitations on mac when remapping keys. Then, I discovered <a href="https://github.com/kmonad/kmonad">kmonad</a>, which seems to be more powerful, more free, and more structured syntax when compare to terrible JSON indention. Sadly, I found kmonad do not work on my Macbook, and it seems to work better on Linux(I still don&rsquo;t know the answer until now)?</p>
+<p>After the x1 carbon reached, I install Linux distribution and then kmonad immediately, Kmonad work perfect on linux! <strong>The silly fact is I have stopped tweaking my keyboard layout, I drop all the complex layer after using kmoand for a whole</strong>.</p>
+<h1 id="switching-gap">Switching gap</h1>
+<p>No gap exist when switching, because I sedomly use Mac specified application, most of my favourite applications are cross platform, or have web version. Some application like mail and pdf editor are quite different on Linux and Macos, nevertheless, there is full documeted guide availible on univserity website. They are not an issue. Moreoever, most of the time I found myself living in browser, there will not be any significant difference in sense of user experience between Linux and Macos, instead of switching From Chrome to firefox. <strong>Google Chrome look like second class on linux, while Firefox have gesture supporting and smooth scrolling out of the box</strong>, Google Chrome haven&rsquo;t come with gesture on my Linux distribution. But still, they are all fine.</p>
+<h1 id="habbits-change-after-on-thinkpad">Habbits Change after on Thinkpad</h1>
+<p>Switching has helped me discovering and changein my daily computer using habbits and my philosophy of desktop environment.</p>
+<h2 id="from-messay-virtual-desktop-to-organized-workspace">From messay virtual desktop to organized workspace</h2>
+<p>I had one bad habbit on Macos, I give every application a single virtual desktop, making switching application difficult. Suffering from sliding between virtual desktop or type the names of applications on spotlight search. Because of the implmentaton difference on GNOME and Macos, the workspace(equivalent to Macos virtual desktop) icon is so small, forcing me not to give one workspace per application. Since often I can&rsquo;t memorize where are the applications, and it is difficult to look for the application on the tiny workspace icon. Nevertheless, I finally found the right usage of workspace, group related windows in the same workspace. I cannot count how much energy have been waste on finding the right location of the wanted applications.</p>
+<h2 id="from-tilling-windows-fans-to-floating-windows-fans">From tilling windows fans to floating windows fans</h2>
+<p>Before doing meaningful stuff on computer, we first make ourself look cool, where 99% of time tweaking the desktop environment, remaining 1% doing real stuff.Tilling windows look cool, like hacker sitting in front of multiple screens. I use <a href="https://github.com/koekeishiya/yabai">yabai</a> on mac, before I try linux I have seen a lot of tilling windows manager screenshots sharing. They are really cool. But, most of the tilling windows manager are keyboard oriented, while the keyboard size of laptop are usually small, which mean I have to press keys with modifiers together, at the beginning, I am fine, but after a while, my little pinky finger suffer. I have rarely at the situation that have to switch between windows, of course no need for dynamic management of windows. I find floating windows is a more intuitive way to manage windows, and pinky-friendly.</p>
+<h2 id="from-40-keyboard-fans-to-87-to-100-to-200">From 40% keyboard fans to 87% to 100% to 200%?</h2>
+<p>40% keyboard look cool, it hold you hand in four main rows, so it is more efficient. Um&hellip;, that how I used to be thought about 40% keyboard, while saving thousand of miles finger move, I have to press every special symbols and numbers by modifiers, hold many key together, untypable if I move to new keyboard or new laptop. Currently I don&rsquo;t get the philosophy of low profile keyboard, instead I prefer double keyboard now. Literaly high profile keyboard, 180% keyboard. Those extra keys are used as marcos. I saved those handy shortcut combination into single keys, like I have map &ldquo;7&rdquo; on numpad as &ldquo;C-c C-t C-v enter&rdquo;, &ldquo;4&rdquo; on numpad as my univserity mail address. I am so naive that I have implmented a 40% keyboard on Macbook keyboard, leaving the number rows unused HAHA.
+<img loading="lazy" src="/blog-sokinpui/post/blog6-frommactothinkpad/wombat.1268.png" type="" alt="Wombat 200% keyboard"  />
+(Wombat 200% keyboard)</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Waste too much time to upgrade productivity</title>
+      <link>https://sokinpui.github.io/blog-sokinpui/post/blog4-choose-of-tools/</link>
+      <pubDate>Tue, 02 May 2023 21:41:24 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/blog-sokinpui/post/blog4-choose-of-tools/</guid>
+      <description>There are too much time spend on configure my tools, replace a more efficiently tool with the less efficient one. It takes me so long to understand those apps doesn&amp;rsquo;t matter if just want to take a notes
+Time spending on notes taking app Effie When I have to take notes, I fisrt using Effie, but then I find it don&amp;rsquo;t have good image insert support, give up. Their idea is great, notes or writing apps should be clean enough and later I find every notes app say they are clean.</description>
+      <content:encoded><![CDATA[<p>There are too much time spend on configure my tools, replace a more efficiently
+tool with the less efficient one. It takes me so long to understand those apps
+doesn&rsquo;t matter if just want to take a notes</p>
+<h1 id="time-spending-on-notes-taking-app">Time spending on notes taking app</h1>
+<h2 id="effie">Effie</h2>
+<p>When I have to take notes, I fisrt using <a href="https://www.effie.pro/">Effie</a>, but
+then I find it don&rsquo;t have good image insert support, give up. Their idea is
+great, notes or writing apps should be clean enough and later I find every notes
+app say they are clean.</p>
+<h2 id="notion">Notion</h2>
+<p>The next app is <a href="https://www.notion.so/desktop">notion</a>, it is great, the
+markdown blocks and integration of app make notion eye-cream, but then regarding
+the loading time take decade long, no offline support, and most of my time are
+dragging blocks make my workspace more pretty.  &ldquo;Um&hellip; A good notes should look
+like this.&rdquo;, regarding my terrible sense of beauty, the &ldquo;design&rdquo; never fit my
+imagination of prefect notes. Notion maybe too capable for a note taking app,
+the database function make them customizable, I want writing notes, but not
+build website. Nevertheelss, Notion now becoming my todo list, and event
+recorder, how great it support syncing across all devices, and can be access
+with browser.</p>
+<h2 id="onenote-collanote-goodnotes-remarkable">OneNote, CollaNote, Goodnotes, Remarkable</h2>
+<p>All of them used to be kept my handwriting notes, among them, OneNotes is canva,
+CollaNote is vertical scrolling canva, Goodnotes is a good handwriting notes app
+but neet to pay. Remarkable is an accidient, I never understand why I think it
+can take a notes with high writing delay and slow responding time. All of them
+have been used on 2018 Ipad with 20.7 grams Apple Pencil (1st Generation).  This
+gen pencil is too heavy, compare to Samsung 8 grams S Pen, it is like holding a
+sticker stamp on glass. I remember I have spend so much time finding free
+alternative on Ipad since good software and hardware are expensive, and finally
+stay with second hand Samsung tab S7.</p>
+<h2 id="obsidian">Obsidian</h2>
+<p>Before trying Obsidian, I have finally realize that note is simple as markdown,
+no need of those notion blocks or Effie cards. basiclly supporting tree
+directories selection and image insertion is a must. Obsidian do quite well, and
+finally I realize how much time is wasted on making my own notion note space. No
+database and todo list is needed, and therefore Obsidian is enough to write and
+manager notes.</p>
+<p>When tinkering a customizalbe tools, I always try to make the tools part of
+mine, try to complish all the tasks with the lovest tools. When there exist a
+better tools, still I have to use my lovely tools try to accomplish the task, if
+not, then google way to implement it. Most of the time tinkering the tools,
+losting the initial goal, turn into making my tools super powerful and
+multi-funcional. Therefore, never love your tools, getting the job done in
+efficient way is much more elegant than done the jobs with the specify tools, if
+the initial goal is getting the task done.</p>
+<h1 id="editor">Editor</h1>
+<p>Editor is another time sink source. Vim is the first editor I know it is a
+editor, I have use vscode before but I don&rsquo;t know it is a editor, back to the
+day using vscode, I am scaring of those UI, I don&rsquo;t know what will happen if I
+turn on/off some of thems. Vim is clean, simple and elegant. However, it is like
+a mindset trap, the more I know Vim, the stronger will to do all in vim way. Vim
+bring me to shell, shell bring me to plain text operation. A mindset form,
+command line and plain text are efficient, GUI and mouse are evil. At that time,
+I have read many article of how to navigate laptop with only keyboard and vim
+like motion. Most of the time spend on google &ldquo;how to do XXX in vim&rdquo; and &ldquo;how to
+do XXX in cli&rdquo;. Still worse, I have imaged many situation that never happen,
+prepare a function or shortcut to overcome the problem never happen in future.</p>
+<p>Any customizalbe editor can be time sink to configure, they becoming toies
+insteat of tools, I am adding too much unnecessary function before applied in
+real context. All those function and shortcut should only solved and implment in
+fly or they are repetitive to give a handy marco. When some special case rise, I
+am aware if it can be handle in &ldquo;simpler&rdquo; way, the real is they seldom occur in
+the future. However, time is wasted already.</p>
+<h1 id="problems-of-upgrading-productivity-through-changing-tools">Problems of upgrading productivity through changing tools.</h1>
+<p>Replacing the current tools with a more productivity one is often handy and
+attactive, imaging better functionalility of newer tools and get the job more
+efficient and elegant. However most of the time is spent on move data and
+rebuild working flow. When I merge my notes from Effie to notion, it take me one
+day to do so, it is repeative and boring to copy all the structure of the notes.<br>
+My current strategy are of merging notes are don&rsquo;t touch the notes unless
+necessary, most of my old notes are still keeping on notion instead merging them
+into obsidian, although it may feel statisfy too see a deep direcotry of notes
+on Obsidian side bar. It just too time consumming, no real benefit to merge all
+the notes into single place, whatever the notes still appear in both apps, it is
+really not difference to merge from one to one and separate them.</p>
+<h2 id="changing-tools">Changing tools</h2>
+<p>I always want to try new tools, like emacs, vscode, Obsidian open source
+alternative, Mac built-in preview.app &ldquo;better alternative&rdquo;. Try them like
+playing new toy, fun but no real gain. I try them under the name of learning,
+and end up with tinkering configure.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Dynamic number-symbol row in vim</title>
+      <link>https://sokinpui.github.io/blog-sokinpui/post/blog3-dyn-num-sym/</link>
+      <pubDate>Fri, 07 Apr 2023 17:43:58 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/blog-sokinpui/post/blog3-dyn-num-sym/</guid>
+      <description>Abstraction Provide a way to dynamic swap numbers and symbols in vim according to current mode.
+How this idea come When I write code or writing, I often find the symbols should be easily type as single key stroke, while in vim normal mode I find I would like to press number in single mode instead of pressing with shift. At first, I searched online for solution, many of them suggested to swap numbers and symbols, and I agree it may convient while coding.</description>
+      <content:encoded><![CDATA[<h1 id="abstraction">Abstraction</h1>
+<p>Provide a way to dynamic swap numbers and symbols in vim according to current
+mode.</p>
+<h1 id="how-this-idea-come">How this idea come</h1>
+<p>When I write code or writing, I often find the symbols should be easily type as
+single key stroke, while in vim normal mode I find I would like to press number
+in single mode instead of pressing with <code>shift</code>. At first, I searched online for
+solution, many of them suggested to swap numbers and symbols, and I agree it may
+convient while coding. However, I am not coding all day, even during coding, in
+vim normal mode something it is handy to use number for <code>[count]</code> and command
+together. So swapping force you to choose one of them for more convenience
+typing. Another solution is to use number pad layer, I would say it is same as
+swapping, since I have to press with another key to use numbers, the problem
+havn&rsquo;t been solved.</p>
+<p>One day, When I was editing code, the idea of toggling nubmer-symbol row come in
+my mind, then I implement it, and find it solve the problem quite well regarding
+not prefect.</p>
+<h1 id="number-symbols-toggle">Number-symbols toggle</h1>
+<p>Well, it is actually a dead key leader, when I press the <code>toggle key</code> which is
+<code>equal sign</code> of my keyboard. The nubmer row will swap to symbol row, press
+again, back to number.</p>
+<h1 id="dynamic-number-symbols-row-in-vim">Dynamic Number-symbols row in vim</h1>
+<p>Since vim is modual, when insert mode, I prefer using symbols over numbers, when
+normal mode, I prefer the opposite. Then I add some rules for the toggle keys.</p>
+<p>Back to normal mode, which is equivalent to press the <code>esc</code> key, so when press
+<code>esc</code> key, define <code>nst</code> to False. It means toggle number rows.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[:escape :left_control nil {:alone [ [&#34;nst&#34; 0] [&#34;n-layer&#34; 0] :escape  ]} ]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The above snippets is goku code, a config layer on top of <a href="https://karabiner-elements.pqrs.org/">Download
+Karabiner Elements</a>, which is a tools for
+Mac to remap keyboard layouts.</p>
+<p>Enter insert mode, is equivalent to <code>a</code>, <code>i</code>, <code>s</code>, <code>A</code>, <code>I</code>, <code>S</code>, <code>o</code>, <code>O</code>, <code>c</code>,
+<code>C</code>. Then turn <code>nst</code> to True when type those key.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[:i                           [:i  [&#34;nst&#34; 1]]]   
+</span></span><span class="line"><span class="cl">[:a                           [:a  [&#34;nst&#34; 1]]]   
+</span></span><span class="line"><span class="cl">[:s                           [:s  [&#34;nst&#34; 1]]]   
+</span></span><span class="line"><span class="cl">[:c                           [:c  [&#34;nst&#34; 1]]]   
+</span></span><span class="line"><span class="cl">[:o                           [:o  [&#34;nst&#34; 1]]]   
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The above code define <code>nst</code> to True when type <code>i</code> ( not <code>I</code> ).</p>
+<p>Furthur more, there is a few more situation I would prefer symbols over number,
+they are searching and command mode. Then I add those lines also.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[:semicolon                   [:semicolon [&#34;nst&#34; 1]]]   
+</span></span><span class="line"><span class="cl">[:slash                       [:slash [&#34;nst&#34; 1]] ]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="inprefect">Inprefect</h1>
+<p>Since the layer is define outside vim, it can not avoid symbols row toggle
+during normal mode, when I type <code>yip</code> in normal mode, the symbol row toggle.
+Although I can have some line like <code>inoremap 1 !</code> and <code>cnoremap 2 @</code>, I don&rsquo;t
+want to pollute my mapping to much, I give up to implement this in pure vim way.
+I am interesting to find how to let karabiner know that I am in vim normal mode,
+so that avoid toggle symbol row accidently.</p>
+<p>I have remap <code>equal sign</code> to the <code>caps lock</code>, so it is possible for me to have
+one dead key, if you want to implement also, you may find your own.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Define layer using Karabiner Elements togther with Goku</title>
+      <link>https://sokinpui.github.io/blog-sokinpui/post/blog2-goku/</link>
+      <pubDate>Fri, 31 Mar 2023 17:27:25 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/blog-sokinpui/post/blog2-goku/</guid>
+      <description>If you don&amp;rsquo;t know the basic syntax of Goku, please see the offical tutorial.
+What is Karabiner Elements? Karabiner Elements is a keyboard modifier on MacOS, which support key blindings remap and define layer, or in another form, complex modification. Download Karabiner Elements.
+What is Goku? Goku is a config file that ease the configuration in Karabiner Elements. In Karabiner Elements, if you want to implement complex modification, you will need to edit the json file, which is wired, it is very likely loss for beginners who don&amp;rsquo;t know the sturcture of modification of Karabiner Elements.</description>
+      <content:encoded><![CDATA[<p>If you don&rsquo;t know the basic syntax of Goku, please see the <a href="https://github.com/yqrashawn/GokuRakuJoudo/blob/master/tutorial.md">offical
+tutorial</a>.</p>
+<h1 id="what-is-karabiner-elements">What is Karabiner Elements?</h1>
+<p>Karabiner Elements is a keyboard modifier on MacOS, which support key blindings
+remap and define layer, or in another form, complex modification. <a href="https://karabiner-elements.pqrs.org/">Download
+Karabiner Elements</a>.</p>
+<h1 id="what-is-goku">What is Goku?</h1>
+<p>Goku is a config file that ease the configuration in Karabiner Elements. In
+Karabiner Elements, if you want to implement complex modification, you will need
+to edit the json file, which is wired, it is very likely loss for beginners who
+don&rsquo;t know the sturcture of modification of Karabiner Elements. Also, time is
+limited, why don&rsquo;t use an easier tools that already on top of Karabiner Elements
+to make life easier? <a href="https://github.com/yqrashawn/GokuRakuJoudo">Goku on
+github</a></p>
+<h1 id="define-your-customized-layer">Define your customized layer</h1>
+<h2 id="1-why-define-layer">1. Why define layer</h2>
+<p>The functionality of keyboard can be exteneded, one way is to define your own
+layers. With layers, you can shorten the key blindings in some &ldquo;shortcut&rdquo;
+usually require pressing three to four keys together. Or build an symbols layer
+if you stuck in the current <code>number + shift</code> way.</p>
+<h2 id="2-different-types-of-layers">2. Different types of layers</h2>
+<h3 id="traditional-layers">Traditional layers</h3>
+<p>Traditional layers like the layers of QMK mod-tap feature, a key&rsquo;s function is
+divide into two, when you held down, it is modifier, and you loss its tap&rsquo;s
+function, and vice verse.</p>
+<h3 id="simlayers">Simlayers</h3>
+<p>In Goku, <strong>simlayer</strong>(simultianeous-layer) differ from traditional layers which
+you would not loss key&rsquo;s original fucniton. <strong>For example, if you define <code>f</code> as
+your simlayer, if you held down <code>f</code>, stream of <code>f</code> will be inserted. Conversely,
+if you define <code>f</code> as tranditional layers, no <code>f</code> is insertd even you held it
+down.</strong></p>
+<p>In the
+<a href="https://github.com/yqrashawn/GokuRakuJoudo/blob/master/tutorial.md">tutorial</a>
+of goku, author states the problems of traditional layers. But to me, they are
+the benefits, since simalayer have delayed display and require really fast right
+key followed. So, in this page, I would suggest you to use traditional layers.</p>
+<h1 id="implement-layers-with-goku">Implement layers with Goku</h1>
+<h2 id="1-define-variables">1. define variables.</h2>
+<p>Variable help karabiner element know the state of your keyboard to act in
+performs different events in each states.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[</span><span class="s2">&#34;name of variable&#34;</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>It is a sturcture of variable, doble quoted name, 0 or 1 state.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[:</span><span class="n">fookey</span>   <span class="p">[</span><span class="s2">&#34;foovar-set&#34;</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">]</span>   <span class="p">[</span><span class="s2">&#34;foovar-cd&#34;</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">]]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>It is conditional event, the last one is the condition, the middle one is <code>to  event</code>, which set <code>foovar-set</code> to 0 or 1 if the condition is met.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[:</span><span class="n">fookey</span>   <span class="p">[[</span><span class="s2">&#34;foovar1&#34;</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">]</span> <span class="p">[</span><span class="s2">&#34;foovar2&#34;</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">]]</span>     <span class="p">[</span><span class="s2">&#34;foovar&#34;</span> <span class="mi">0</span><span class="o">/</span><span class="mi">1</span><span class="p">]]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>It is same strcture of above but with extended <code>to event</code>, which set two
+variable in sequence, the condition part can also be extened in vector <code>[[&quot;foo1&quot;  1] [&quot;foo2&quot; 1]]</code>, vector can expand as much as you want.</p>
+<h2 id="2-mod-tap-layers">2. mod-tap Layers</h2>
+<p>This type of layer active if you held down fookey. inactive if you release.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[:</span><span class="n">w</span> <span class="p">[</span><span class="s2">&#34;tap_fookey&#34;</span> <span class="mi">1</span><span class="p">]</span> <span class="n">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="p">:</span><span class="n">alone</span> <span class="p">[:</span><span class="n">w</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="p">:</span><span class="n">afterup</span> <span class="p">[</span><span class="s2">&#34;tap_fookey&#34;</span> <span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="n">tap_fookey</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">period</span>  <span class="p">:</span><span class="mi">1</span>  <span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The first <code>[&quot;tap_fookey&quot; 1]</code> is the key event if you held down, <code>alone</code> is the
+key event if you tap single. <code>:afterup</code> is after key up event. The last line
+<code>:tap_fookey</code> tells karabiner to perform the following events if <code>&quot;tap_fookey&quot;</code>
+is met, In this example, it is <code>w+. -&gt; 1</code> it is like the conditions.</p>
+<h2 id="3-dead-keys">3. dead keys</h2>
+<p>This type of layer active if you press fookeys, inactive if you press the
+fooleavekey.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[:</span><span class="n">fookey</span>            <span class="p">[</span><span class="s2">&#34;dead_foo&#34;</span> <span class="mi">1</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">fooleavekey</span>       <span class="p">[</span><span class="s2">&#34;dead_foo&#34;</span> <span class="mi">0</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="n">dead_foo</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">foo_from</span>       <span class="p">[:</span><span class="n">foo_to</span> <span class="p">[</span><span class="s2">&#34;dead_foo&#34;</span> <span class="mi">0</span><span class="p">]]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">foo_from</span>       <span class="p">:</span><span class="n">foo_to</span> <span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Dead key is actually a simple layer checked with variales state, the first event
+in dead_foo will leave layer after press the <code>foo_from</code>, while the second
+won&rsquo;t.<!-- raw HTML omitted -->
+If you wish to leave the layer with the same keys you can:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[:</span><span class="n">comma</span>  <span class="p">[</span><span class="s2">&#34;taped&#34;</span> <span class="mi">0</span><span class="p">]</span>  <span class="p">[</span><span class="s2">&#34;taped&#34;</span> <span class="mi">1</span> <span class="p">]</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">comma</span>  <span class="p">[</span><span class="s2">&#34;taped&#34;</span> <span class="mi">1</span><span class="p">]</span>  <span class="p">[</span><span class="s2">&#34;taped&#34;</span> <span class="mi">0</span> <span class="p">]</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="n">taped</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">period</span>  <span class="p">:</span><span class="mi">1</span>  <span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="double-tap-layer">double tap layer</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">;;</span> <span class="n">check</span> <span class="n">double</span> <span class="n">tap</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">right_shift</span>  <span class="p">[</span><span class="s2">&#34;two&#34;</span> <span class="mi">1</span><span class="p">]</span>  <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">1</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;;</span> <span class="n">chekc</span> <span class="n">single</span> <span class="n">tap</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">right_shift</span> <span class="p">:</span><span class="n">right_shift</span> <span class="n">nil</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{:</span><span class="n">alone</span>  <span class="p">[:</span><span class="n">right_shift</span> <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">1</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">:</span><span class="n">delayed</span> <span class="p">{:</span><span class="n">invoked</span> <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">0</span><span class="p">]</span> <span class="p">:</span><span class="n">canceled</span> <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">0</span><span class="p">]}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">:</span><span class="n">params</span> <span class="p">{:</span><span class="n">delay</span> <span class="mi">1000</span><span class="p">}}]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="n">two</span>
+</span></span><span class="line"><span class="cl"><span class="p">[:</span><span class="n">period</span>  <span class="p">:</span><span class="mi">1</span>  <span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This layer keep the function of <code>right shift</code>, but I don&rsquo;t know why it fail to
+use <code>right shift</code> to escape.<!-- raw HTML omitted -->
+The single tap check is a little bit complicate, nil is introduced in mod-tap
+layer which extended the <code>to event</code>, new <code>:delayed</code> control the behaviour after
+the key tapped, <code>:invoked</code> and <code>:canceled</code> work as their name.  <code>:params {:delay  1000}</code> denote the time for the accepted delay time, <code>invoked</code> event trigger
+before that time, <code>canceled</code> event trigger after that time.<!-- raw HTML omitted -->
+<strong>The double tap check should be put before single tap check.</strong><!-- raw HTML omitted -->
+To escape the layer use the same key use the follow snippet instead:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="p">;;</span> <span class="n">check</span> <span class="n">double</span> <span class="n">tap</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[:</span><span class="n">right_shift</span>  <span class="p">[</span><span class="s2">&#34;two&#34;</span> <span class="mi">1</span><span class="p">]</span>  <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">1</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="p">;;</span> <span class="n">chekc</span> <span class="n">single</span> <span class="n">tap</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[:</span><span class="n">right_shift</span> <span class="p">[:</span><span class="n">right_shift</span> <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">1</span><span class="p">]]</span> <span class="p">[</span><span class="s2">&#34;two&#34;</span> <span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{:</span><span class="n">delayed</span> <span class="p">{:</span><span class="n">invoked</span> <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">0</span><span class="p">]</span> <span class="p">:</span><span class="n">canceled</span> <span class="p">[</span><span class="s2">&#34;one&#34;</span> <span class="mi">0</span><span class="p">]}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">:</span><span class="n">params</span> <span class="p">{:</span><span class="n">delay</span> <span class="mi">1000</span><span class="p">}}]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">:</span><span class="n">two</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[:</span><span class="n">right_shift</span>  <span class="p">[</span><span class="s2">&#34;two&#34;</span> <span class="mi">0</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[:</span><span class="n">period</span>  <span class="p">:</span><span class="mi">1</span>  <span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>It first check that if right_shift is tap twice and once, and leave if tap twice
+already. But this cannot perserve the function of <code>right shift</code>, so it cannnot
+be act like modifier anymore, to be noted, the last example that perserve <code>right  shift</code> can replace by othey with variables, so as mod-tap layer and double
+tapped layer at the same time.</p>
+<h2 id="marco">Marco</h2>
+<p>This is actually not a layer, but a collection of keys. I have defined a layer
+to shorten repetitive keys sequence into single press.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">[:</span><span class="n">i</span>     <span class="p">[:</span><span class="n">i</span> <span class="p">:</span><span class="n">n</span> <span class="p">:</span><span class="n">s</span> <span class="p">:</span><span class="n">e</span> <span class="p">:</span><span class="n">r</span> <span class="p">:</span><span class="n">t</span> <span class="p">:</span><span class="n">spacebar</span> <span class="p">:</span><span class="n">a</span> <span class="p">:</span><span class="n">spacebar</span> <span class="p">:</span><span class="n">j</span> <span class="p">:</span><span class="n">o</span> <span class="p">:</span><span class="n">k</span> <span class="p">:</span><span class="n">e</span><span class="p">]]</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Which will insert <code>insert a joke</code> with space if you press <code>i</code>.</p>
+<h2 id="my-karabieredn">My karabier.edn</h2>
+<p>Here is a
+<a href="https://github.com/sokinpui/config/blob/main/karabiner.edn">reference</a> for your
+own implementation.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Programmer MacBook Keyboard layout</title>
+      <link>https://sokinpui.github.io/blog-sokinpui/post/blog1-layout/</link>
+      <pubDate>Sun, 26 Mar 2023 19:23:56 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/blog-sokinpui/post/blog1-layout/</guid>
+      <description>Abstruct 2023 is a start of AI era, with more strong AI tools explore to our life, typing maybe replaced by voice input one day, where natural language programming become true. But until now, typing is still not replacable. From daily usage to programming, the location of the keys may significantly effect the comfortable of long time typing. Here is a brief solution that hope to enhance the experience when typing on standard 78% keyboard.</description>
+      <content:encoded><![CDATA[<h1 id="abstruct">Abstruct</h1>
+<p>2023 is a start of AI era, with more strong AI tools explore to our life, typing
+maybe replaced by voice input one day, where natural language programming become
+true. But until now, typing is still not replacable. From daily usage to
+programming, the location of the keys may significantly effect the comfortable
+of long time typing. Here is a brief solution that hope to enhance the
+experience when typing on standard 78% keyboard.</p>
+<h1 id="reason-to-redesign">Reason to redesign.</h1>
+<p>I use Macbook Air as my main machine, stick to it and cannot use an customizable
+keyboard like <strong>planck&rsquo;s keyboard</strong> and <strong>hhkb keyboard</strong> for the desire of
+protable. The plain of using standard 78% keyboard on Macbook is the overusage
+of pinky, <code>Backspace</code>, <code>[</code>, <code>]</code>, <code>-</code>, <code>=</code> and <code>Enter</code> are all handled by right
+pinky. As my right pinky is much weaker than left, which make typing long time a
+difficult, inefficient and tired task. I believe it is true for other user who
+programming a lot with Macbook.</p>
+<p>There are so many plans and existing well designed layouts on the Internet,
+while they are mainly for one who use a external non-standard keyboards instead
+of standard. So I hope there will be more disscusion about configuration of
+trivail standard keyboard.</p>
+<h1 id="choose-of-base-layer-qwerty">Choose of base layer, Qwerty</h1>
+<p>Not Colemak, Dvoark and any non-Qwerty. I have tried Colemak and Dvoark, but the
+musale memory of Qwerty is too strong that make me feel more natural and
+comfortalbe typing on Qwerty. Moreover, the change of layout may not bring
+significant advantages and comfor for typing, 10 keys on homerow is never
+enough, whatever layouts, your fingers still need to move along three rows to
+type characters. The analysis of those Qwerty alternative always be to ideal,
+without mention of muscale memory and symbols make such change not really solve
+the plain. Another reason is that the time cost is too high and the improvement
+is not that big, there is not need to explain why the time cost is high as it is
+well explained by those Qwetrty touch typer how share their experience of
+switching to non-Qwerty.</p>
+<h1 id="analysis-before-design">Analysis before design</h1>
+<p>Except the function row, all row is easier to reach even for number rows. I
+don&rsquo;t touch type numbers rows using pinky fingers. Instead, I use ring fingers
+which are much longers then pinky fingers. So the keyboard layout don&rsquo;t need to
+relay on layers heavily like 40% planck&rsquo;s keyboard.</p>
+<p>Let counts the key we need:</p>
+<ol>
+<li>30 characters on the main area of the keyboard including <code>,</code>, <code>.</code>, <code>/</code> and
+<code>;</code>.</li>
+<li>13 keys on numbers</li>
+<li>8 modifier keys, <code>capslock</code>, <code>left right option</code>, <code>left right command</code>, <code>left  shift</code>, <code>control</code>, <code>fn</code> I don&rsquo;t count right shift since I never use it.</li>
+<li>4 special keys, including <code>space</code>, <code>reutrn</code>, <code>tab</code> and <code>delete</code>.</li>
+<li>4 arrow keys, I don&rsquo;t want to use home row arrow keys, since I seldom use
+them, there is no need to prepare a layer for them.</li>
+</ol>
+<p>61 keys is already sweat enough for daily used, for those shortcut, I usually
+reduce them from three or above keys into two keys by define a customizing
+layer.</p>
+<h1 id="layers">Layers</h1>
+<p>There are two types of layers, dead keys and modifers</p>
+<h2 id="dead-keys">Dead keys</h2>
+<p>The layout of keyboard is chagned permanently untill you press other keys or the
+inactive keys. One of the exmaple are the comma of
+<a href="https://github.com/workman-layout/Workman/tree/master/mac">workman-dead</a>.</p>
+<h2 id="modifers">modifers</h2>
+<p>The layout is changed temporary, the layout return to default after release. One
+of the example is <code>shift</code>.</p>
+<h2 id="my-solution">My solution</h2>
+<p>There are some keys that is underused, like space, tab and return. There are
+much space that can be leveraged. They should perform tap-mode, which provide
+two funciton when tap and held them down.</p>
+<ol>
+<li>Remap <code>space</code> to <code>space</code> when tap, <code>shift</code> when held.
+It is much comfortable compare to use pinky finger to press shift.</li>
+<li>Remap <code>left shift</code> to <code>escape</code> when tap, <code>control</code> when held. I use vim.</li>
+<li>swap numbers and symbols for programming.</li>
+<li>remap <code>caps lock</code> to <code>=</code> when tap, switch layer when held.</li>
+<li>swap quote <code>'</code> and double quote <code>'</code>, and locate at the original position of
+open bracket.</li>
+<li>move hyphen and underscore to the original position of quote.</li>
+<li>move backslash and pipe to the original position of hyphen.</li>
+</ol>
+<p><strong>Layers:</strong><!-- raw HTML omitted -->
+caps lock layers(held down caps lock):<!-- raw HTML omitted -->
+u: ]<!-- raw HTML omitted -->
+i: [<!-- raw HTML omitted -->
+j: }<!-- raw HTML omitted -->
+k: {<!-- raw HTML omitted --></p>
+<h2 id="macro-sequences">Macro sequences</h2>
+<p>You can define a simple key that perform a sequence of key. It is better put
+them in a layer to avoid error when typing.<!-- raw HTML omitted -->
+I have defined some in the caps lock layer.<!-- raw HTML omitted -->
+d: -&gt;<!-- raw HTML omitted -->
+f: !=<!-- raw HTML omitted -->
+:: @:<!-- raw HTML omitted --></p>
+<h1 id="implementation">Implementation</h1>
+<p>You may wonder how to implement those change on Mac, you may use <a href="https://karabiner-elements.pqrs.org/">Karabiner
+Elements</a> together with
+<a href="https://github.com/yqrashawn/GokuRakuJoudo">Goku</a> to define your own keyboard
+layout.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>There are lots of method to increase comfortable and efficiency to get the job
+done, before typing to modify your keyboard, make sure you have tried to use
+<strong>good tools</strong> like Vim, IDE, auto compeletion, snippets and scritping to
+reduece typing. Single modification of keyboard won&rsquo;t make you a better typer.<br>
+With the help of snippets and auto completion, I now write code with less demand
+to type all the symbols manually, therefor a entire symbols layers on homerow is
+no needed(Previously I have one, use space to active, convert home row into
+common used symbols.)</p>
+<p>
+
+
+</p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

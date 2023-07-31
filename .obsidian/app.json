@@ -1,0 +1,17 @@
+{
+  "defaultViewMode": "source",
+  "livePreview": false,
+  "showFrontmatter": false,
+  "rightToLeft": false,
+  "alwaysUpdateLinks": true,
+  "attachmentFolderPath": "./",
+  "useMarkdownLinks": true,
+  "vimMode": false,
+  "promptDelete": false,
+  "pdfExportSettings": {
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
+    "downscalePercent": 100
+  }
+}
