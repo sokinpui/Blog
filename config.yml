@@ -1,4 +1,4 @@
-baseURL: "https://sokinpui.github.io/"
+baseURL: "https://sokinpui.github.io/Blog/"
 title: Home
 paginate: 15
 theme: PaperModX
