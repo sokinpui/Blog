@@ -1,7 +1,6 @@
 ---
 title: "Simple hacking and tips to reduce pain in Vim"
 date: 2023-07-23T10:18:20+08:00
-draft: true
 # weight: 1
 # aliases: ["/first"]
 tags: [""]

@@ -1,7 +1,6 @@
 ---
 title: "Vim Plugins introduction"
 date: 2023-07-23T18:24:05+08:00
-draft: true
 # weight: 1
 # aliases: ["/first"]
 tags: [""]
