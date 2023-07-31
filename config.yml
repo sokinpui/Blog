@@ -62,21 +62,20 @@ params:
 
     # profile-mode
     profileMode:
-        enabled: false # needs to be explicitly set
-        title: ExampleSite
-        subtitle: "This is subtitle"
-        imageUrl: "<img location>"
+        enabled: true # needs to be explicitly set
+        title: So's Blog
+        subtitle: ""
+        imageUrl: "https://i.ibb.co/d79fWp0/icon.jpg"
         imageWidth: 120
         imageHeight: 120
-        imageTitle: my image
+        imageTitle: Icon
         buttons:
-            - name: Posts
-              url: posts
-            - name: Tags
-              url: tags
+            - name: post
+              url: post
 
     # home-info mode
     homeInfoParams:
+        enabled: False
         Title: "So's blog"
         Content: Welcome to my blog
 
