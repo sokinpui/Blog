@@ -1,6 +1,6 @@
 ---
-title: "List of post"
-date: 2023-08-01T20:37:57+08:00
+title: "Using Vim"
+date: 2023-08-01T23:03:06+08:00
 # weight: 1
 # aliases: ["/first"]
 tags: [""]
@@ -11,7 +11,7 @@ TocOpen: true
 draft: false
 hidemeta: false
 comments: true
-description: ""
+description: "Vim random blog"
 canonicalURL: "https://canonical.url/to/page"
 disableShare: false
 hideSummary: false
