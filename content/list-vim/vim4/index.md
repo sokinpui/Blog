@@ -77,7 +77,7 @@ moveToRtp(){
 
 moveToRtp Plugin1 Plugin2 Plugin3 ...
 ```
-This simple script will can move plugins don't contain `/after/*`. I just `/after/*` manually.
+This simple script will can move plugins don't contain `/after/*`. I just merge `/after/*` manually.
 
 # plugins need to take extra care durig mergation
 Some plugins configuration need special care when configure with **lazy.nvim**. Most of the case I found related to plugins' compability with *lua*, I would recommend if the confiuration is already in vimscript, keep going with vimscript if you don't care performance loss(actually I don't know how much loss, maybe it is ignorable)

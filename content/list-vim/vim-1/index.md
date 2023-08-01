@@ -1,7 +1,7 @@
 ---
 title: "Vim less pain, setting you will google"
 date: 2023-07-21T14:53:36+08:00
-draft: true
+draft: false
 # weight: 1
 # aliases: ["/first"]
 tags: [""]
@@ -9,7 +9,6 @@ author: "sokinpui"
 # author: ["Me", "You"] # multiple authors
 showToc: true
 TocOpen: true
-draft: false
 hidemeta: false
 comments: true
 description: "Basic setting often googled when first time using Vim/Neovim"
@@ -42,7 +41,7 @@ If you use Neovim, it by default has some [better setting](https://neovim.io/doc
 
 ## 3. Formating: line wrapping and indention.
 ### 3.1 Indention
-```
+```vim
 " 1 tab = 8 space to avoid confuse your computer
 set tabstop=8     
 
@@ -64,7 +63,7 @@ set smartindent
 There is hard wrapping and soft wrapping, former one will insert real newline "\n" when line width is longer than boundary, latter one will not insret newline, only visually like separate line, actually a very long line.
 
 #### 3.2.1 hard wrapping
-```
+```vim
 set textwidth=80
 set formatoptions+=aw
 ```
@@ -86,7 +85,7 @@ Without `set formatoptions+=aw`:
 Usually "aw" combination is better than single one.
 
 #### 3.2.2 Soft wrapping
-```
+```vim
 set textwidth=0
 set wrap
 set linebreak
@@ -100,20 +99,20 @@ With `set linebreak`:
 ![softwrap-with-linebreak](softwrap-with-linebreak.png)
 
 In soft wrapping, you can still make it wrapping at certain number of characters instead of window edge, you can append
-```
+```vim
 set columns=80
 ```
 But it is rather ugly than helpful, you can resize window to get the same effect.
 
 ## 4. Vim $RUNTIMEPATH
-```
+```vim
 filetype plugin on
 filetype plugin indent on
 ```
 Allow you to put script under `$RUNTIMEPATH/ftplugin/` and `$RUNTIMEPATH/ftplugin/indent`
 
 ### 4.1 undo file
-```
+```vim
 set undofile
 set unfo
 set directory=~/.local/state/nvim/undo//
@@ -121,18 +120,18 @@ set directory=~/.local/state/nvim/undo//
 `//` means the file will stored in full path, so that files having the same name will not confict. With above setting, you can "undo" with `u` and `<C-r>` even you reopen the file.
 
 ## 5. Shell directory
-```
+```vim
 set autochir
 ```
 Chagne the directory accoring to the file you edit. When you run Shell command via `:!`, your location depend on the file you editing. After you exit vim, directory will return to the status where you enter vim.
 
-```
+```vim
 set path=$PWD/**
 ```
 This make your autocomplete in command line mode will complete all subdirectory. Especially useful when adding file in subdirectory as buffer.
 
 ## 6. Editing
-```
+```vim
 set conceallevel=2
 ```
 Can conceal syntax when possible, quite helpful when editing markdown file, link or latex syntax will be concealled. Make your raw markdown file less messy.

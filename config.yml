@@ -125,12 +125,16 @@ outputs:
 menu:
     main:
         - identifier: search
-          name: search
+          name: Search
           url: /search/
           weight: 20
         - identifier: post
-          name: post
+          name: Post
           url: /post/
+          weight: 20
+        - identifier: list
+          name: List
+          url: /list/
           weight: 20
         #- identifier: example
         #  name: example.org
