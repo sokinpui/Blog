@@ -1,5 +1,5 @@
 ---
-title: "List"
+title: "List of post"
 date: 2023-08-01T20:37:57+08:00
 # weight: 1
 # aliases: ["/first"]
@@ -11,7 +11,7 @@ TocOpen: true
 draft: false
 hidemeta: false
 comments: true
-description: "Desc Text."
+description: ""
 canonicalURL: "https://canonical.url/to/page"
 disableShare: false
 hideSummary: false
