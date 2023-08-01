@@ -62,8 +62,8 @@ params:
 
     # profile-mode
     profileMode:
-        enabled: false # needs to be explicitly set
-        title: So's Blog
+        enabled: true # needs to be explicitly set
+        title: So
         subtitle: ""
         imageUrl: "https://i.ibb.co/d79fWp0/icon.jpg"
         imageWidth: 120
