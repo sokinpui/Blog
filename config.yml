@@ -65,7 +65,8 @@ params:
         enabled: true # needs to be explicitly set
         title: So
         subtitle: ""
-        imageUrl: "https://i.ibb.co/d79fWp0/icon.jpg"
+        #imageUrl: "https://i.ibb.co/d79fWp0/icon.jpg"
+        imageUrl: "images/icon.jpg"
         imageWidth: 120
         imageHeight: 120
         imageTitle: ""
