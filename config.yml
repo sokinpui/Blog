@@ -62,7 +62,7 @@ params:
 
     # profile-mode
     profileMode:
-        enabled: true # needs to be explicitly set
+        enabled: false # needs to be explicitly set
         title: So's Blog
         subtitle: ""
         imageUrl: "https://i.ibb.co/d79fWp0/icon.jpg"
@@ -75,7 +75,6 @@ params:
 
     # home-info mode
     homeInfoParams:
-        enabled: False
         Title: "So's blog"
         Content: Welcome to my blog
 
