@@ -22,4 +22,4 @@ ShowPostNavLinks: true
 
 ---
 
-[Using Vim](../list-vim/)
+[Using Vim](../series-vim/)
