@@ -356,15 +356,15 @@ If you use fern with some <a href="https://github.com/lambdalisue/fern.vim/wiki/
     
     <item>
       <title>Tips for merging from vim-plug to lazy.nvim</title>
-      <link>https://sokinpui.github.io/Blog/vim-series/4-lazy.nvim/</link>
+      <link>https://sokinpui.github.io/Blog/series/vim/vim4/</link>
       <pubDate>Sat, 29 Jul 2023 23:58:37 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/Blog/vim-series/4-lazy.nvim/</guid>
+      <guid>https://sokinpui.github.io/Blog/series/vim/vim4/</guid>
       <description>Tips and issue I discovered during mergation. Hope to save someone&amp;#39;s time in the future.</description>
       <content:encoded><![CDATA[<p>Tips and issue I discovered during mergation. Hope to save someone&rsquo;s time in the future.</p>
 <h1 id="why-lazynvim">Why lazy.nvim</h1>
 <p>This is a long story, shall we start from another application <a href="https://obsidian.md/">obsidian</a>. I use <strong>obsidian</strong> for notes taking. I want some faster, non-repeative and easier note editing tools, and therefor I use some editor as my obsidian editing engine, in my case, Neovim Setup autocompletion and snippets in Neovim is always easier than same setup on obsidian. In Neovim, we have <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a>, <a href="https://github.com/hrsh7th/nvim-cmp">nvim-cmp</a> and <a href="https://github.com/ms-jpq/coq_nvim">coq_nvim</a> etc&hellip; And you have many snippets source. However, I cannot easily insert link to files as well as link to header in Vim. Although coc.nvim already provide some <a href="https://github.com/neoclide/coc.nvim/wiki/Completion-with-sources#completion-sources">source</a>, lacking obsidian. Then I google for solution, I found <a href="https://github.com/epwalsh/obsidian.nvim">obsidian.nvim</a>, which say it provide link completion source for <strong>nvim-cmp</strong>
-<img loading="lazy" src="/Blog/vim-series/4-lazy.nvim/obsidian-nvim.png" type="" alt="obsidian-nvim"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4/obsidian-nvim.png" type="" alt="obsidian-nvim"  /></p>
 <p>Then I have look at nvim-cmp, It separate autocompletion front end and back end, user have too integrate them manually. In terms of personalization, it provide more free. It terms of out-of-box, it is bad. If only insert link to relative file, <a href="https://github.com/junegunn/fzf.vim">fzf.vim</a> with some tweaks can do so.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="c">&#34;find the root git repo, in case of obsidian, it is the vault</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">
@@ -405,7 +405,7 @@ So all the plugins installed with vim built-in plugins will not be loaded, or yo
 </span></span><span class="line"><span class="cl">}
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">moveToRtp Plugin1 Plugin2 Plugin3 ...
-</span></span></code></pre></div><p>This simple script will can move plugins don&rsquo;t contain <code>/after/*</code>. I just <code>/after/*</code> manually.</p>
+</span></span></code></pre></div><p>This simple script will can move plugins don&rsquo;t contain <code>/after/*</code>. I just merge <code>/after/*</code> manually.</p>
 <h1 id="plugins-need-to-take-extra-care-durig-mergation">plugins need to take extra care durig mergation</h1>
 <p>Some plugins configuration need special care when configure with <strong>lazy.nvim</strong>. Most of the case I found related to plugins&rsquo; compability with <em>lua</em>, I would recommend if the confiuration is already in vimscript, keep going with vimscript if you don&rsquo;t care performance loss(actually I don&rsquo;t know how much loss, maybe it is ignorable)</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
@@ -433,7 +433,7 @@ If you use fern with some <a href="https://github.com/lambdalisue/fern.vim/wiki/
 </span></span><span class="line"><span class="cl">        <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>Otherwise, you may see error like:
-<img loading="lazy" src="/Blog/vim-series/4-lazy.nvim/fern-issue.png" type="" alt="fern-issue.png"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4/fern-issue.png" type="" alt="fern-issue.png"  /></p>
 <h2 id="2-fzfvimhttpsgithubcomjunegunnfzfvim">2. <a href="https://github.com/junegunn/fzf.vim">fzf.vim</a></h2>
 <p>If install <strong>fzf.vim</strong> with vim-plug, I don&rsquo;t have to install <a href="https://github.com/junegunn/fzf">fzf</a> if I have install fzf locally outside vim. However, you should do so in <strong>lazy.nvim</strong></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
@@ -444,7 +444,7 @@ If you use fern with some <a href="https://github.com/lambdalisue/fern.vim/wiki/
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;junegunn/fzf&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>Otherwise, error again:
-<img loading="lazy" src="/Blog/vim-series/4-lazy.nvim/fzf.vim.png" type="" alt="fzf"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4/fzf.vim.png" type="" alt="fzf"  /></p>
 <h2 id="3-visual-multihttpsgithubcommg979vim-visual-multi">3. <a href="https://github.com/mg979/vim-visual-multi">visual-multi</a></h2>
 <p>It is a mulit cursor plugin for Vim. If you remap key like me, I remap <code>s</code> to <code>c</code> in multi-cursor mode. In lua, you should use</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
@@ -595,7 +595,7 @@ If you use fern with some <a href="https://github.com/lambdalisue/fern.vim/wiki/
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">UltiSnipsJumpForwardTrigger</span> <span class="p">=</span> <span class="s2">&#34;&lt;C-j&gt;&#34;</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">UltiSnipsJumpBackwardTrigger</span> <span class="p">=</span> <span class="s2">&#34;&lt;C-k&gt;&#34;</span><span class="err">
 </span></span></span></code></pre></div><p>The tab will break, I don&rsquo;t know why, with above three lines, tab will act like:
-<img loading="lazy" src="/Blog/vim-series/4-lazy.nvim/snips_jump.gif" type="" alt="snip_jump1"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4/snips_jump.gif" type="" alt="snip_jump1"  /></p>
 <p>However, if those three line is out of management of <strong>lazy.nvim</strong>, the tab just work!</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">M</span> <span class="o">=</span> <span class="p">{}</span>
 </span></span><span class="line"><span class="cl">
@@ -678,7 +678,7 @@ If you use fern with some <a href="https://github.com/lambdalisue/fern.vim/wiki/
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">return</span> <span class="n">M</span>
 </span></span></code></pre></div><p>Everythin just work!
-<img loading="lazy" src="/Blog/vim-series/4-lazy.nvim/snipe_jump_right.gif" type="" alt="snip-jump2"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4/snipe_jump_right.gif" type="" alt="snip-jump2"  /></p>
 <h1 id="benefits">benefits</h1>
 <p>The plugins is more structured, so navigation and group plugins is easier than <strong>vim-plug</strong>, with some <strong>plugin</strong> like <strong>fzf.vim</strong>, I can easily jump to file I want, and separate plugin config into different files according to their purpose. Before using <strong>lazy.nvim</strong> all plugins config are store in the same file call <code>plugins.vim</code>, now modualize like:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">├── config
