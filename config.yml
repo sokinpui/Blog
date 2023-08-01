@@ -1,6 +1,6 @@
 baseURL: "https://sokinpui.github.io/Blog/"
 title: Home
-paginate: 15
+paginate: 100
 theme: PaperModX
 
 enableRobotsTXT: true
@@ -67,8 +67,8 @@ params:
         subtitle: ""
         #imageUrl: "https://i.ibb.co/d79fWp0/icon.jpg"
         imageUrl: "images/icon.jpg"
-        imageWidth: 120
-        imageHeight: 120
+        imageWidth: 300
+        imageHeight: 300
         imageTitle: ""
         buttons:
             - name: post
