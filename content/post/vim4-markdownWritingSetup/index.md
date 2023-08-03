@@ -51,4 +51,12 @@ inoremap <expr> <C-f> fzf#vim#complete#path('fd --type=file . $(git rev-parse --
 The first line insert relative path to root of vault, the second line will insert full path to the file. you can autocomplete when you editing link `[]()`.
 
 # snips
-Snippets is just easier to set up on code editor than markdown editor, and integrate well with auto completion.
+Snippets is just easier to set up on code editor than markdown editor, and integrate well with auto completion. I use [Ultisnips](https://github.com/SirVer/ultisnips) I have decide merge to Luasnips, but their is only little preformance enhancment, so I stay in Ultisnips. You can check my autocomplete and snippets setup in [this blog]( {{< relref "post/vim-4" >}} )  
+
+# Concealment
+You can concealment markdown syntax by add the following line in your `vimrc`
+```vim
+set conceallevel=2
+```
+Example:
+![conceal1.git](conceal.gif)

@@ -135,4 +135,4 @@ This make your autocomplete in command line mode will complete all subdirectory.
 set conceallevel=2
 ```
 Can conceal syntax when possible, quite helpful when editing markdown file, link or latex syntax will be concealled. Make your raw markdown file less messy.
-![](conceal.gif)
+![](post/vim-1/conceal.gif)

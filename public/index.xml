@@ -32,7 +32,12 @@
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">inoremap</span> <span class="p">&lt;</span><span class="nx">expr</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">f</span><span class="p">&gt;</span> <span class="nx">fzf</span>#<span class="nx">vim</span>#<span class="nx">complete</span>#<span class="nx">path</span><span class="p">(</span><span class="s1">&#39;fd --type=file . $(git rev-parse --show-toplevel 2&gt; /dev/null)&#39;</span><span class="p">)</span><span class="err">
 </span></span></span></code></pre></div><p>The first line insert relative path to root of vault, the second line will insert full path to the file. you can autocomplete when you editing link <code>[]()</code>.</p>
 <h1 id="snips">snips</h1>
-<p>Snippets is just easier to set up on code editor than markdown editor, and integrate well with auto completion.</p>
+<p>Snippets is just easier to set up on code editor than markdown editor, and integrate well with auto completion. I use <a href="https://github.com/SirVer/ultisnips">Ultisnips</a> I have decide merge to Luasnips, but their is only little preformance enhancment, so I stay in Ultisnips. You can check my autocomplete and snippets setup in <a href="/Blog/post/vim-4/">this blog</a></p>
+<h1 id="concealment">Concealment</h1>
+<p>You can concealment markdown syntax by add the following line in your <code>vimrc</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">conceallevel</span><span class="p">=</span><span class="m">2</span><span class="err">
+</span></span></span></code></pre></div><p>Example:
+<img loading="lazy" src="/Blog/post/vim4-markdownwritingsetup/conceal.gif" type="" alt="conceal1.git"  /></p>
 ]]></content:encoded>
     </item>
     
@@ -854,7 +859,7 @@ From official website, <strong>fzf.vim</strong> can fuzzy find all of them:</p>
 <h2 id="6-editing">6. Editing</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">conceallevel</span><span class="p">=</span><span class="m">2</span><span class="err">
 </span></span></span></code></pre></div><p>Can conceal syntax when possible, quite helpful when editing markdown file, link or latex syntax will be concealled. Make your raw markdown file less messy.
-<img loading="lazy" src="/Blog/post/vim-1/conceal.gif" type="" alt=""  /></p>
+</p>
 ]]></content:encoded>
     </item>
     

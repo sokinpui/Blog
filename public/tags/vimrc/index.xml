@@ -25,24 +25,6 @@
     </item>
     
     <item>
-      <title>XDG base configuration for Vim</title>
-      <link>https://sokinpui.github.io/Blog/series/vim/vim3-xdgforvim/</link>
-      <pubDate>Thu, 03 Aug 2023 09:11:30 +0800</pubDate>
-      
-      <guid>https://sokinpui.github.io/Blog/series/vim/vim3-xdgforvim/</guid>
-      <description>Simple hack to have XDG based configuration for Vim</description>
-      <content:encoded><![CDATA[<p>I have seen some post and issue on Vim github that want XDG base configuration become one of the runtimpath of Vim(not Neovim), actually a simple hack can done so.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir <span class="nv">$HOME</span>/.config/vim
-</span></span><span class="line"><span class="cl">mkdir <span class="nv">$HOME</span>/.vim
-</span></span><span class="line"><span class="cl">mv <span class="nv">$HOME</span>/.vimrc <span class="nv">$HOME</span>/.vim/vimrc
-</span></span><span class="line"><span class="cl">mv <span class="nv">$HOME</span>/.vim <span class="nv">$HOME</span>/.config/vim 
-</span></span><span class="line"><span class="cl">ln -s <span class="nv">$HOME</span>/.config/vim <span class="nv">$HOME</span>/.vim
-</span></span></code></pre></div><p>Do you know there your <code>vimrc</code> can located at either <code>$HOME/.vimrc</code> or <code>$HOME/.vim/vimrc</code>, so you can move your whole runtimpath to <code>$HOME/.config/vim</code>, then create a symbolic link <code>$HOME/.vim</code> point to <code>$HOME/.config/vim</code>.</p>
-<p>Although I know XDG is more than just a directory, it may still be helpful for group all your configuration together.</p>
-]]></content:encoded>
-    </item>
-    
-    <item>
       <title>Simple hacking and tips to reduce pain in Vim</title>
       <link>https://sokinpui.github.io/Blog/post/vim-2/</link>
       <pubDate>Sun, 23 Jul 2023 10:18:20 +0800</pubDate>
@@ -215,7 +197,7 @@
 <h2 id="6-editing">6. Editing</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">conceallevel</span><span class="p">=</span><span class="m">2</span><span class="err">
 </span></span></span></code></pre></div><p>Can conceal syntax when possible, quite helpful when editing markdown file, link or latex syntax will be concealled. Make your raw markdown file less messy.
-<img loading="lazy" src="/Blog/post/vim-1/conceal.gif" type="" alt=""  /></p>
+</p>
 ]]></content:encoded>
     </item>
     
