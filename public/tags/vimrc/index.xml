@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>vimrc on Home</title>
+    <link>https://sokinpui.github.io/Blog/tags/vimrc/</link>
+    <description>Recent content in vimrc on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 03 Aug 2023 09:11:30 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/tags/vimrc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>XDG base configuration for Vim</title>
+      <link>https://sokinpui.github.io/Blog/post/vim3-xdgforvim/</link>
+      <pubDate>Thu, 03 Aug 2023 09:11:30 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/vim3-xdgforvim/</guid>
+      <description>Simple hack to have XDG based configuration for Vim</description>
+      <content:encoded><![CDATA[<p>I have seen some post and issue on Vim github that want XDG base configuration become one of the runtimpath of Vim(not Neovim), actually a simple hack can done so.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir <span class="nv">$HOME</span>/.config/vim
+</span></span><span class="line"><span class="cl">mkdir <span class="nv">$HOME</span>/.vim
+</span></span><span class="line"><span class="cl">mv <span class="nv">$HOME</span>/.vimrc <span class="nv">$HOME</span>/.vim/vimrc
+</span></span><span class="line"><span class="cl">mv <span class="nv">$HOME</span>/.vim <span class="nv">$HOME</span>/.config/vim 
+</span></span><span class="line"><span class="cl">ln -s <span class="nv">$HOME</span>/.config/vim <span class="nv">$HOME</span>/.vim
+</span></span></code></pre></div><p>Do you know there your <code>vimrc</code> can located at either <code>$HOME/.vimrc</code> or <code>$HOME/.vim/vimrc</code>, so you can move your whole runtimpath to <code>$HOME/.config/vim</code>, then create a symbolic link <code>$HOME/.vim</code> point to <code>$HOME/.config/vim</code>.</p>
+<p>Although I know XDG is more than just a directory, it may still be helpful for group all your configuration together.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>XDG base configuration for Vim</title>
+      <link>https://sokinpui.github.io/Blog/series/vim/vim3-xdgforvim/</link>
+      <pubDate>Thu, 03 Aug 2023 09:11:30 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/series/vim/vim3-xdgforvim/</guid>
+      <description>Simple hack to have XDG based configuration for Vim</description>
+      <content:encoded><![CDATA[<p>I have seen some post and issue on Vim github that want XDG base configuration become one of the runtimpath of Vim(not Neovim), actually a simple hack can done so.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir <span class="nv">$HOME</span>/.config/vim
+</span></span><span class="line"><span class="cl">mkdir <span class="nv">$HOME</span>/.vim
+</span></span><span class="line"><span class="cl">mv <span class="nv">$HOME</span>/.vimrc <span class="nv">$HOME</span>/.vim/vimrc
+</span></span><span class="line"><span class="cl">mv <span class="nv">$HOME</span>/.vim <span class="nv">$HOME</span>/.config/vim 
+</span></span><span class="line"><span class="cl">ln -s <span class="nv">$HOME</span>/.config/vim <span class="nv">$HOME</span>/.vim
+</span></span></code></pre></div><p>Do you know there your <code>vimrc</code> can located at either <code>$HOME/.vimrc</code> or <code>$HOME/.vim/vimrc</code>, so you can move your whole runtimpath to <code>$HOME/.config/vim</code>, then create a symbolic link <code>$HOME/.vim</code> point to <code>$HOME/.config/vim</code>.</p>
+<p>Although I know XDG is more than just a directory, it may still be helpful for group all your configuration together.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Simple hacking and tips to reduce pain in Vim</title>
+      <link>https://sokinpui.github.io/Blog/post/vim-2/</link>
+      <pubDate>Sun, 23 Jul 2023 10:18:20 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/vim-2/</guid>
+      <description>Simple vimscript that enhance user experience</description>
+      <content:encoded><![CDATA[<p>Aims to less pain when using vim, if you find other plugins perform the same functionality, I would say use that plugin instead, because plugins usually provide broader function and easier for management compare to discrete vimscript.</p>
+<h1 id="highlight-in-search">Highlight in search</h1>
+<p>Want Highlight when searching? Dirty but workable solution can map search key into:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">nnoremap</span> <span class="sr">/ :set hlsearch&lt;cr&gt;/</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> ? :<span class="nx">set</span> <span class="nx">hlsearch</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span>?<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="nx">n</span> :<span class="nx">set</span> <span class="nx">hlsearch</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="nx">n</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="nx">N</span> :<span class="nx">set</span> <span class="nx">hlsearch</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="nx">N</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> * :<span class="nx">set</span> <span class="nx">hlsearch</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span>*<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> # :<span class="nx">set</span> <span class="nx">hlsearch</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span>#<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">vnoremap</span> * *:<span class="nx">set</span> <span class="nx">hlsearch</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">vnoremap</span> # #:<span class="nx">set</span> <span class="nx">hlsearch</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
+</span></span></span></code></pre></div><p>Delete highlight after search:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">autocmd</span> <span class="nx">insertenter</span> * <span class="nx">set</span> <span class="nx">nohlsearch</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">autocmd</span> <span class="nx">textchanged</span> * <span class="nx">set</span> <span class="nx">nohlsearch</span><span class="err">
+</span></span></span></code></pre></div><p>Clear highlight when enter insert mode, clear highlight when any text being edited.</p>
+<h1 id="hide-cursorline-in-inactive-window">Hide Cursorline in inactive window</h1>
+<p>Do you find inactive window still have cursorline shown? Hack with following code:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">augroup</span> <span class="nx">CursorLine</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="nx">autocmd</span><span class="p">!</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="nx">autocmd</span> <span class="nx">VimEnter</span> * <span class="nx">setlocal</span> <span class="nx">cursorline</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="nx">autocmd</span> <span class="nx">WinEnter</span> * <span class="nx">setlocal</span> <span class="nx">cursorline</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="nx">autocmd</span> <span class="nx">BufWinEnter</span> * <span class="nx">setlocal</span> <span class="nx">cursorline</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="nx">autocmd</span> <span class="nx">WinLeave</span> * <span class="nx">setlocal</span> <span class="nx">nocursorline</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">augroup</span> <span class="nx">END</span><span class="err">
+</span></span></span></code></pre></div><h1 id="open-help-page-in-split-window">Open help page in split window</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">augroup</span> <span class="nx">Init_buffer</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="nx">autocmd</span><span class="p">!</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="nx">autocmd</span> <span class="nx">BufEnter</span> *.<span class="nx">txt</span> <span class="k">if</span> &amp;<span class="nx">buftype</span> <span class="p">==</span> <span class="s1">&#39;help&#39;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        \ <span class="p">|</span> <span class="k">if</span> <span class="nx">winnr</span><span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span> <span class="p">&lt;=</span> <span class="m">2</span> <span class="p">|</span> <span class="nx">wincmd</span> <span class="nx">H</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        \ <span class="p">|</span> <span class="k">endif</span> <span class="p">|</span> <span class="k">endif</span>  <span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">augroup</span> <span class="nx">END</span><span class="err">
+</span></span></span></code></pre></div><p>Since I seldom use vim split window in vim, if I really need to split window, I will first use tmux split window. When I need Vim manual, I also want to know what is happening on my current buffer.</p>
+<h1 id="cursor-back-to-last-position">Cursor back to last position</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">au</span> <span class="nx">BufReadPost</span> * <span class="k">if</span> <span class="nx">line</span><span class="p">(</span><span class="s2">&#34;&#39;\&#34;&#34;</span><span class="p">)</span> <span class="p">&gt;</span> <span class="m">1</span> &amp;&amp; <span class="nx">line</span><span class="p">(</span><span class="s2">&#34;&#39;\&#34;&#34;</span><span class="p">)</span> <span class="p">&lt;=</span> <span class="nx">line</span><span class="p">(</span><span class="s2">&#34;$&#34;</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    \ <span class="p">|</span> <span class="nx">exe</span> <span class="s2">&#34;normal! g&#39;\&#34;&#34;</span> <span class="p">|</span> <span class="k">endif</span><span class="err">
+</span></span></span></code></pre></div><h1 id="find-digital">find digital</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">Leader</span><span class="p">&gt;</span><span class="nx">n</span> /\<span class="nx">d</span>\<span class="p">+&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
+</span></span></span></code></pre></div><p>A simple Vim regular expression hacking.</p>
+<h1 id="paste-in-visual-mode-without-pollute-register">Paste in visual mode without pollute register</h1>
+<p>Since paste in visual mode will first delete content, if you don&rsquo;t want to pollute your register and keep <code>p</code> the same content, following code may help you.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">xnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">p</span> <span class="c">&#34;_dP</span><span class="err">
+</span></span></span></code></pre></div><h1 id="number-of-search-items-in-status-line">Number of search items in status line</h1>
+<p>give more information when searching, you can know numbers of item you search, and the location. This simple hacking is provided by Vim manual, see <code>:help searchcount</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="k">function</span><span class="p">!</span> <span class="nx">s</span>:<span class="nx">update_searchcount</span><span class="p">(</span><span class="nx">timer</span><span class="p">)</span> <span class="nx">abort</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">if</span> <span class="nx">a</span>:<span class="nx">timer</span> <span class="p">==</span># <span class="nx">s</span>:<span class="nx">searchcount_timer</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="nx">call</span> <span class="nx">searchcount</span><span class="p">(</span>#{<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>                    \ <span class="nx">recompute</span>: <span class="m">1</span><span class="p">,</span> <span class="nx">maxcount</span>: <span class="m">0</span><span class="p">,</span> <span class="nx">timeout</span>: <span class="m">100</span>}<span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="nx">redrawstatus</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">endif</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">endfunction</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">function</span><span class="p">!</span> <span class="nx">statusline</span>#<span class="nx">LastSearchCount</span><span class="p">()</span> <span class="nx">abort</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">let</span> <span class="nx">result</span> <span class="p">=</span> <span class="nx">searchcount</span><span class="p">(</span>#{<span class="nx">recompute</span>: <span class="m">1</span>}<span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">if</span> <span class="nx">empty</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="nx">return</span> <span class="s1">&#39;&#39;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">endif</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">if</span> <span class="nx">result</span>.<span class="nx">incomplete</span> <span class="p">==</span># <span class="m">1</span>     <span class="c">&#34; timed out</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="nx">return</span> <span class="nx">printf</span><span class="p">(</span><span class="s1">&#39; [%s] [?/??]&#39;</span><span class="p">,</span> @/<span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">elseif</span> <span class="nx">result</span>.<span class="nx">incomplete</span> <span class="p">==</span># <span class="m">2</span> <span class="c">&#34; max count exceeded</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="k">if</span> <span class="nx">result</span>.<span class="nx">total</span> <span class="p">&gt;</span> <span class="nx">result</span>.<span class="nx">maxcount</span> &amp;&amp;<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>                    \  <span class="nx">result</span>.<span class="nx">current</span> <span class="p">&gt;</span> <span class="nx">result</span>.<span class="nx">maxcount</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            <span class="nx">return</span> <span class="nx">printf</span><span class="p">(</span><span class="s1">&#39; [%s] [&gt;%d/&gt;%d]&#39;</span><span class="p">,</span> @/<span class="p">,</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>                        \ <span class="nx">result</span>.<span class="nx">current</span><span class="p">,</span> <span class="nx">result</span>.<span class="nx">total</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="k">elseif</span> <span class="nx">result</span>.<span class="nx">total</span> <span class="p">&gt;</span> <span class="nx">result</span>.<span class="nx">maxcount</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            <span class="nx">return</span> <span class="nx">printf</span><span class="p">(</span><span class="s1">&#39; [%s] [%d/&gt;%d]&#39;</span><span class="p">,</span> @/<span class="p">,</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>                        \ <span class="nx">result</span>.<span class="nx">current</span><span class="p">,</span> <span class="nx">result</span>.<span class="nx">total</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>        <span class="k">endif</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="k">endif</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="nx">return</span> <span class="nx">printf</span><span class="p">(</span><span class="s1">&#39; [%s] [%d/%d]&#39;</span><span class="p">,</span> @/<span class="p">,</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>                \ <span class="nx">result</span>.<span class="nx">current</span><span class="p">,</span> <span class="nx">result</span>.<span class="nx">total</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">endfunction</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> &amp;<span class="nx">statusline</span> ..<span class="p">=</span> &#39;%<span class="p">=</span>%<span class="m">-5</span>.{<span class="nx">statusline</span>#<span class="nx">LastSearchCount</span><span class="p">()</span>}<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            \ %<span class="p">(</span>%<span class="nx">l</span><span class="p">,</span>%<span class="nx">c</span><span class="p">-</span>%<span class="nx">v</span>%<span class="p">)</span> %<span class="nx">p</span>%%&#39;<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">autocmd</span> <span class="nx">CursorMoved</span><span class="p">,</span><span class="nx">CursorMovedI</span> *<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            \ <span class="k">let</span> <span class="nx">s</span>:<span class="nx">searchcount_timer</span> <span class="p">=</span> <span class="nx">timer_start</span><span class="p">(</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            \   <span class="m">200</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="s1">&#39;s:update_searchcount&#39;</span><span class="p">))</span><span class="err">
+</span></span></span></code></pre></div>]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Vim less pain, setting you will google</title>
+      <link>https://sokinpui.github.io/Blog/post/vim-1/</link>
+      <pubDate>Fri, 21 Jul 2023 14:53:36 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/vim-1/</guid>
+      <description>Basic setting often googled when first time using Vim/Neovim</description>
+      <content:encoded><![CDATA[<p>Some setting you may google for it after you have started using vim. Add those line to you <code>.vimrc</code></p>
+<p>If you use Neovim, it by default has some <a href="https://neovim.io/doc/user/diff.html">better setting</a> than vim, save you some time from google.</p>
+<hr>
+<h1 id="diabled-by-default">Diabled by default</h1>
+<h2 id="1-search-and-match">1. search, and match</h2>
+<p><code>set ignorecase</code>, ignorecase during matching</p>
+<p><code>set smartcase</code>, smart match, match <code>Talk</code> and <code>talk</code> when you search <code>talk</code>, but only match <code>Talk</code>, when you search <code>Talk</code>.</p>
+<h2 id="2-scrolling">2. scrolling</h2>
+<p><code>set scrolloff=5</code>, leave 5 lines between top and bottom when scrolling.</p>
+<p><code>set mousescroll=ver:5,hor:5</code>, scrolling 5 lines when using mouse.</p>
+<h2 id="3-formating-line-wrapping-and-indention">3. Formating: line wrapping and indention.</h2>
+<h3 id="31-indention">3.1 Indention</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="c">&#34; 1 tab = 8 space to avoid confuse your computer</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">set</span> <span class="nx">tabstop</span><span class="p">=</span><span class="m">8</span>     <span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34; convert tab into space when you insert tab</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">set</span> <span class="nx">expandtab</span>     <span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34; you can insert &#39;tab&#39; which is 4 space long, like the python formating</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">set</span> <span class="nx">shiftwidth</span><span class="p">=</span><span class="m">4</span>  <span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34; set to -1 to use the value set above in shiftwidth</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">set</span> <span class="nx">softtabstop</span><span class="p">=</span><span class="m">-1</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">set</span> <span class="nx">autoindent</span>    <span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">set</span> <span class="nx">smartindent</span>   <span class="err">
+</span></span></span></code></pre></div><p><code>set expandtab</code> is recommend as space is more accruate than tab, as one may <code>set tabstop=2</code>, if your system don&rsquo;t convert it to space, other user on their system may see a two space lenght tab. Which maybe confusion.</p>
+<h3 id="32-line-wrapping">3.2 Line wrapping</h3>
+<p>There is hard wrapping and soft wrapping, former one will insert real newline &ldquo;\n&rdquo; when line width is longer than boundary, latter one will not insret newline, only visually like separate line, actually a very long line.</p>
+<h4 id="321-hard-wrapping">3.2.1 hard wrapping</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">textwidth</span><span class="p">=</span><span class="m">80</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">set</span> <span class="nx">formatoptions</span><span class="p">+=</span><span class="nx">aw</span><span class="err">
+</span></span></span></code></pre></div><p>According to vim help page, formatoptions <code>a</code>:</p>
+<blockquote>
+<p>Automatic formatting of paragraphs.  Every time text is inserted or	deleted the paragraph will be reformatted</p>
+</blockquote>
+<p>This feature make your vim look like normal markdown editor but hard wrapping</p>
+<p>According to vim help page, formatoptions <code>w</code>:</p>
+<blockquote>
+<p>Trailing white space indicates a paragraph continues in the next line.	A line that ends in a non-white character ends a paragraph</p>
+</blockquote>
+<p>Without <code>set formatoptions+=aw</code>:
+<img loading="lazy" src="/Blog/post/vim-1/without-aw.gif" type="" alt="without-aw"  /></p>
+<p>Without <code>set formatoptions+=aw</code>:
+<img loading="lazy" src="/Blog/post/vim-1/with-aw.gif" type="" alt="with-aw"  /></p>
+<p>Usually &ldquo;aw&rdquo; combination is better than single one.</p>
+<h4 id="322-soft-wrapping">3.2.2 Soft wrapping</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">textwidth</span><span class="p">=</span><span class="m">0</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">set</span> <span class="nx">wrap</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">set</span> <span class="nx">linebreak</span><span class="err">
+</span></span></span></code></pre></div><p><code>set wrap</code> allow you to wrapping long line with the window edge. textwidth=0, so that long line will not be broken. <code>set linebreak</code> allow line wrap by words instead of characters.</p>
+<p>Without <code>set linebreak</code>:
+<img loading="lazy" src="/Blog/post/vim-1/softwrap-without-linebreak.png" type="" alt="softwrap-without-linebreak"  /></p>
+<p>With <code>set linebreak</code>:
+<img loading="lazy" src="/Blog/post/vim-1/softwrap-with-linebreak.png" type="" alt="softwrap-with-linebreak"  /></p>
+<p>In soft wrapping, you can still make it wrapping at certain number of characters instead of window edge, you can append</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">columns</span><span class="p">=</span><span class="m">80</span><span class="err">
+</span></span></span></code></pre></div><p>But it is rather ugly than helpful, you can resize window to get the same effect.</p>
+<h2 id="4-vim-runtimepath">4. Vim $RUNTIMEPATH</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">filetype</span> <span class="nx">plugin</span> <span class="nx">on</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">filetype</span> <span class="nx">plugin</span> <span class="nx">indent</span> <span class="nx">on</span><span class="err">
+</span></span></span></code></pre></div><p>Allow you to put script under <code>$RUNTIMEPATH/ftplugin/</code> and <code>$RUNTIMEPATH/ftplugin/indent</code></p>
+<h3 id="41-undo-file">4.1 undo file</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">undofile</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">set</span> <span class="nx">unfo</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">set</span> <span class="nx">directory</span><span class="p">=~</span><span class="sr">/.local/</span><span class="nx">state</span><span class="sr">/nvim/</span><span class="nx">undo</span><span class="sr">//</span><span class="err">
+</span></span></span></code></pre></div><p><code>//</code> means the file will stored in full path, so that files having the same name will not confict. With above setting, you can &ldquo;undo&rdquo; with <code>u</code> and <code>&lt;C-r&gt;</code> even you reopen the file.</p>
+<h2 id="5-shell-directory">5. Shell directory</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">autochir</span><span class="err">
+</span></span></span></code></pre></div><p>Chagne the directory accoring to the file you edit. When you run Shell command via <code>:!</code>, your location depend on the file you editing. After you exit vim, directory will return to the status where you enter vim.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">path</span><span class="p">=</span>$<span class="nx">PWD</span>/**<span class="err">
+</span></span></span></code></pre></div><p>This make your autocomplete in command line mode will complete all subdirectory. Especially useful when adding file in subdirectory as buffer.</p>
+<h2 id="6-editing">6. Editing</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">conceallevel</span><span class="p">=</span><span class="m">2</span><span class="err">
+</span></span></span></code></pre></div><p>Can conceal syntax when possible, quite helpful when editing markdown file, link or latex syntax will be concealled. Make your raw markdown file less messy.
+<img loading="lazy" src="/Blog/post/vim-1/conceal.gif" type="" alt=""  /></p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>
