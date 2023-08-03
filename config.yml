@@ -16,6 +16,12 @@ minify:
     disableXML: true
     minifyOutput: true
 
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # is necessary
+
 params:
     env: production # to enable google analytics, opengraph, twitter-cards and schema.
     title: Home
@@ -116,18 +122,13 @@ params:
         threshold: 0.4
         minMatchCharLength: 0
         keys: ["title", "permalink", "summary", "content"]
-outputs:
-  home:
-    - HTML
-    - RSS
-    - JSON # is necessary
 
 menu:
     main:
-        - identifier: search
-          name: Search
-          url: /search/
-          weight: 30
+        #- identifier: search
+        #  name: Search
+        #  url: /search/
+        #  weight: 30
         - identifier: post
           name: Post
           url: /post/

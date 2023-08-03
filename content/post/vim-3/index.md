@@ -3,7 +3,7 @@ title: "Vim Plugins introduction"
 date: 2023-07-23T18:24:05+08:00
 # weight: 1
 # aliases: ["/first"]
-tags: [""]
+tags: ["vim", "vim plugin"]
 author: "sokinpui"
 # author: ["Me", "You"] # multiple authors
 showToc: true

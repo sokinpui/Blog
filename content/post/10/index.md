@@ -5,7 +5,7 @@ date: 2023-07-15T17:34:00+08:00
 draft: false
 toc: true
 image: ""
-tags: []
+tags: ["tmux"]
 categories: []
 ---
 

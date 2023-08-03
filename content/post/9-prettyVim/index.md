@@ -5,7 +5,7 @@ date: 2023-06-30T10:25:46+08:00
 draft: false
 toc: true
 image: ""
-tags: []
+tags: ["vim", "markdown", "obsidian"]
 categories: []
 ---
 

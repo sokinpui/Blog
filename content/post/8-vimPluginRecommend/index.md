@@ -5,7 +5,7 @@ date: 2023-06-29T14:00:02+08:00
 draft: false
 toc: true
 image: ""
-tags: []
+tags: ["vim", "vim plugins", "editor"]
 categories: []
 ---
 

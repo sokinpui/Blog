@@ -5,7 +5,7 @@ date: 2023-06-23T11:24:42+08:00
 draft: false
 toc: true
 image: ""
-tags: []
+tags: ["vim", "emacs", "evil-mode", "vscode", "vscode-neovim"]
 categories: []
 ---
 

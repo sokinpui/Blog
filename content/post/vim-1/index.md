@@ -4,7 +4,7 @@ date: 2023-07-21T14:53:36+08:00
 draft: false
 # weight: 1
 # aliases: ["/first"]
-tags: [""]
+tags: ["vim", "vimrc"]
 author: "sokinpui"
 # author: ["Me", "You"] # multiple authors
 showToc: true

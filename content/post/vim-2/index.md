@@ -3,7 +3,7 @@ title: "Simple hacking and tips to reduce pain in Vim"
 date: 2023-07-23T10:18:20+08:00
 # weight: 1
 # aliases: ["/first"]
-tags: [""]
+tags: ["vim", "vimrc"]
 author: "sokinpui"
 # author: ["Me", "You"] # multiple authors
 showToc: true
