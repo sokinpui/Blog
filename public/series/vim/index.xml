@@ -7,6 +7,104 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 01 Aug 2023 23:03:06 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/series/vim/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Setup markdown writing with Vim and Obsidian</title>
+      <link>https://sokinpui.github.io/Blog/series/vim/vim4-markdownwritingsetup/</link>
+      <pubDate>Thu, 03 Aug 2023 09:26:43 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/series/vim/vim4-markdownwritingsetup/</guid>
+      <description>Combine Vim and Obsidian together</description>
+      <content:encoded><![CDATA[<p>There are so many markdown editor exist already, most of them are really easy to use. But most of them provide feature more close to preview the markdown document, rather than editing or help writing. Like <a href="https://typora.io/">typora</a>, it trust to have to best markdown writing experience as it has great live preview and <strong>What You See Is What You Mean</strong>. I love its <strong>What You See Is What You Mean</strong>, since it must same as how the file render on browser, however, markdown file is so simple compare to tex, what you writing is close enough to what you see. Therefore, I regard <a href="https://typora.io/">typora</a> as a good markdown reader instead of good markdown writer.</p>
+<p>Another application I want to discuss about, <a href="https://obsidian.md/">obsidian</a>, also provide great live preview, it has sidebar file explorer, extension support, making it look like vscode for markdown. However, in terms of markdown editing. obsidian is still far behind an serious editor like emacs, vscode or vim. I don&rsquo;t say obsidian is not good as them, it is the difference between their purpose, &ldquo;Markdown editor&rdquo; is just good for reading markdown file, &ldquo;Editor&rdquo; is just good at editing. This is the reason I would recommend using an editor as the backend of markdown writing. You don&rsquo;t have to use vim, you can pick your favourite editor. This blog provide ideas to speed up your markdown writing.</p>
+<h1 id="fzf-and-markdown">fzf and markdown</h1>
+<h2 id="navigate-obsidian-vault">Navigate obsidian vault</h2>
+<p>It is common that we work on an directory instead of single file, often jump to another file, other than clicking your file explorer, you can use fzf to jump to another file. For example you can map a shortcut that will fzf search the root of your markdown directory. <strong>Obsidian</strong> has the concept of vault, it is same as directory, or git repo, You can convert your obsidian vault to git repo, they won&rsquo;t conflict.</p>
+<p>Neovim has many fzf tools integrated well, I use <a href="https://github.com/junegunn/fzf.vim">fzf.vim</a>, because I know it first, there are very little difference between those fzf.vim in terms of functionality, just pick one.</p>
+<p>With lines of vimscript, jumping within your vault is easy:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="k">function</span><span class="p">!</span> <span class="nx">s</span>:<span class="nx">fzfroot</span>#<span class="nx">find_git_root</span><span class="p">()</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="nx">return</span> <span class="nx">system</span><span class="p">(</span><span class="s1">&#39;git rev-parse --show-toplevel 2&gt; /dev/null&#39;</span><span class="p">)</span>[:<span class="m">-2</span>]<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">endfunction</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">command</span><span class="p">!</span> <span class="nx">ProjectFiles</span> <span class="nx">execute</span> <span class="s1">&#39;Files&#39;</span> <span class="nx">fzfroot</span>#<span class="nx">find_git_root</span><span class="p">()</span><span class="err">
+</span></span></span></code></pre></div><p>You can use command ProjectFiles to naigate your vault after convert it into git repo. You can of course map a key to <code>ProjectFiles</code>.</p>
+<h2 id="insert-link-to-files">insert link to files</h2>
+<p>When writing or note taking, we often link file together, if you care about protabilty, you may not want to use obsidian specific wiki link format, you may prefer markdown format more, so to insert file link within obsidian vault, <strong>fzf.vim</strong> can do so.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">inoremap</span> <span class="p">&lt;</span><span class="nx">expr</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">l</span><span class="p">&gt;</span> <span class="nx">fzf</span>#<span class="nx">vim</span>#<span class="nx">complete</span>#<span class="nx">path</span><span class="p">(</span><span class="s1">&#39;fd --type=file . $(git rev-parse --show-cdup 2&gt; /dev/null)&#39;</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">inoremap</span> <span class="p">&lt;</span><span class="nx">expr</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">f</span><span class="p">&gt;</span> <span class="nx">fzf</span>#<span class="nx">vim</span>#<span class="nx">complete</span>#<span class="nx">path</span><span class="p">(</span><span class="s1">&#39;fd --type=file . $(git rev-parse --show-toplevel 2&gt; /dev/null)&#39;</span><span class="p">)</span><span class="err">
+</span></span></span></code></pre></div><p>The first line insert relative path to root of vault, the second line will insert full path to the file. you can autocomplete when you editing link <code>[]()</code>.</p>
+<h1 id="snips">snips</h1>
+<p>Snippets is just easier to set up on code editor than markdown editor, and integrate well with auto completion. I use <a href="https://github.com/SirVer/ultisnips">Ultisnips</a> I have decide merge to Luasnips, but their is only little preformance enhancment, so I stay in Ultisnips. You can check my autocomplete and snippets setup in <a href="/Blog/post/vim-4/">this blog</a></p>
+<h1 id="concealment">Concealment</h1>
+<p>You can concealment markdown syntax by add the following line in your <code>vimrc</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">conceallevel</span><span class="p">=</span><span class="m">2</span><span class="err">
+</span></span></span></code></pre></div><p>Example:
+<img loading="lazy" src="/Blog/series/vim/vim4-markdownwritingsetup/conceal.gif" type="" alt="conceal1.git"  /></p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>XDG base configuration for Vim</title>
+      <link>https://sokinpui.github.io/Blog/series/vim/vim3-xdgforvim/</link>
+      <pubDate>Thu, 03 Aug 2023 09:11:30 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/series/vim/vim3-xdgforvim/</guid>
+      <description>Simple hack to have XDG based configuration for Vim</description>
+      <content:encoded><![CDATA[<p>I have seen some post and issue on Vim github that want XDG base configuration become one of the runtimpath of Vim(not Neovim), actually a simple hack can done so.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir <span class="nv">$HOME</span>/.config/vim
+</span></span><span class="line"><span class="cl">mkdir <span class="nv">$HOME</span>/.vim
+</span></span><span class="line"><span class="cl">mv <span class="nv">$HOME</span>/.vimrc <span class="nv">$HOME</span>/.vim/vimrc
+</span></span><span class="line"><span class="cl">mv <span class="nv">$HOME</span>/.vim <span class="nv">$HOME</span>/.config/vim 
+</span></span><span class="line"><span class="cl">ln -s <span class="nv">$HOME</span>/.config/vim <span class="nv">$HOME</span>/.vim
+</span></span></code></pre></div><p>Do you know there your <code>vimrc</code> can located at either <code>$HOME/.vimrc</code> or <code>$HOME/.vim/vimrc</code>, so you can move your whole runtimpath to <code>$HOME/.config/vim</code>, then create a symbolic link <code>$HOME/.vim</code> point to <code>$HOME/.config/vim</code>.</p>
+<p>Although I know XDG is more than just a directory, it may still be helpful for group all your configuration together.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Use git to version control your config</title>
+      <link>https://sokinpui.github.io/Blog/series/vim/vim2-gityourconfig/</link>
+      <pubDate>Wed, 02 Aug 2023 22:49:02 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/series/vim/vim2-gityourconfig/</guid>
+      <description>Use git to try new feature easily and broken change</description>
+      <content:encoded><![CDATA[<p>This blog is written for those how nothing about git. Just a quick start about what you can do with your command line tools <a href="https://git-scm.com/">git</a>.</p>
+<h1 id="what-is-git">What is git</h1>
+<p>
+This picture describe what is git, imagine your working direction of your project, when you want to try something new and don&rsquo;t want to break and manually merge new feature to your development, create a branch, like parallel universe, you can take another try in parallel universe, after that, you can merge those branch to your <strong>main</strong> branch or simply delete the branch. <em><strong>&ldquo;Branch is cheap&rdquo;</strong></em>.</p>
+<h1 id="basic-usage">basic usage</h1>
+<p>convert current directory into git repo, all subdirectory will be managed by git</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git init 
+</span></span></code></pre></div><p>You can check which file is being changed</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git status
+</span></span></code></pre></div><p>We say the chagne is state when you commit it, before commit, you have to add the change to git.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git add &lt;file1&gt; &lt;directory1&gt; &lt;directory2&gt; <span class="c1"># add changed directory and file to git index</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;commit message for this change &#34;</span>
+</span></span></code></pre></div><p>Usually the commit will not longer than 50 words as to summarize the change you have make, if you have additonal information about this change, you can add notes to commit</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git notes add &lt;commit&gt;
+</span></span></code></pre></div><p>To have a overview of commit, you can check git log</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git log &lt;commit&gt;
+</span></span></code></pre></div><p>Once you commit the change, the branch add a node, like check point of game, you can reset the change by reset the commit.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git reset &lt;commit index&gt; <span class="c1"># reset the commit and unstate the change, working directory leave unchanged </span>
+</span></span></code></pre></div><p>Use option <code>--hard</code> to apply revert the directory also</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git reset --hard &lt;commit index&gt; <span class="c1"># reset the commit and unstate the change, working directory change back to the state of that commit</span>
+</span></span></code></pre></div><p><strong>Be careful the change between HEAD and the commit going to revert by <code>git reset</code> will be lost, extremely careful to use with the flag <code>--hard</code></strong></p>
+<p>Create new branch to test new feature. This branch&rsquo;s working directory will same as the last state of current branch.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git branch &lt;feature1&gt; <span class="c1"># create new branch</span>
+</span></span></code></pre></div><p>Then main branch is called <strong>main</strong>. You can switch branch if there is not change unstated, otherwise, you have to commit the change first.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git switch &lt;branch name&gt; <span class="c1"># git branch name</span>
+</span></span></code></pre></div><p>You can merge branch to other branch. You need to first checkout the branch you want to merge to.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git checkout &lt;branch merge to&gt;
+</span></span></code></pre></div><p>Then you can merge two branches</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git merge &lt;branch going to be merged&gt;
+</span></span></code></pre></div><p>Above git command is enough for version control your config, to get with git, it is best to try it, use it. If you afraid your config break, backup it before version control.</p>
+<h1 id="usage">Usage</h1>
+<p>Neovim community often post some config that is fully configured in lua instead of vimscript, however, you have to make a lot of change, if you want to keep vimscript config separately, try to create a branch call <strong>&ldquo;lua&rdquo;</strong> and you don&rsquo;t have to merge this branch if unnecessary.</p>
+<p>I want to try an plugins call <a href="https://github.com/epwalsh/obsidian.nvim">obsidian.nvim</a>, which use <a href="https://github.com/hrsh7th/nvim-cmp">nvim-cmp</a> as completion frontend, I use <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> at that time, so I try to use <strong>nvim-cmp</strong>, you can find more in <a href="../vim-4">this blog</a></p>
+<p>If you want to try new plugins without breaking your current config, you can create a branch call <strong>experiment</strong>, before apply change to <strong>main</strong>, test it in <strong>experiment</strong> branch first, later you can merge the change to from <strong>experiment</strong> to <strong>main</strong>. The benefits of this approach is that if you don&rsquo;t want to fix the problem of new plugins now, you can still fallback to your stable, working config, fix the issue when you have free.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
       <title>Another attribute to use Vim</title>
       <link>https://sokinpui.github.io/Blog/series/vim/vim1-usingvimintro/</link>
       <pubDate>Wed, 02 Aug 2023 13:18:11 +0800</pubDate>
