@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://sokinpui.github.io/Blog/sitemap.xml

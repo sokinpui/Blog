@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>editor on Home</title>
+    <link>https://sokinpui.github.io/Blog/tags/editor/</link>
+    <description>Recent content in editor on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 19 Jul 2023 22:33:51 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/tags/editor/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The productivity of &#39;workflow&#39;</title>
+      <link>https://sokinpui.github.io/Blog/post/11-toyeditor/</link>
+      <pubDate>Wed, 19 Jul 2023 22:33:51 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/11-toyeditor/</guid>
+      <description>Editor is only useful for editing the configuration file of the editor</description>
+      <content:encoded><![CDATA[<h1 id="toy-editor">Toy Editor</h1>
+<p>Editor, is for editing text, to get the job done, editing code, notes, configuration file. Some editor have the ultimatly extenability or customizability, like neovim, Emacs or vscode. Often we prepare too much to make our editor prefect, making our editor more than just an editor, convert it into something like git client, terminal, even a social recognition. The idea of hackable editor is great, many of us can get benefits from the scriptability to automation or add handy features. However, extenability come with cost. Emacs, the most extenable editor which come with the powerful extention language, Lisp, with Lisp everything related to text is possible to be implemented. You can, however, the biggest pain is you need to know how to, which involve time and practice to know the api and the language itself.</p>
+<p><strong>Don&rsquo;t be the one who use their editor only for editing their configuration file.</strong></p>
+<h1 id="toy-note-system">Toy note system</h1>
+<p>Note system is another time sink, because building a note system is much more complex than build a prefect editor. Note system including editor, viewer, a clipper to collect some snippets, the bridge that integrate all your tools, or a all-in-one workspace. Since building note system is much more interesting than writing, review and organize notes, time is easy go to build a superficially clever system that input and output nothing.</p>
+<h1 id="the-truth-of-configuration">The truth of configuration</h1>
+<p>Yes, one can build their prefect system that will suit their workflow, if their workflow never change, it is not the truth, right? The best note system should always be the next. Your information system will evolve as you behaviour and workflow change.</p>
+<p>Implement the change only when you need it, don&rsquo;t even try to make you system prefect, it won&rsquo;t.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Vim plugin recommendation</title>
+      <link>https://sokinpui.github.io/Blog/post/8-vimpluginrecommend/</link>
+      <pubDate>Thu, 29 Jun 2023 14:00:02 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/8-vimpluginrecommend/</guid>
+      <description>Vacillate vim are really good, after remember some vim command keyblindings, you can start editing or writing immediately. The main benefits of using plugins can avoid use our poor vimscript. Use some great plugin avoid you to rebuild the wheel. Before you are able to write plugin yourself, trust me, any exist plugins is better than yours.
+Plugins recommendation 1. vim-plug vim-plug, a plugin manager that help you install, update and manage your plugins.</description>
+      <content:encoded><![CDATA[<p>Vacillate vim are really good, after remember some vim command keyblindings, you can start editing or writing immediately. The main benefits of using plugins can avoid use our poor vimscript. Use some great plugin avoid you to rebuild the wheel. Before you are able to write plugin yourself, trust me, any exist plugins is better than yours.</p>
+<h1 id="plugins-recommendation">Plugins recommendation</h1>
+<h2 id="1-vim-plughttpsgithubcomjunegunnvim-plug">1. <a href="https://github.com/junegunn/vim-plug">vim-plug</a></h2>
+<p>vim-plug, a plugin manager that help you install, update and <strong>manage</strong> your plugins. Vim come with built-in package manger <code>pack</code>, a subdirectory under <code>.vim/</code>, if don&rsquo;t exist, create it. I usually use build-in <code>pack</code> only for some personal little script, so that I don&rsquo;t have to move forth and back in vim runtime path.</p>
+<p>Vim plug syntax is easy, to add random plugins, add those line in your <code>.vimrc</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">call plug#begin()
+</span></span><span class="line"><span class="cl">&#34; list plugins herer
+</span></span><span class="line"><span class="cl">Plug &#39;junegunn/vim-easy-align&#39;
+</span></span><span class="line"><span class="cl">call plug#end()
+</span></span></code></pre></div><p>Any github repo can be installed, for example, you have write your <em>plugin</em> and push to github at <a href="https://github.com/username/plugin-name">https://github.com/username/plugin-name</a>, you can add this <em>plugin</em> by adding those line in your <code>.vimrc</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">call plug#begin()
+</span></span><span class="line"><span class="cl">&#34; list plugins herer
+</span></span><span class="line"><span class="cl">Plug &#39;username/plugin-name&#39;
+</span></span><span class="line"><span class="cl">call plug#end()
+</span></span></code></pre></div><p>After that, save your file by <code>:w</code>, source your <code>.vimrc</code> or leave then reopen your <code>.vimrc</code>, run the command <code>:PlugInstall</code>. Plugins will be installed at <code>~/.vim/plugged</code> by default.</p>
+<p>To save my little pinky finger, I have those mapping for convenience:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nnoremap \i :w&lt;cr&gt;:source ~/.vim/vimrc&lt;cr&gt;:PlugInstall&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap \c :w&lt;cr&gt;:source ~/.vim/vimrc&lt;cr&gt;:PlugClean&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap \u :w&lt;cr&gt;:source ~/.vim/vimrc&lt;cr&gt;:PlugUpdate&lt;cr&gt;
+</span></span></code></pre></div><h2 id="2-vim-sandwichhttpsgithubcommachakannvim-sandwich">2. <a href="https://github.com/machakann/vim-sandwich">vim-sandwich</a></h2>
+<p>vim-sandwich help you to change the surround of text. What is surround? Surround means the pairs that surround text object, like <code>&quot;</code> and <code>(</code>. It is handy to let program do for us, instead of change manually.</p>
+<p><a href="https://github.com/machakann/vim-sandwich">vim-sandwich</a> is an alternative of <a href="https://github.com/tpope/vim-surround">vim-surround</a>, which provide texthighligh, auto-selection, and repeat with <code>.</code> out-of the box. It use less keys than vim-surround, just navigate to the current parenthesis object position and chagne the surround! No need to select the object before change.
+surround style of changing surround:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cs &lt;surround to be changed&gt; &lt;surround to replace&gt;
+</span></span></code></pre></div><p>sandwich style of changing surround(auto replace):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">srb &lt;surround to be changed&gt; &lt;surround to replace&gt;
+</span></span></code></pre></div><p>I though it is a more intutitive than to surround style of change, as symbol like <code>{</code>, <code>[</code> and <code>(</code> is more difficult to type than navigate to the right position with <code>f</code>, <code>t</code>, <code>F</code> and <code>T</code>.</p>
+<p>The auto-selection of vim-sandwich is highlight of this plugin, I have use this feaatur for all surround editing including add, delete and replace surrounds. I have the following setting so that I can use <code>&lt;leader&gt;+symbols</code> to add surround for one words or selected region</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">nmap &lt;leader&gt;( saiw(E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;) saiw)E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;[ saiw[E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;] saiw]E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;{ saiw{E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;} saiw}E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;&#34; saiw&#34;E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;&#39; saiw&#39;E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;&lt; saiw&lt;E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;&gt; saiw&gt;E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;` saiw`E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;$ saiw$E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;* saiw*.E
+</span></span><span class="line"><span class="cl">nmap &lt;leader&gt;~ saiw~.E
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34; visual
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;( sa(
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;) sa)
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;[ sa[
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;] sa]
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;{ sa{
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;} sa}
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;&#34; sa&#34;
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;&#39; sa&#39;
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;&lt; sa&lt;
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;&gt; sa&gt;
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;` sa`
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;$ sa$
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;_ ca_
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;* sa*.
+</span></span><span class="line"><span class="cl">vmap &lt;leader&gt;~ sa~.
+</span></span></code></pre></div><p>However, it is a bad habits to make a keyboard macros, the better way would be calling the plugin&rsquo;s function. Coz I am lazy and nothing happen till now, I keep those lines.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="3-clever-fhttpsgithubcomrhysdclever-fvim">3. <a href="https://github.com/rhysd/clever-f.vim">clever-f</a></h2>
+<p><a href="https://github.com/rhysd/clever-f.vim">clever-f</a> is a plugin that improve the smoothness and consisent when navigation with <code>f</code>, <code>t</code>, <code>F</code> and <code>T</code>. You can use <code>f</code> to navigate to next <code>f</code> search, or use <code>F</code> to navigate backwards, instead of using <code>;</code> and <code>,</code>. What&rsquo;s more, you can remap <code>;</code> and <code>,</code> for other purpose. When you press <code>f</code> to navigate <code>f</code> search, you can cross the line, and you can have smart case searching!</p>
+<p>After using this plugin, I won&rsquo;t claim it is more efficient than <code>;</code> and <code>,</code>, but it must be more comfortable.</p>
+<p>You can change the behaviour of the plugins by adding those line to your <code>.vimrc</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34; ignore case unless you specify Upper case 
+</span></span><span class="line"><span class="cl">let g:clever_f_smart_case = 1  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34; allow cross line, set to 1 if you don&#39;t 
+</span></span><span class="line"><span class="cl">let g:clever_f_across_no_line = 0 like it
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34; f; will searhc for all symbols
+</span></span><span class="line"><span class="cl">let g:clever_f_chars_match_any_signs = &#39;;&#39; 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34; f. will repeat you last search
+</span></span><span class="line"><span class="cl">let g:clever_f_repeat_last_char_inputs = [ &#34;\&lt;TAB&gt;&#34; ]
+</span></span></code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="4-cocnvimhttpsgithubcomneoclidecocnvim">4. <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a></h2>
+<p><a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> make completion in vim like vscode.</p>
+<p>coc.nvim is a plugins framework, so you may find coc-XXX plugin written in Javascript or Typescript. Some of them is unique, some of them is alternative to the existing vim plugins to compatilbe with coc.nvim. One is <a href="https://github.com/neoclide/coc-snippets">coc.snippets</a>, which aims to replace <a href="https://github.com/SirVer/ultisnips">Ultisnips</a> when you use coc.nvim. coc.nvim use is written Javascript and Typescript, you will configure the popup window in JSON file.</p>
+<p>By default, coc.nvim don&rsquo;t come with any keyblindings, you have to configure yourself.</p>
+<p>For example, you can:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;   coc.nvim
+</span></span><span class="line"><span class="cl">inoremap &lt;silent&gt;&lt;expr&gt; &lt;TAB&gt; coc#pum#visible() ? coc#pum#next(1) : 
+</span></span><span class="line"><span class="cl">      \ cocfunc#CheckBackspace() ? &#34;\&lt;TAB&gt;&#34; : coc#refresh()
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">inoremap &lt;expr&gt;&lt;S-TAB&gt; coc#pum#visible() ? coc#pum#prev(1) : &#34;\&lt;S-TAB&gt;&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">inoremap &lt;silent&gt;&lt;expr&gt; &lt;CR&gt; coc#pum#visible() ? &#34;\&lt;C-g&gt;u\&lt;CR&gt;\&lt;c-r&gt;=coc#pum#close()\&lt;CR&gt;&#34; 
+</span></span><span class="line"><span class="cl">                              \: &#34;\&lt;C-g&gt;u\&lt;CR&gt;\&lt;c-r&gt;=coc#on_enter()\&lt;CR&gt;&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">inoremap &lt;silent&gt;&lt;expr&gt; &lt;space&gt; coc#pum#visible() ? &#34;&lt;esc&gt;a&lt;space&gt;&#34; 
+</span></span><span class="line"><span class="cl">                              \: &#34;&lt;space&gt;&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&#34;   coc.snippets
+</span></span><span class="line"><span class="cl">inoremap &lt;C-j&gt; &lt;Plug&gt;(coc-snippets-expand-jump)
+</span></span><span class="line"><span class="cl">vnoremap &lt;C-j&gt; &lt;Plug&gt;(coc-snippets-select)
+</span></span><span class="line"><span class="cl">let g:coc_snippet_next = &#39;&lt;C-j&gt;&#39;
+</span></span><span class="line"><span class="cl">let g:coc_snippet_prev = &#39;&lt;C-k&gt;&#39;
+</span></span></code></pre></div><p>The above example don&rsquo;t require selection, you use <code>&lt;TAB&gt;</code> and <code>&lt;S-TAB&gt;</code> to navigate to the suggestion you want, after that, you can press <code>&lt;space&gt;</code> and <code>&lt;cr&gt;</code> to move and start a new line respectively.</p>
+<h2 id="5-fzfvimhttpsgithubcomjunegunnfzfvim">5. <a href="https://github.com/junegunn/fzf.vim">fzf.vim</a></h2>
+<p><a href="https://github.com/junegunn/fzf.vim">fzf.vim</a> $\times$  vim, a command line tools <a href="https://github.com/junegunn/fzf">fzf</a> vim warpper. You can unlock the power of fuzzy finder in vim nearly anything.</p>
+<p>The syntax of fzf.vim is simple:<!-- raw HTML omitted -->
+:Files [PATH] 	search file in current directory by default <!-- raw HTML omitted -->
+:Buffers 	search opened buffers <!-- raw HTML omitted -->
+:Ag [PATTERN] 	use ag to search pattern <!-- raw HTML omitted -->
+:Rg [PATTERN] 	use rg to search pattern <!-- raw HTML omitted -->
+:Lines [QUERY] 	search lines in loaded buffers <!-- raw HTML omitted -->
+:Marks 	search marks and jump to <!-- raw HTML omitted -->
+:History 	serach for opened files <!-- raw HTML omitted -->
+:History: 	search fo Command history <!-- raw HTML omitted -->
+:History/ 	Search for searching history wiht <code>/</code> <!-- raw HTML omitted -->
+:Commands 	search for avalible Commands <!-- raw HTML omitted -->
+:Maps 	serahc for Normal mode mappings <!-- raw HTML omitted -->
+:Helptags 	fzf for :help XXX, open help buffer <!-- raw HTML omitted --></p>
+<p>you can make your own shortcut like</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">let g:fzf_preview_window = [&#39;right,50%&#39;, &#39;ctrl-/&#39;]
+</span></span><span class="line"><span class="cl">let g:fzf_layout = {&#39;window&#39;: { &#39;width&#39;: 0.9, &#39;height&#39;: 0.9 }}
+</span></span><span class="line"><span class="cl">let g:fzf_buffers_jump = 1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;ff :Files&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;fb :Buffers&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;fs :Lines&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;fp :Rg&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;f/ :History/&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;f: :History:&lt;cr&gt;
+</span></span><span class="line"><span class="cl">nnoremap &lt;leader&gt;fh :Helptags&lt;cr&gt;
+</span></span></code></pre></div><p>The first line config the location of preview windows, you can have <code>right</code>, <code>left</code>, <code>up</code>, and <code>down</code>. The second line control the size of the popup windows</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Waste too much time to upgrade productivity</title>
+      <link>https://sokinpui.github.io/Blog/post/4-choose-of-tools/</link>
+      <pubDate>Tue, 02 May 2023 21:41:24 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/4-choose-of-tools/</guid>
+      <description>There are too much time spend on configure my tools, replace a more efficiently tool with the less efficient one. It takes me so long to understand those apps doesn&amp;rsquo;t matter if just want to take a notes
+Time spending on notes taking app Effie When I have to take notes, I fisrt using Effie, but then I find it don&amp;rsquo;t have good image insert support, give up. Their idea is great, notes or writing apps should be clean enough and later I find every notes app say they are clean.</description>
+      <content:encoded><![CDATA[<p>There are too much time spend on configure my tools, replace a more efficiently
+tool with the less efficient one. It takes me so long to understand those apps
+doesn&rsquo;t matter if just want to take a notes</p>
+<h1 id="time-spending-on-notes-taking-app">Time spending on notes taking app</h1>
+<h2 id="effie">Effie</h2>
+<p>When I have to take notes, I fisrt using <a href="https://www.effie.pro/">Effie</a>, but
+then I find it don&rsquo;t have good image insert support, give up. Their idea is
+great, notes or writing apps should be clean enough and later I find every notes
+app say they are clean.</p>
+<h2 id="notion">Notion</h2>
+<p>The next app is <a href="https://www.notion.so/desktop">notion</a>, it is great, the
+markdown blocks and integration of app make notion eye-cream, but then regarding
+the loading time take decade long, no offline support, and most of my time are
+dragging blocks make my workspace more pretty.  &ldquo;Um&hellip; A good notes should look
+like this.&rdquo;, regarding my terrible sense of beauty, the &ldquo;design&rdquo; never fit my
+imagination of prefect notes. Notion maybe too capable for a note taking app,
+the database function make them customizable, I want writing notes, but not
+build website. Nevertheelss, Notion now becoming my todo list, and event
+recorder, how great it support syncing across all devices, and can be access
+with browser.</p>
+<h2 id="onenote-collanote-goodnotes-remarkable">OneNote, CollaNote, Goodnotes, Remarkable</h2>
+<p>All of them used to be kept my handwriting notes, among them, OneNotes is canva,
+CollaNote is vertical scrolling canva, Goodnotes is a good handwriting notes app
+but neet to pay. Remarkable is an accidient, I never understand why I think it
+can take a notes with high writing delay and slow responding time. All of them
+have been used on 2018 Ipad with 20.7 grams Apple Pencil (1st Generation).  This
+gen pencil is too heavy, compare to Samsung 8 grams S Pen, it is like holding a
+sticker stamp on glass. I remember I have spend so much time finding free
+alternative on Ipad since good software and hardware are expensive, and finally
+stay with second hand Samsung tab S7.</p>
+<h2 id="obsidian">Obsidian</h2>
+<p>Before trying Obsidian, I have finally realize that note is simple as markdown,
+no need of those notion blocks or Effie cards. basiclly supporting tree
+directories selection and image insertion is a must. Obsidian do quite well, and
+finally I realize how much time is wasted on making my own notion note space. No
+database and todo list is needed, and therefore Obsidian is enough to write and
+manager notes.</p>
+<p>When tinkering a customizalbe tools, I always try to make the tools part of
+mine, try to complish all the tasks with the lovest tools. When there exist a
+better tools, still I have to use my lovely tools try to accomplish the task, if
+not, then google way to implement it. Most of the time tinkering the tools,
+losting the initial goal, turn into making my tools super powerful and
+multi-funcional. Therefore, never love your tools, getting the job done in
+efficient way is much more elegant than done the jobs with the specify tools, if
+the initial goal is getting the task done.</p>
+<h1 id="editor">Editor</h1>
+<p>Editor is another time sink source. Vim is the first editor I know it is a
+editor, I have use vscode before but I don&rsquo;t know it is a editor, back to the
+day using vscode, I am scaring of those UI, I don&rsquo;t know what will happen if I
+turn on/off some of thems. Vim is clean, simple and elegant. However, it is like
+a mindset trap, the more I know Vim, the stronger will to do all in vim way. Vim
+bring me to shell, shell bring me to plain text operation. A mindset form,
+command line and plain text are efficient, GUI and mouse are evil. At that time,
+I have read many article of how to navigate laptop with only keyboard and vim
+like motion. Most of the time spend on google &ldquo;how to do XXX in vim&rdquo; and &ldquo;how to
+do XXX in cli&rdquo;. Still worse, I have imaged many situation that never happen,
+prepare a function or shortcut to overcome the problem never happen in future.</p>
+<p>Any customizalbe editor can be time sink to configure, they becoming toies
+insteat of tools, I am adding too much unnecessary function before applied in
+real context. All those function and shortcut should only solved and implment in
+fly or they are repetitive to give a handy marco. When some special case rise, I
+am aware if it can be handle in &ldquo;simpler&rdquo; way, the real is they seldom occur in
+the future. However, time is wasted already.</p>
+<h1 id="problems-of-upgrading-productivity-through-changing-tools">Problems of upgrading productivity through changing tools.</h1>
+<p>Replacing the current tools with a more productivity one is often handy and
+attactive, imaging better functionalility of newer tools and get the job more
+efficient and elegant. However most of the time is spent on move data and
+rebuild working flow. When I merge my notes from Effie to notion, it take me one
+day to do so, it is repeative and boring to copy all the structure of the notes.<br>
+My current strategy are of merging notes are don&rsquo;t touch the notes unless
+necessary, most of my old notes are still keeping on notion instead merging them
+into obsidian, although it may feel statisfy too see a deep direcotry of notes
+on Obsidian side bar. It just too time consumming, no real benefit to merge all
+the notes into single place, whatever the notes still appear in both apps, it is
+really not difference to merge from one to one and separate them.</p>
+<h2 id="changing-tools">Changing tools</h2>
+<p>I always want to try new tools, like emacs, vscode, Obsidian open source
+alternative, Mac built-in preview.app &ldquo;better alternative&rdquo;. Try them like
+playing new toy, fun but no real gain. I try them under the name of learning,
+and end up with tinkering configure.</p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

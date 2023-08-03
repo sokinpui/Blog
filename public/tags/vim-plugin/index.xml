@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>vim plugin on Home</title>
+    <link>https://sokinpui.github.io/Blog/tags/vim-plugin/</link>
+    <description>Recent content in vim plugin on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 23 Jul 2023 18:24:05 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/tags/vim-plugin/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vim Plugins introduction</title>
+      <link>https://sokinpui.github.io/Blog/post/vim-3/</link>
+      <pubDate>Sun, 23 Jul 2023 18:24:05 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/vim-3/</guid>
+      <description>Desc Text.</description>
+      <content:encoded><![CDATA[<p>Some Vim plugins may save your time. You can use any plugins manager, even the built-in <code>pack</code>.</p>
+<h1 id="file-explorer-fernhttpsgithubcomlambdalisuefernvim">File explorer: <a href="https://github.com/lambdalisue/fern.vim">fern</a></h1>
+<p>Not too helpful, but I find it is more eye-candy than built-in explorer <code>netrw</code>. Also, <strong>fern</strong> is an asynchronous tree viewer, so it should be smoother than <code>netrw</code> in theory. <strong>fern</strong> allow you change the icon to whatever you like.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">fern</span>#<span class="nx">mark_symbol</span>                       <span class="p">=</span> <span class="s1">&#39;●&#39;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">fern</span>#<span class="nx">renderer</span>#<span class="nx">default</span>#<span class="nx">collapsed_symbol</span> <span class="p">=</span> <span class="s1">&#39;▷ &#39;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">fern</span>#<span class="nx">renderer</span>#<span class="nx">default</span>#<span class="nx">expanded_symbol</span>  <span class="p">=</span> <span class="s1">&#39;▼ &#39;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">fern</span>#<span class="nx">renderer</span>#<span class="nx">default</span>#<span class="nx">leading</span>          <span class="p">=</span> <span class="s1">&#39; &#39;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">fern</span>#<span class="nx">renderer</span>#<span class="nx">default</span>#<span class="nx">leaf_symbol</span>      <span class="p">=</span> <span class="s1">&#39; &#39;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">fern</span>#<span class="nx">renderer</span>#<span class="nx">default</span>#<span class="nx">root_symbol</span>      <span class="p">=</span> <span class="s1">&#39;~ &#39;</span><span class="err">
+</span></span></span></code></pre></div><p>Will look like this:
+<img loading="lazy" src="/Blog/post/vim-3/fern-demo.png" type="" alt="fern-demo"  /></p>
+<p><strong>Fern</strong> have some plugins extend its functionality, like this <a href="https://github.com/lambdalisue/fern-hijack.vim">fern plugin</a> replace <code>netrw</code> when you open directory using vim. <a href="https://github.com/yuki-yano/fern-preview.vim">preview file in float window</a>. <a href="https://github.com/lambdalisue/fern-hijack.vim">This plugin</a> allow you map key jump to the root of project (by default is ^). You can find more fern plugin <a href="https://github.com/topics/fern-vim-plugin">here</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">nmap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;&lt;</span><span class="nx">expr</span><span class="p">&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            \ <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">my</span><span class="p">-</span><span class="nx">open</span><span class="p">-</span><span class="nx">expand</span><span class="p">-</span><span class="nx">collapse</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            \ <span class="nx">fern</span>#<span class="nx">smart</span>#<span class="nx">leaf</span><span class="p">(</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            \   <span class="s2">&#34;\&lt;Plug&gt;(fern-action-open:select)&#34;</span><span class="p">,</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            \   <span class="s2">&#34;\&lt;Plug&gt;(fern-action-expand)&#34;</span><span class="p">,</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            \   <span class="s2">&#34;\&lt;Plug&gt;(fern-action-collapse)&#34;</span><span class="p">,</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            \ <span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nmap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">new</span><span class="p">-</span><span class="nx">and</span><span class="p">-</span><span class="nx">edit</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>      \ <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">new</span><span class="p">-</span><span class="nx">file</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>      \ <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">open</span>:<span class="nx">select</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">my</span><span class="p">-</span><span class="nx">open</span><span class="p">-</span><span class="nx">expand</span><span class="p">-</span><span class="nx">collapse</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">TAB</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">my</span><span class="p">-</span><span class="nx">open</span><span class="p">-</span><span class="nx">expand</span><span class="p">-</span><span class="nx">collapse</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">h</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">collapse</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">l</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">expand</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="m">2</span><span class="p">-</span><span class="nx">LeftMouse</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">my</span><span class="p">-</span><span class="nx">open</span><span class="p">-</span><span class="nx">expand</span><span class="p">-</span><span class="nx">collapse</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">o</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">new</span><span class="p">-</span><span class="nx">and</span><span class="p">-</span><span class="nx">edit</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">nd</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">new</span><span class="p">-</span><span class="nx">dir</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">D</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">remove</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">rn</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">rename</span><span class="p">)</span><span class="nx">l</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">s</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">open</span>:<span class="nx">split</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">v</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">open</span>:<span class="nx">vsplit</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">r</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">reload</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">nowait</span><span class="p">&gt;</span> . <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">hidden</span>:<span class="nx">toggle</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">nowait</span><span class="p">&gt;</span> <span class="p">&lt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">leave</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">nowait</span><span class="p">&gt;</span> <span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">enter</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34;enter project root, find the toppest directory contain .git</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> ^ <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">project</span><span class="p">-</span><span class="nx">top</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34; preview file</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">&#34;nnoremap &lt;silent&gt; &lt;buffer&gt; p     &lt;Plug&gt;(fern-action-preview:toggle)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">p</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">preview</span>:<span class="nx">auto</span>:<span class="nx">toggle</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">d</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">preview</span>:<span class="nx">scroll</span>:<span class="nx">down</span>:<span class="nx">half</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">u</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">preview</span>:<span class="nx">scroll</span>:<span class="nx">up</span>:<span class="nx">half</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34;smart [q]uit</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">expr</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">quit</span><span class="p">-</span><span class="nx">or</span><span class="p">-</span><span class="nx">close</span><span class="p">-</span><span class="nx">preview</span><span class="p">)</span> <span class="nx">fern_preview</span>#<span class="nx">smart_preview</span><span class="p">(</span><span class="s2">&#34;\&lt;Plug&gt;(fern-action-preview:close)&#34;</span><span class="p">,</span> <span class="s2">&#34;:q\&lt;CR&gt;&#34;</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">q</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">quit</span><span class="p">-</span><span class="nx">or</span><span class="p">-</span><span class="nx">close</span><span class="p">-</span><span class="nx">preview</span><span class="p">)</span><span class="err">
+</span></span></span></code></pre></div><h1 id="horizontal-motion-clever-fhttpsgithubcomrhysdclever-fvim">Horizontal motion: <a href="https://github.com/rhysd/clever-f.vim">clever-f</a></h1>
+<p><strong>clever-f</strong> extend the Vim&rsquo;s f, F, t and T function, you can press <code>f</code> to jump instead <code>;</code>, similarly, use <code>F</code> to jump backward like <code>,</code>. <strong>clever-f</strong> allow you jump multi lines by default, super convenient when <code>dfn</code> cross line.</p>
+<p>Since many symbol ({, (, &ldquo;, and so on) keys are hard to press. <strong>clever-f</strong> by default map f; to match any symbol, super clever!. <em>(I map to <!-- raw HTML omitted -->)</em>
+<img loading="lazy" src="/Blog/post/vim-3/clever-f-symbol-jump.gif" type="" alt="symbol-jump-demo"  /></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">clever_f_smart_case</span>              <span class="p">=</span> <span class="m">1</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">clever_f_across_no_line</span>          <span class="p">=</span> <span class="m">0</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">clever_f_chars_match_any_signs</span>   <span class="p">=</span> <span class="s2">&#34;\&lt;TAB&gt;&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">clever_f_repeat_last_char_inputs</span> <span class="p">=</span> [ <span class="s2">&#34;\&lt;CR&gt;&#34;</span> ]<span class="err">
+</span></span></span></code></pre></div><h1 id="multi-cursor-vim-visual-multihttpsgithubcommg979vim-visual-multi">multi cursor: <a href="https://github.com/mg979/vim-visual-multi">vim-visual-multi</a></h1>
+<p><strong>vim-visual-multi</strong> bring this common feature from others editor to Vim. Sometimes it is convenient and more intuitive than <code>:s/pattern/changes/&lt;opt&gt;</code> or visual block mode.</p>
+<p>Use a, A, i, O, to insert text like in Vim normal mode. Use x to delete selection. Use r to replace all text in selection like r in Vim visual mode. Press n/N to get next/previous occurrence. Press q to skip current and get next occurrence. Press Q to remove current cursor/selection.</p>
+<p>By default, it start multi cursor by pressing <code>&lt;C-n&gt;</code>.(I map it to <code>&lt;leader&gt;n</code>) The most exciting of this plugins is, it has integrated with auto-completion like <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a>!
+<img loading="lazy" src="/Blog/post/vim-3/multi-cursor-demo.gif" type="" alt="multi-cursor-demo"  /></p>
+<h1 id="fzf-x-vim-fzfvimhttpsgithubcomjunegunnfzfvim">fzf x vim: <a href="https://github.com/junegunn/fzf.vim">fzf.vim</a></h1>
+<p><strong>fzf.vim</strong> is the comand line tools <a href="https://github.com/junegunn/fzf">fzf</a> wrapper for vim. Fuzzy finder result will display in Vim float windows. Powerful tools to jumps and navigate project and files within Vim.
+From official website, <strong>fzf.vim</strong> can fuzzy find all of them:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>List</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:Files [PATH]</code></td>
+<td>Files (runs <code>$FZF_DEFAULT_COMMAND</code> if defined)</td>
+</tr>
+<tr>
+<td><code>:GFiles [OPTS]</code></td>
+<td>Git files (<code>git ls-files</code>)</td>
+</tr>
+<tr>
+<td><code>:GFiles?</code></td>
+<td>Git files (<code>git status</code>)</td>
+</tr>
+<tr>
+<td><code>:Buffers</code></td>
+<td>Open buffers</td>
+</tr>
+<tr>
+<td><code>:Colors</code></td>
+<td>Color schemes</td>
+</tr>
+<tr>
+<td><code>:Ag [PATTERN]</code></td>
+<td>[ag][ag] search result (<code>ALT-A</code> to select all, <code>ALT-D</code> to deselect all)</td>
+</tr>
+<tr>
+<td><code>:Rg [PATTERN]</code></td>
+<td>[rg][rg] search result (<code>ALT-A</code> to select all, <code>ALT-D</code> to deselect all)</td>
+</tr>
+<tr>
+<td><code>:RG [PATTERN]</code></td>
+<td>[rg][rg] search result; relaunch ripgrep on every keystroke</td>
+</tr>
+<tr>
+<td><code>:Lines [QUERY]</code></td>
+<td>Lines in loaded buffers</td>
+</tr>
+<tr>
+<td><code>:BLines [QUERY]</code></td>
+<td>Lines in the current buffer</td>
+</tr>
+<tr>
+<td><code>:Tags [QUERY]</code></td>
+<td>Tags in the project (<code>ctags -R</code>)</td>
+</tr>
+<tr>
+<td><code>:BTags [QUERY]</code></td>
+<td>Tags in the current buffer</td>
+</tr>
+<tr>
+<td><code>:Marks</code></td>
+<td>Marks</td>
+</tr>
+<tr>
+<td><code>:Jumps</code></td>
+<td>Jumps</td>
+</tr>
+<tr>
+<td><code>:Windows</code></td>
+<td>Windows</td>
+</tr>
+<tr>
+<td><code>:Locate PATTERN</code></td>
+<td><code>locate</code> command output</td>
+</tr>
+<tr>
+<td><code>:History</code></td>
+<td><code>v:oldfiles</code> and open buffers</td>
+</tr>
+<tr>
+<td><code>:History:</code></td>
+<td>Command history</td>
+</tr>
+<tr>
+<td><code>:History/</code></td>
+<td>Search history</td>
+</tr>
+<tr>
+<td><code>:Snippets</code></td>
+<td>Snippets ([UltiSnips][us])</td>
+</tr>
+<tr>
+<td><code>:Commits [LOG_OPTS]</code></td>
+<td>Git commits (requires [fugitive.vim][f])</td>
+</tr>
+<tr>
+<td><code>:BCommits [LOG_OPTS]</code></td>
+<td>Git commits for the current buffer; visual-select lines to track changes in the range</td>
+</tr>
+<tr>
+<td><code>:Commands</code></td>
+<td>Commands</td>
+</tr>
+<tr>
+<td><code>:Maps</code></td>
+<td>Normal mode mappings</td>
+</tr>
+<tr>
+<td><code>:Helptags</code></td>
+<td>Help tags <!-- raw HTML omitted --><a href="#helptags">1</a><!-- raw HTML omitted --></td>
+</tr>
+<tr>
+<td><code>:Filetypes</code></td>
+<td>File types</td>
+</tr>
+</tbody>
+</table>
+<p>You can map any of above commands to your faviour key bindings.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">ff</span> :<span class="nx">Files</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">fb</span> :<span class="nx">Buffers</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">fs</span> :<span class="nx">Lines</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">fp</span> :<span class="nx">Rg</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">f</span><span class="sr">/ :History/</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">f</span>: :<span class="nx">History</span>:<span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">fh</span> :<span class="nx">Helptags</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">fa</span> :<span class="nx">Files</span> $<span class="nx">HOME</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
+</span></span></span></code></pre></div><p>If you want to change the size of float window, you can change the value of <code>height</code> and <code>width</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">fzf_preview_window</span> <span class="p">=</span> [<span class="s1">&#39;right,50%&#39;</span><span class="p">,</span> <span class="s1">&#39;ctrl-/&#39;</span>]<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">fzf_layout</span>         <span class="p">=</span> {<span class="s1">&#39;window&#39;</span>: { <span class="s1">&#39;width&#39;</span>: <span class="m">0</span>.<span class="m">9</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span>: <span class="m">1</span> }}<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">fzf_buffers_jump</span>   <span class="p">=</span> <span class="m">1</span><span class="err">
+</span></span></span></code></pre></div><p>If you don&rsquo;t like float window but want a side peek, just modifiy the code.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="c">&#34; use tmux float window</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">fzf_layout</span> <span class="p">=</span> { <span class="s1">&#39;tmux&#39;</span>: <span class="s1">&#39;-p90%,100%&#39;</span> }<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34; down, up, right, left</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">fzf_layout</span> <span class="p">=</span> { <span class="s1">&#39;down&#39;</span>: <span class="s1">&#39;~40%&#39;</span> }<span class="err">
+</span></span></span></code></pre></div><p>Find vim help manual with <strong>fzf.vim</strong>:
+<img loading="lazy" src="/Blog/post/vim-3/fzf-demo.gif" type="" alt="fzf-demo"  /></p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>
