@@ -780,7 +780,7 @@ From official website, <strong>fzf.vim</strong> can fuzzy find all of them:</p>
 <h2 id="6-editing">6. Editing</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">conceallevel</span><span class="p">=</span><span class="m">2</span><span class="err">
 </span></span></span></code></pre></div><p>Can conceal syntax when possible, quite helpful when editing markdown file, link or latex syntax will be concealled. Make your raw markdown file less messy.
-</p>
+<img loading="lazy" src="/Blog/post/vim-1/conceal.gif" type="" alt=""  /></p>
 ]]></content:encoded>
     </item>
     
