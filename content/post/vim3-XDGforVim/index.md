@@ -33,3 +33,4 @@ ln -s $HOME/.config/vim $HOME/.vim
 Do you know there your `vimrc` can located at either `$HOME/.vimrc` or `$HOME/.vim/vimrc`, so you can move your whole runtimpath to `$HOME/.config/vim`, then create a symbolic link `$HOME/.vim` point to `$HOME/.config/vim`.
 
 Although I know XDG is more than just a directory, it may still be helpful for group all your configuration together.
+

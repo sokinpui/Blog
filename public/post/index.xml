@@ -5,7 +5,51 @@
     <link>https://sokinpui.github.io/Blog/post/</link>
     <description>Recent content in Posts on Home</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 03 Aug 2023 09:26:43 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Aug 2023 22:23:12 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Neovim plugins recommendation: Auto pair and multi cursor</title>
+      <link>https://sokinpui.github.io/Blog/post/vim5-plugin-autopairs/</link>
+      <pubDate>Thu, 03 Aug 2023 22:23:12 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/vim5-plugin-autopairs/</guid>
+      <description>Auto pair plugin that work with multi cursor without any issue.</description>
+      <content:encoded><![CDATA[<p>I use multi cursor plugin and auto pairs together, unfortunately I find my old two plugins don&rsquo;t integrate well. <a href="https://github.com/LunarWatcher/auto-pairs">This autopairs from LunarWatcher</a> often throw error: <code>E117: Unknown function: AutoPairsTryInit</code> when end editing with [multi cursor plugin]((<a href="https://github.com/mg979/vim-visual-multi)">https://github.com/mg979/vim-visual-multi)</a>. Although this plugin is already improved to be more compatible with <strong>vim-visual-multi</strong>. To be mentioned, this bug is fixed in this <a href="https://github.com/LunarWatcher/auto-pairs/issues/12#issue-780680284">issue</a>. I still find the bug occur.</p>
+<h1 id="another-auto-pair-plugins">Another auto pair plugins</h1>
+<p>I google a solution, and finally end up with this Neovim plugins <a href="https://github.com/windwp/nvim-autopairs">nvim-autopairs</a>. Surprisingly, it is feature richer than <a href="https://github.com/LunarWatcher/auto-pairs">this autopairs plugins</a>, unfortunately, it only support Neovim.</p>
+<p>Other than basic function, you can extend its auto pairs rule by calling its rule method: (example from its repo)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">Rule</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;nvim-autopairs.rule&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">npairs.add_rules</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Rule</span><span class="p">(</span><span class="s2">&#34;$&#34;</span><span class="p">,</span> <span class="s2">&#34;$&#34;</span><span class="p">,{</span><span class="s2">&#34;tex&#34;</span><span class="p">,</span> <span class="s2">&#34;latex&#34;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- don&#39;t add a pair if the next character is %</span>
+</span></span><span class="line"><span class="cl">    <span class="p">:</span><span class="n">with_pair</span><span class="p">(</span><span class="n">cond.not_after_regex</span><span class="p">(</span><span class="s2">&#34;%%&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- don&#39;t add a pair if  the previous character is xxx</span>
+</span></span><span class="line"><span class="cl">    <span class="p">:</span><span class="n">with_pair</span><span class="p">(</span><span class="n">cond.not_before_regex</span><span class="p">(</span><span class="s2">&#34;xxx&#34;</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- don&#39;t move right when repeat character</span>
+</span></span><span class="line"><span class="cl">    <span class="p">:</span><span class="n">with_move</span><span class="p">(</span><span class="n">cond.none</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- don&#39;t delete if the next character is xx</span>
+</span></span><span class="line"><span class="cl">    <span class="p">:</span><span class="n">with_del</span><span class="p">(</span><span class="n">cond.not_after_regex</span><span class="p">(</span><span class="s2">&#34;xx&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- disable adding a newline when you press &lt;cr&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">:</span><span class="n">with_cr</span><span class="p">(</span><span class="n">cond.none</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">-- disable for .vim files, but it work for another filetypes</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Rule</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span><span class="s2">&#34;a&#34;</span><span class="p">,</span><span class="s2">&#34;-vim&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Their already have some common rule that provided by its <a href="https://github.com/windwp/nvim-autopairs/wiki/Custom-rules">wiki</a>. One of the very helpful rule is auto addspace on =.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">var| 
+</span></span><span class="line"><span class="cl">insert =
+</span></span><span class="line"><span class="cl">var = |
+</span></span><span class="line"><span class="cl">insert = again
+</span></span><span class="line"><span class="cl">var == |
+</span></span></code></pre></div><p>Also the plugin provide api for you to disable it per filetype. If you writing shell script you don&rsquo;t auto addspace on =, you can diable it by:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">Rule</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;nvim-autopairs.rule&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">npairs.add_rules</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Rule</span><span class="p">(</span><span class="s2">&#34;=&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="s2">&#34;-sh&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">--rule body</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></div><p>You can write your own rule to fullfill your need. Most importantly, it won&rsquo;t throw error if use with <strong>vim-visual-multi</strong>!</p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Setup markdown writing with Vim and Obsidian</title>
       <link>https://sokinpui.github.io/Blog/post/vim4-markdownwritingsetup/</link>
