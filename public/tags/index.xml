@@ -5,7 +5,37 @@
     <link>https://sokinpui.github.io/Blog/tags/</link>
     <description>Recent content in Tags on Home</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 03 Aug 2023 09:11:30 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Aug 2023 22:16:35 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>neovim</title>
+      <link>https://sokinpui.github.io/Blog/tags/neovim/</link>
+      <pubDate>Fri, 04 Aug 2023 22:16:35 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/tags/neovim/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>vim</title>
+      <link>https://sokinpui.github.io/Blog/tags/vim/</link>
+      <pubDate>Fri, 04 Aug 2023 22:16:35 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/tags/vim/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>vim plugin</title>
+      <link>https://sokinpui.github.io/Blog/tags/vim-plugin/</link>
+      <pubDate>Fri, 04 Aug 2023 22:16:35 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/tags/vim-plugin/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
     <item>
       <title>vimrc</title>
       <link>https://sokinpui.github.io/Blog/tags/vimrc/</link>
@@ -37,16 +67,6 @@
     </item>
     
     <item>
-      <title>vim</title>
-      <link>https://sokinpui.github.io/Blog/tags/vim/</link>
-      <pubDate>Wed, 02 Aug 2023 13:18:11 +0800</pubDate>
-      
-      <guid>https://sokinpui.github.io/Blog/tags/vim/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
       <title>lazy.nvim</title>
       <link>https://sokinpui.github.io/Blog/tags/lazy.nvim/</link>
       <pubDate>Sat, 29 Jul 2023 23:58:37 +0800</pubDate>
@@ -57,31 +77,11 @@
     </item>
     
     <item>
-      <title>neovim</title>
-      <link>https://sokinpui.github.io/Blog/tags/neovim/</link>
-      <pubDate>Sat, 29 Jul 2023 23:58:37 +0800</pubDate>
-      
-      <guid>https://sokinpui.github.io/Blog/tags/neovim/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
       <title>vim-plug</title>
       <link>https://sokinpui.github.io/Blog/tags/vim-plug/</link>
       <pubDate>Sat, 29 Jul 2023 23:58:37 +0800</pubDate>
       
       <guid>https://sokinpui.github.io/Blog/tags/vim-plug/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>vim plugin</title>
-      <link>https://sokinpui.github.io/Blog/tags/vim-plugin/</link>
-      <pubDate>Sun, 23 Jul 2023 18:24:05 +0800</pubDate>
-      
-      <guid>https://sokinpui.github.io/Blog/tags/vim-plugin/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>

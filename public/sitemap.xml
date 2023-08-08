@@ -2,8 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://sokinpui.github.io/Blog/post/vim7-considerneovim/</loc>
+    <lastmod>2023-08-04T22:16:35+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/series/vim/vim7/</loc>
+    <lastmod>2023-08-04T22:16:35+08:00</lastmod>
+  </url><url>
     <loc>https://sokinpui.github.io/Blog/</loc>
-    <lastmod>2023-08-03T22:23:12+08:00</lastmod>
+    <lastmod>2023-08-04T22:16:35+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/tags/neovim/</loc>
+    <lastmod>2023-08-04T22:16:35+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/post/</loc>
+    <lastmod>2023-08-04T22:16:35+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/tags/</loc>
+    <lastmod>2023-08-04T22:16:35+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/tags/vim/</loc>
+    <lastmod>2023-08-04T22:16:35+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/tags/vim-plugin/</loc>
+    <lastmod>2023-08-04T22:16:35+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/post/vim6-plugin-starttime/</loc>
+    <lastmod>2023-08-04T15:23:09+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/series/vim/vim6/</loc>
+    <lastmod>2023-08-04T15:23:09+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/post/tmuxandzshpasteandcopy/</loc>
+    <lastmod>2023-08-04T12:50:18+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/post/vim5-plugin-autopairs/</loc>
     <lastmod>2023-08-03T22:23:12+08:00</lastmod>
@@ -11,17 +41,11 @@
     <loc>https://sokinpui.github.io/Blog/series/vim/vim5/</loc>
     <lastmod>2023-08-03T22:23:12+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/post/</loc>
-    <lastmod>2023-08-03T22:23:12+08:00</lastmod>
-  </url><url>
     <loc>https://sokinpui.github.io/Blog/post/vim4-markdownwritingsetup/</loc>
     <lastmod>2023-08-03T09:26:43+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/series/vim/vim4-markdownwritingsetup/</loc>
+    <loc>https://sokinpui.github.io/Blog/series/vim/vim4/</loc>
     <lastmod>2023-08-03T09:26:43+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/tags/</loc>
-    <lastmod>2023-08-03T09:11:30+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/tags/vimrc/</loc>
     <lastmod>2023-08-03T09:11:30+08:00</lastmod>
@@ -29,7 +53,7 @@
     <loc>https://sokinpui.github.io/Blog/post/vim3-xdgforvim/</loc>
     <lastmod>2023-08-03T09:11:30+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/series/vim/vim3-xdgforvim/</loc>
+    <loc>https://sokinpui.github.io/Blog/series/vim/vim3/</loc>
     <lastmod>2023-08-03T09:11:30+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/tags/config/</loc>
@@ -41,16 +65,13 @@
     <loc>https://sokinpui.github.io/Blog/post/vim2-gityourconfig/</loc>
     <lastmod>2023-08-02T22:49:02+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/series/vim/vim2-gityourconfig/</loc>
+    <loc>https://sokinpui.github.io/Blog/series/vim/vim2/</loc>
     <lastmod>2023-08-02T22:49:02+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/post/vim1-usingvimintro/</loc>
     <lastmod>2023-08-02T13:18:11+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/series/vim/vim1-usingvimintro/</loc>
-    <lastmod>2023-08-02T13:18:11+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/tags/vim/</loc>
+    <loc>https://sokinpui.github.io/Blog/series/vim/vim1/</loc>
     <lastmod>2023-08-02T13:18:11+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/series/vim/</loc>
@@ -62,17 +83,11 @@
     <loc>https://sokinpui.github.io/Blog/tags/lazy.nvim/</loc>
     <lastmod>2023-07-29T23:58:37+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/tags/neovim/</loc>
-    <lastmod>2023-07-29T23:58:37+08:00</lastmod>
-  </url><url>
     <loc>https://sokinpui.github.io/Blog/post/vim-4/</loc>
     <lastmod>2023-07-29T23:58:37+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/tags/vim-plug/</loc>
     <lastmod>2023-07-29T23:58:37+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/tags/vim-plugin/</loc>
-    <lastmod>2023-07-23T18:24:05+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/post/vim-3/</loc>
     <lastmod>2023-07-23T18:24:05+08:00</lastmod>

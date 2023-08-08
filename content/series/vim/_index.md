@@ -20,4 +20,11 @@ ShowReadingTime: false
 ShowBreadCrumbs: true
 ShowPostNavLinks: true
 
+cover:
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Vimlogo.svg/1200px-Vimlogo.svg.png" # image path/url
+    alt: "vim-icon" # alt text
+    caption: "vim-icon" # display caption under cover
+    relative: false # when using page bundles set this to true
+    hidden: true # only hide on current single page
+
 ---

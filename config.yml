@@ -27,7 +27,7 @@ params:
     title: Home
     description: "So's blog"
     keywords: [Blog, Portfolio, PaperModX]
-    author: sokinpui
+    author: So Kin Pui
     # author: ["Me", "You"] # multiple authors
     images: ["<link or path of image for opengraph, twitter-cards>"]
     DateFormat: "January 2, 2006"
@@ -81,8 +81,6 @@ params:
               url: post
             - name: series
               url: series
-            - name: archives
-              url: archives
 
     # home-info mode
     homeInfoParams:
@@ -109,6 +107,10 @@ params:
         hidden: true # hide everywhere but not in structured data
         hiddenInList: true # hide on list pages and home
         hiddenInSingle: true # hide on single page
+        linkFullImages: true
+        responsiveImages: false
+
+
 
     editPost:
         URL: "https://github.com/<path_to_repo>/content"

@@ -5,7 +5,95 @@
     <link>https://sokinpui.github.io/Blog/</link>
     <description>Recent content on Home</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 03 Aug 2023 22:23:12 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Aug 2023 22:16:35 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Consider Embrance the ecosystem of Neovim.</title>
+      <link>https://sokinpui.github.io/Blog/post/vim7-considerneovim/</link>
+      <pubDate>Fri, 04 Aug 2023 22:16:35 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/vim7-considerneovim/</guid>
+      <description>Blog written for those who are struggling about switch to Neovim from Vim</description>
+      <content:encoded><![CDATA[<p>Neovim in 2023 has become an popular choice of editor, its version become stable those day. Neovim to Vim is like Vim to Vi those day, it has introduced a clear lua API for writing plugins, built-in LSP support. Although some plugins like <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> has provide feature like LSP and auto-completion similar as VSCode, the built-in LSP support just give the sense of it will last longer and improved by a larger community as it is built-in. Also, more lua plugins has come out, which sadly only support Neovim, as they need Neovim API.</p>
+<h1 id="vim">Vim</h1>
+<p>Back to the day I launch Vim first time, Vim have already give me different feel from modern editor, its default color scheme, its &ldquo;non-beginner friendly&rdquo; default setting force me to google solution many times. After use Vim for sometimes, I have known Neovim, a forked version of Vim, fully compatible with vimscirpt plugins, a modern version of Vim, and extended in different language lua, At the beginning, I don&rsquo;t want to make a switch, current state of Vim was already make me satisfed. The introduction of Vim9script excited me a lot, I wrote vimscirpt before lua, in my opinion, vimscirpt as a Domain Specify Language, it is less verbose than lua. Also, I don&rsquo;t write big plugins, lua API don&rsquo;t attact me much. But the performance of Vim9script has been improved a lot compare to lengency vimscirpt. I still want to stay with Vim. However I discover quite many vimers I have followed on online has switch to Neovim, it is the first time I have consider seriously about making a switch. I can&rsquo;t found myself a good reason not to change other than it may waste my time. Since I use Vim first, the plugins I relay on are still pure vimscirpt plugins, making switching no benefits. I told myself, if there is a must have plugins that is specified to Neovim, I should make a switch.</p>
+<h1 id="neovim">Neovim</h1>
+<p>The plugin I switch for is <a href="https://github.com/nvim-treesitter/nvim-treesitter">nvim-treesitter</a>. Treesitter provide correct highlight by understanding your code structure. Recently Vim/Neovim highlihgt is base on regular expression, which may not cover all the case, therefore render syntax highlight wrong,</p>
+<p>My <code>init.vim</code> without Treesitter:
+<img loading="lazy" src="/Blog/post/vim7-considerneovim/no-treesitter.png" type="" alt="no-treesitter"  /></p>
+<p>My <code>init.vim</code> with Treesitter:
+<img loading="lazy" src="/Blog/post/vim7-considerneovim/treesitter.png" type="" alt="treesitter"  /></p>
+<p>Correct highlight is one of feature treesitter can provide, other feature like indention, selection increment/decrement are also supported. If the language you are using have treesitter parse, you can enjoy those features. The abstruct syntax tree where treesitter powered from, is also a good source for writing a plugin, extend you text object to function, class, object, or declaration. Of course regular expression can do so, it just can&rsquo;t make sure 100% correct and need to build rule for matching. I know emacs also integrate Treesitter in Emacs29. I believe plugins that can understand the code will keep exploring more surprise usage, introducting more useful features in the future. Therefor I make switch.</p>
+<p>The switching actually don&rsquo;t cost anytime, I spend minutes finding the color scheem support treesitter. Installing them using the plugins manager I used in vim, everything just work.</p>
+<h1 id="why-neovim">Why Neovim</h1>
+<p>Simply becuase you will have a greater community, both vim and neovim community, merely missing compatible with Vim9script. You can enjoy plugins from Vim and Neovim. This reason is strong enough for one who have struggling between Neovim and Vim. The number of plugins that is written in Vim9script are handfully small.</p>
+<h1 id="neovim-from-vim">Neovim from Vim</h1>
+<p>Before using Neovim, I use <code>:sh</code> often. However, this command was dropped in Neovim, I don&rsquo;t understand why this is dropped. Nevertheless, I change my habit, even better practice after change. I use new tmux window instead of <code>:sh</code> to recall the shell Neovim from. If I really want to copy some content from the shell opened Neovim, I can use <code>Ctrl-Z</code> to suspend Neovim and use <code>fg</code> continue Neovim process.</p>
+<p>I agree some discussion about switching or not, some people hold that there is no features they need in Neovim. That maybe true, but how about plugin ecosystem, it seems more powerful plugins come out, you may want one of them in the future. Switch early so that suffer less in the future. Switch won&rsquo;t consume too much time if you going to keep you configuration in vimscirpt, if necessary to use lua, you can use <code>lua</code> in you <code>*.vim</code> file.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">lua</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;&lt;name of lua moduale&gt;&#34;</span><span class="p">)</span><span class="err">
+</span></span></span></code></pre></div><p>Switching to Neovim from Vim are simple because you are still using <em>&ldquo;the same&rdquo;</em> editor, the configuration, the way how vim handle text editor, the way to extend is similiar. Unlike switching to other types of editor like Emacs, which definitly have different <em>&ldquo;Emacs way&rdquo;</em> you need to adapt.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Neovim plugins: vim-startuptime, make startup time information readable</title>
+      <link>https://sokinpui.github.io/Blog/post/vim6-plugin-starttime/</link>
+      <pubDate>Fri, 04 Aug 2023 15:23:09 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/vim6-plugin-starttime/</guid>
+      <description>Desc Text.</description>
+      <content:encoded><![CDATA[<p>You can check the startup time of Vim/Neovim by add the option <code>--startuptime &lt;name of log file&gt;</code>, however meaningful information is difficult to find Maybe you may want to find the plugin that affect startup time most significantly, but lost in tones of numbers and lines. This plugins make testing and viewing startuptime log easier.
+<img loading="lazy" src="/Blog/post/vim6-plugin-starttime/vim-startup.png" type="" alt="vim-startup"  /></p>
+<h1 id="plugins-vim-startuptimehttpsgithubcomdstein64vim-startuptime">Plugins: <a href="https://github.com/dstein64/vim-startuptime">vim-startuptime</a></h1>
+<p>Screenshot:
+<img loading="lazy" src="/Blog/post/vim6-plugin-starttime/plugin.png" type="" alt="demo"  />
+This plugins allow you check the startup time afte open Neovim, maybe more intutitive than using option <code>--startuptime</code>?</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Ctrl-c Ctrl-v copy and paste in tmux and zsh</title>
+      <link>https://sokinpui.github.io/Blog/post/tmuxandzshpasteandcopy/</link>
+      <pubDate>Fri, 04 Aug 2023 12:50:18 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/tmuxandzshpasteandcopy/</guid>
+      <description>Use Ctrl-c adn Ctrl-v to copy and paste in tmux and zsh under Linux terminal</description>
+      <content:encoded><![CDATA[<p>If you use neither window Nor mac os, you may find you cannot use Ctrl-c to copy and Ctrl-v to paste in terminal. You have to press <code>Ctrl-SHIFT-c</code> to copy selected items, and <code>Ctrl-SHIFT-v</code> to paste from system clipboard.</p>
+<p>Window user don&rsquo;t have to concern this issue, because I believe you will endup with wsl, which by the end is close to Linux env. <!-- raw HTML omitted -->
+Mac user don&rsquo;t need to concern this issue, because you can use <code>CMD-c</code> and <code>CMD-v</code>.</p>
+<h1 id="ctrl-c-to-copy-in-tmux-copy-mode">Ctrl-c to copy in tmux copy mode</h1>
+<p>add those line to your tmux.conf, and source it.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">set -g mouse on
+</span></span><span class="line"><span class="cl">setw -g mode-keys vi
+</span></span><span class="line"><span class="cl">bind -T copy-mode-vi C-c send-keys -X copy-pipe-and-cancel &#34;wl-copy&#34; copy-selection-no-clear
+</span></span><span class="line"><span class="cl">bind -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-selection -x copy-selection-no-clear
+</span></span></code></pre></div><p><code>wl-copy</code> is for Wayland user, If you are Xorg user, change <code>wl-copy</code> to <code>xclip</code>. Of course, you have to download this package from your package manager first. The last line enable mouse drag to select region, it is no-sense to disable mouse if you are going to use <code>Ctrl-c</code> to copy.</p>
+<h1 id="ctrl-v-to-paste-in-zsh">Ctrl-v to paste in zsh</h1>
+<p>add this line to your .zshrc and reopen zsh to see the effect.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">bindkey <span class="s1">&#39;^V&#39;</span> _paste-copy-using-xsel <span class="c1"># Paste from clipboard</span>
+</span></span></code></pre></div><h1 id="the-reason-dont-remap-in-terminal">The reason don&rsquo;t remap in terminal</h1>
+<p>remap ctrl-c in terminal is dangerous, you may neither able to cancel nor stop process in terminal. What&rsquo;s more, mapping in tmux and zsh make sure the protablility of your env, they can be reproduce in any terminal, that is the reason I use tmux for tab in terminal instead of they tab function of terminal, even I am using kitty terminal which support tab and session.</p>
+<h1 id="what-does-ctrl-c-do-in-terminal">What does Ctrl-c do in terminal?</h1>
+<p>Ctrl + C is used to send a SIGINT signal, which cancels or terminates the currently-running program. The reason Ctrl-c is use to stop program is historic reason. Here is an <a href="https://unix.stackexchange.com/a/245574/566291">answer</a> posted by StackOverflow user <strong>Gilles &lsquo;SO- stop being evil&rsquo;</strong>:</p>
+<blockquote>
+<p>The “kill” meaning of Ctrl+C is very old, I think even older than Unix. Wikipedia traces it back to TOPS-10, which would date it from the late 1960s. The article explains why Ctrl+C was a reasonable choice: in ASCII, which was published in 1963, the corresponding character is ETX, end-of-text. Lacking a character meaning “stop”¹, a character meaning “this segment of input is over” was a reasonable choice to mean “stop the current processing”.</p>
+<p>The “copy” meaning of Ctrl+C comes from Xerox PARC, the inventors of copy-paste in its modern form (and most other fundamentals of graphical user interfaces). I don&rsquo;t know exactly when that was, but it must have been the late 1970s. This thread on User Experience Stack Exchange discusses the choice of key bindings; C for copy makes a lot of sense.</p>
+<p>There was little reason for PARC to reject Ctrl+C for copy on the basis of the existing meaning in TOPS-10 and Unix terminals. Operating systems and applications were more diverse then, and far fewer people used computers; there was no opportunity nor call for a single standard for key bindings across all applications. Other uses for Ctrl+C in popular applications include page-down in WordStar² and mode-specific command in Emacs. All of these were designed independently, for applications with often different requirements, running in different environments.</p>
+<p>You can configure the terminal key bindings with the stty command. The terminal bindings are active when the terminal is in cooked mode³. For example the command stty intr ^G sets the character that sends a SIGINT signal to Ctrl+G instead of Ctrl+C. The ^G character is BEL in ASCII; when sent to a terminal, it means “ring the bell”. It&rsquo;s the character that Emacs uses for “interrupt the current operation” (rationale: the application sends BEL to the user via the terminal to interrupt the user; the user sends BEL to the application via the terminal to interrupt the application). It doesn&rsquo;t have a standard meaning when sent to a terminal.</p>
+<p>Most shells provide line editing features, so they set the terminal to raw mode. So do full-screen text mode applications. You may need to configure these applications to recognize Ctrl+G instead of Ctrl+C, and some may have non-configurable key bindings. So changing the interrupt character may or may not be practically doable depending on which applications you use.</p>
+<p>Another approach could be to configure your terminal to change the byte sequence that it sends for the Ctrl+C keychord, or make it send nothing and instead perform a copy operation. You would also choose a different keychord to send Ctrl+C (if you have a non-laptop PC keyboard, you could use the out-of-the-way Pause/Break key). Not all terminals can be configured in this way.</p>
+<p>¹ Ctrl-S (XOFF) means stop, but it&rsquo;s addressed to the terminal, not to the application. <!-- raw HTML omitted -->
+² Next to Ctrl+X for next-line, with Ctrl+E and Ctrl+R for previous-line and page-up; these keys were chosen due to their placement on a QWERTY keyboard. <!-- raw HTML omitted -->
+³ Nitpick: cooked mode is a set of terminal settings, including the interpretation of several characters including one that sends an interrupt signal.</p>
+</blockquote>
+<h1 id="what-does-ctrl-v-do-in">What does Ctrl-v do in</h1>
+<p>The CtrlV key often meant &ldquo;verbatim insert&rdquo; – that is, insert the following character literally without performing any associated action.
+example</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">typing |
+</span></span><span class="line"><span class="cl">press Ctrl-v and then press backspace
+</span></span><span class="line"><span class="cl">typing &lt;BS&gt;|
+</span></span></code></pre></div>]]></content:encoded>
+    </item>
+    
     <item>
       <title>Neovim plugins recommendation: Auto pair and multi cursor</title>
       <link>https://sokinpui.github.io/Blog/post/vim5-plugin-autopairs/</link>
@@ -51,37 +139,767 @@
     </item>
     
     <item>
-      <title>Setup markdown writing with Vim and Obsidian</title>
+      <title>Setup Markdown writing environment with zsh &#43; Neovim</title>
       <link>https://sokinpui.github.io/Blog/post/vim4-markdownwritingsetup/</link>
       <pubDate>Thu, 03 Aug 2023 09:26:43 +0800</pubDate>
       
       <guid>https://sokinpui.github.io/Blog/post/vim4-markdownwritingsetup/</guid>
-      <description>Combine Vim and Obsidian together</description>
-      <content:encoded><![CDATA[<p>There are so many markdown editor exist already, most of them are really easy to use. But most of them provide feature more close to preview the markdown document, rather than editing or help writing. Like <a href="https://typora.io/">typora</a>, it trust to have to best markdown writing experience as it has great live preview and <strong>What You See Is What You Mean</strong>. I love its <strong>What You See Is What You Mean</strong>, since it must same as how the file render on browser, however, markdown file is so simple compare to tex, what you writing is close enough to what you see. Therefore, I regard <a href="https://typora.io/">typora</a> as a good markdown reader instead of good markdown writer.</p>
-<p>Another application I want to discuss about, <a href="https://obsidian.md/">obsidian</a>, also provide great live preview, it has sidebar file explorer, extension support, making it look like vscode for markdown. However, in terms of markdown editing. obsidian is still far behind an serious editor like emacs, vscode or vim. I don&rsquo;t say obsidian is not good as them, it is the difference between their purpose, &ldquo;Markdown editor&rdquo; is just good for reading markdown file, &ldquo;Editor&rdquo; is just good at editing. This is the reason I would recommend using an editor as the backend of markdown writing. You don&rsquo;t have to use vim, you can pick your favourite editor. This blog provide ideas to speed up your markdown writing.</p>
-<h1 id="fzf-and-markdown">fzf and markdown</h1>
-<h2 id="navigate-obsidian-vault">Navigate obsidian vault</h2>
-<p>It is common that we work on an directory instead of single file, often jump to another file, other than clicking your file explorer, you can use fzf to jump to another file. For example you can map a shortcut that will fzf search the root of your markdown directory. <strong>Obsidian</strong> has the concept of vault, it is same as directory, or git repo, You can convert your obsidian vault to git repo, they won&rsquo;t conflict.</p>
-<p>Neovim has many fzf tools integrated well, I use <a href="https://github.com/junegunn/fzf.vim">fzf.vim</a>, because I know it first, there are very little difference between those fzf.vim in terms of functionality, just pick one.</p>
-<p>With lines of vimscript, jumping within your vault is easy:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="k">function</span><span class="p">!</span> <span class="nx">s</span>:<span class="nx">fzfroot</span>#<span class="nx">find_git_root</span><span class="p">()</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span>    <span class="nx">return</span> <span class="nx">system</span><span class="p">(</span><span class="s1">&#39;git rev-parse --show-toplevel 2&gt; /dev/null&#39;</span><span class="p">)</span>[:<span class="m">-2</span>]<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">endfunction</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">command</span><span class="p">!</span> <span class="nx">ProjectFiles</span> <span class="nx">execute</span> <span class="s1">&#39;Files&#39;</span> <span class="nx">fzfroot</span>#<span class="nx">find_git_root</span><span class="p">()</span><span class="err">
-</span></span></span></code></pre></div><p>You can use command ProjectFiles to naigate your vault after convert it into git repo. You can of course map a key to <code>ProjectFiles</code>.</p>
-<h2 id="insert-link-to-files">insert link to files</h2>
-<p>When writing or note taking, we often link file together, if you care about protabilty, you may not want to use obsidian specific wiki link format, you may prefer markdown format more, so to insert file link within obsidian vault, <strong>fzf.vim</strong> can do so.</p>
+      <description>Markdown setup make text editing become comfortable</description>
+      <content:encoded><![CDATA[<p>Mainly Introduce Neovim plugins and share config that help markdown writing.</p>
+<p>The Full config is <a href="">here</a></p>
+<h1 id="before">Before</h1>
+<p>A good markdown setup just make fun easier, though the most weighted thing in writing should be the content instead of the tools you use. But a right tools will make editing a lot easier. Recently markdown can use for note taking, documenting, or blog writing. Markdown is similiar to HTML, but have a clear and readable syntax. Only looking at the syntax, you can already have idea how the file will be reandered. Compare to Tex, the syntax is simpler but less featured, if you don&rsquo;t need complicate layout of your output file, you should consider markdown first. You can use some simple $Latex$ math expression like <code>$\int$</code> in markdown, already well supported by most of markdown editor.</p>
+<h1 id="choose-of-editor">Choose of editor</h1>
+<p>Oh, accidently involved to editor war, which editor you prefer? BTW, I use Neovim. There is two type editor, one is designed only for markdown, another are designed for general purpose. In my opinion, most of markdown editor, like <strong>Typora</strong>, or note editor but can also use as a markdown editor like <strong>Obsidian</strong> or <strong>logseq</strong>, former provides good reading and editing experience by its <strong>What You see Is What You GET</strong>(WYSIWYG). Latter provides reference link/backlink feature. Both of them are great, nevertheless, as I have mentioned, markdown as a markup language, its syntax is so simple, a good live preview is quite useless. Backlink is useful, but only useful if you take notes, or try to manage your personal knowledge in another new way. I would still prefer a tree organization for my notes, as most of the knowledge I need is well organizated already. Referencing maybe helpful for writer who need brain storming or system like wiki, it is still hard to imagine who have the mental power to manage and navigate a complex inter-referencing system.</p>
+<p>Most of the GUI markdown editor in terms of editing has not difference compare to the default &ldquo;Text Edit&rdquo; application of your OS. They may provide some mardkwon syntax allowing you click to insert via mouse, as mentioned above, markdown syntax is so simple that anyone can learn it in one minutes, remember after using a few times. Insert with markdown syntax with mouse is, um &hellip; quite useless, I would say. In terms of editing, I think a general purpose editor may do a better job. Those &ldquo;general purpose editor&rdquo; have another name, code editor, I think any of VSCode, Emacs, Atom or Vim should be better in terms of editing, as they have so many features are for edit text! So pick whatever code editor you like! It is so personal choice, hard to recommend one. Hope this article can provide some idea that also works on yours.</p>
+<p>Some features should have for comfortable markdown editing:</p>
+<ol>
+<li>Jump between files</li>
+<li>Searching</li>
+<li>File explorer</li>
+<li>syntax highlighting
+With above items, a comfortable writing environment have done half!</li>
+</ol>
+<h1 id="setup-with-neovim">Setup with Neovim</h1>
+<p>Install those plugins with the manager you prefer. Since those plugins have more than markdown writing, The key mapping and functionality of them are not fully covered here, please check those plugins&rsquo; website to have more details.</p>
+<details>
+  <summary>Install plugins with lazy.nvim</summary>
+  <p>Using <a href="https://github.com/folke/lazy.nvim">lavy.nvim</a>, we first add those line to init.lua:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">---lazy.nvim</span>
+</span></span><span class="line"><span class="cl"><span class="c1">---install plugin if missed</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">lazypath</span> <span class="o">=</span> <span class="n">vim.fn</span><span class="p">.</span><span class="n">stdpath</span><span class="p">(</span><span class="s2">&#34;data&#34;</span><span class="p">)</span> <span class="o">..</span> <span class="s2">&#34;/lazy/lazy.nvim&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">if</span> <span class="ow">not</span> <span class="n">vim.loop</span><span class="p">.</span><span class="n">fs_stat</span><span class="p">(</span><span class="n">lazypath</span><span class="p">)</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">  <span class="n">vim.fn</span><span class="p">.</span><span class="n">system</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;git&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;clone&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;--filter=blob:none&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;https://github.com/folke/lazy.nvim.git&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;--branch=stable&#34;</span><span class="p">,</span> <span class="c1">-- latest stable release</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lazypath</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">vim.opt</span><span class="p">.</span><span class="n">rtp</span><span class="p">:</span><span class="n">prepend</span><span class="p">(</span><span class="n">lazypath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- change you leader key here.</span>
+</span></span><span class="line"><span class="cl"><span class="n">vim.g</span><span class="p">.</span><span class="n">mapleader</span> <span class="o">=</span> <span class="s2">&#34; &#34;</span>
+</span></span></code></pre></div><p>Lazy.nvim recommend you modualize your configuration, make use of <code>lua/</code> directory in your vim runtimepath.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>so@fedora .config/nvim/lua<span class="o">]</span><span class="p">|</span>lua
+</span></span><span class="line"><span class="cl">» <span class="nb">pwd</span>
+</span></span><span class="line"><span class="cl">/home/so/.config/nvim/lua
+</span></span><span class="line"><span class="cl"><span class="o">[</span>so@fedora .config/nvim/lua<span class="o">]</span><span class="p">|</span>lua
+</span></span><span class="line"><span class="cl">» tree
+</span></span><span class="line"><span class="cl">.
+</span></span><span class="line"><span class="cl">├── config
+</span></span><span class="line"><span class="cl">│   └── lualine.lua
+</span></span><span class="line"><span class="cl">├── lazy-init.lua
+</span></span><span class="line"><span class="cl">├── plugins
+</span></span><span class="line"><span class="cl">│   ├── appearance.lua
+</span></span><span class="line"><span class="cl">│   ├── autocompletion.lua
+</span></span><span class="line"><span class="cl">│   ├── cleverf.lua
+</span></span><span class="line"><span class="cl">│   ├── fern.lua
+</span></span><span class="line"><span class="cl">│   ├── fzf.lua
+</span></span><span class="line"><span class="cl">│   ├── lsp.lua
+</span></span><span class="line"><span class="cl">│   ├── markdown.lua
+</span></span><span class="line"><span class="cl">│   ├── multi_cursor.lua
+</span></span><span class="line"><span class="cl">│   ├── nerdfont.lua
+</span></span><span class="line"><span class="cl">│   ├── pairs.lua
+</span></span><span class="line"><span class="cl">│   ├── sandwich.lua
+</span></span><span class="line"><span class="cl">│   └── treesitter.lua
+</span></span><span class="line"><span class="cl">└── settings
+</span></span><span class="line"><span class="cl">    ├── appearance.lua
+</span></span><span class="line"><span class="cl">    ├── format.lua
+</span></span><span class="line"><span class="cl">    ├── mapping.lua
+</span></span><span class="line"><span class="cl">    └── setting.lua
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="m">4</span> directories, <span class="m">18</span> files
+</span></span></code></pre></div><p>All the plugins config located at <code>plugins</code>, here is how you can load plugin with lazy.nvim in <code>init.lua</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">require</span><span class="p">(</span><span class="s2">&#34;lazy&#34;</span><span class="p">).</span><span class="n">setup</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.nerdfont&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.appearance&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.treesitter&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.cleverf&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.lsp&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.sandwich&#34;</span><span class="p">).</span><span class="n">config</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.multi_cursor&#34;</span><span class="p">).</span><span class="n">config</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.pairs&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.autocompletion&#34;</span><span class="p">).</span><span class="n">config</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.fzf&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.markdown&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.fern&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;dstein64/vim-startuptime&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;StartupTime&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">},{})</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">-- ~/.config/nvim/lua/plugins/neoconf.lua</span>
+</span></span><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="s2">&#34;folke/neoconf.nvim&#34;</span><span class="p">,</span> <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;Neoconf&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;folke/neodev.nvim&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- ~/.config/nvim/lua/plugins/cleverf.lua</span>
+</span></span><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;rhysd/clever-f.vim&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">keys</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;f&#34;</span><span class="p">,</span> <span class="s2">&#34;F&#34;</span><span class="p">,</span> <span class="s2">&#34;t&#34;</span><span class="p">,</span> <span class="s2">&#34;T&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">init</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">clever_f_smart_case</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">clever_f_across_no_line</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">clever_f_chars_match_any_signs</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">clever_f_repeat_last_char_inputs</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">clever_f_fix_key_direction</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- ~/.config/nvim/lua/plugins/fern.lua</span>
+</span></span><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;lambdalisue/fern.vim&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">keys</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">dependencies</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s1">&#39;lambdalisue/fern-hijack.vim&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;lambdalisue/fern-mapping-project-top.vim&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;sokinpui/my-fern-preview.vim&#34;</span><span class="p">,</span>    
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- Set the Fern plugin configuration options in Lua</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#mark_symbol&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;●&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#renderer#default#collapsed_symbol&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;▷ &#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#renderer#default#expanded_symbol&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;▼ &#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#renderer#default#leading&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#renderer#default#leaf_symbol&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#renderer#default#root_symbol&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;~ &#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#disable_default_mappings&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#disable_drawer_auto_quit&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#disable_viewer_hide_cursor&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">-- Define the key mappings</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_set_keymap</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;C-e&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;Esc&gt;:Fern . -drawer -reveal=% -width=35 -toggle&lt;CR&gt;&lt;C-w&gt;=&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="n">silent</span> <span class="o">=</span> <span class="kc">true</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_set_keymap</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;C-e&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;:Fern . -drawer -reveal=% -width=35 -toggle&lt;CR&gt;&lt;C-w&gt;=&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="n">silent</span> <span class="o">=</span> <span class="kc">true</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>init</code> will load when vim startup. <!-- raw HTML omitted -->
+<code>config</code> function will load when the plugin is loaded. <!-- raw HTML omitted -->
+plugins in <code>dependencies</code> are always lazy-loaded unless the main plugins is loaded. <!-- raw HTML omitted -->
+The benefit os using lazy.nvim is you can lazy load plugins on key, autocmd event, command, filetype. The startup time will be shorter. But most of the time I won&rsquo;t open and close vim oftenly, If I need to run command in shell, I will open a new tmux window, I think it is a good pratice, I would recommend you do so. The reduce of StartupTime is in 10-20 ms in my case compare to using <strong>vim-plug</strong>, really small improvement. But since it is configurate in lua, most of the plugins I recently used provide lua configuration by default, so <strong>lazy.nvim</strong> is convenient a little bit. I don&rsquo;t need to split plugin installation and configuation in two files as used to be in <strong>vim-plug</strong>.</p>
+
+</details>
+
+
+<h2 id="jump-between-files">Jump between files</h2>
+<p>I use <a href="https://github.com/junegunn/fzf.vim">fzf.vim</a> to jump between files, I have a notes directory, which is version controlled by git. I can jump files within this directory by fuzzy finding the name of the files. Original <strong>fzf.vim</strong> don&rsquo;t support this feature, it only support find file under current directory by default.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">fp</span> :<span class="nx">execute</span> <span class="s1">&#39;Files&#39;</span> <span class="nx">system</span><span class="p">(</span><span class="s1">&#39;git rev-parse --show-toplevel 2&gt; /dev/null&#39;</span><span class="p">)</span>[:<span class="m">-2</span>]<span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
+</span></span></span></code></pre></div><p>This line use the command <code>Files</code> from <strong>fzf.vim</strong> to fuzzy find the top directory that contain <code>.git/</code>. <!-- raw HTML omitted -->
+demo:
+<img loading="lazy" src="/Blog/post/vim4-markdownwritingsetup/fzf-root.gif" type="" alt="fzf-root"  /></p>
+<p>The notes directory can be obsidian vault or any folder sturcture that have the concept of root.</p>
+<details>
+  <summary>fzf.vim full config</summary>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;junegunn/fzf.vim&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dependencies</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;junegunn/fzf&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">keys</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span><span class="s2">&#34;&lt;leader&gt;f&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span><span class="s2">&#34;&lt;leader&gt;gp&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;&lt;c-l&gt;&#34;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s2">&#34;i&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;&lt;c-f&gt;&#34;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s2">&#34;i&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cmd</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Files&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;GFiles&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Buffers&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Colors&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Ag&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Rg&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;RG&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Lines&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;BLines&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Tags&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;BTags&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Marks&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Jumps&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Windows&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Locate&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;History&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Snippets&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Commits&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;BCommits&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Commands&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Maps&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Helptags&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Filetypes&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">build</span> <span class="o">=</span> <span class="s2">&#34;./install --all&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.cmd</span><span class="p">(</span><span class="s">[[
+</span></span></span><span class="line"><span class="cl"><span class="s">            let g:fzf_preview_window = [ &#39;right,50%&#39;, &#39;ctrl-/&#39; ]
+</span></span></span><span class="line"><span class="cl"><span class="s">            let g:fzf_layout         = {&#39;window&#39;: { &#39;width&#39;: 0.9, &#39;height&#39;: 1 }}
+</span></span></span><span class="line"><span class="cl"><span class="s">            let g:fzf_buffers_jump   = 1
+</span></span></span><span class="line"><span class="cl"><span class="s">            nnoremap &lt;leader&gt;ff :Files&lt;cr&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">            nnoremap &lt;leader&gt;fa :Files $HOME&lt;cr&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">            nnoremap &lt;leader&gt;fp :&lt;cr&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">            nnoremap &lt;leader&gt;fp :execute &#39;Files&#39; system(&#39;git rev-parse --show-toplevel 2&gt; /dev/null&#39;)[:-2]&lt;cr&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">            nnoremap &lt;leader&gt;fb :Buffers&lt;cr&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">            nnoremap &lt;leader&gt;fs :Lines&lt;cr&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">            nnoremap &lt;leader&gt;gp :Rg&lt;cr&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">            nnoremap &lt;leader&gt;f. :History&lt;cr&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">            nnoremap &lt;leader&gt;f/ :History/&lt;cr&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">            nnoremap &lt;leader&gt;f: :History:&lt;cr&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">            nnoremap &lt;leader&gt;fh :Helptags&lt;cr&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">            nnoremap &lt;leader&gt;fc :Commands&lt;cr&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">            &#34;insert relative path of file in project
+</span></span></span><span class="line"><span class="cl"><span class="s">            inoremap &lt;expr&gt; &lt;C-l&gt; fzf#vim#complete#path(&#39;fd --type=file . $(git rev-parse --show-cdup 2&gt; /dev/null)&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="s">            inoremap &lt;expr&gt; &lt;C-f&gt; fzf#vim#complete#path(&#39;fd --type=file . $(git rev-parse --show-toplevel 2&gt; /dev/null)&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="s">            ]]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Make sure you have <a href="https://github.com/junegunn/fzf">fzf</a> installed with <strong>lazy.nvim</strong>. <code>cmd</code> and <code>keys</code> are lazy loading config, but I find it really useless, as I have say that I rarely open and close vim in very shorttime, I don&rsquo;t care too much StartupTime, those line config are just for fun, when I switch from <strong>vim-plug</strong> to <strong>lazy.nvim</strong>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">inoremap</span> <span class="p">&lt;</span><span class="nx">expr</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">l</span><span class="p">&gt;</span> <span class="nx">fzf</span>#<span class="nx">vim</span>#<span class="nx">complete</span>#<span class="nx">path</span><span class="p">(</span><span class="s1">&#39;fd --type=file . $(git rev-parse --show-cdup 2&gt; /dev/null)&#39;</span><span class="p">)</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">inoremap</span> <span class="p">&lt;</span><span class="nx">expr</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">f</span><span class="p">&gt;</span> <span class="nx">fzf</span>#<span class="nx">vim</span>#<span class="nx">complete</span>#<span class="nx">path</span><span class="p">(</span><span class="s1">&#39;fd --type=file . $(git rev-parse --show-toplevel 2&gt; /dev/null)&#39;</span><span class="p">)</span><span class="err">
-</span></span></span></code></pre></div><p>The first line insert relative path to root of vault, the second line will insert full path to the file. you can autocomplete when you editing link <code>[]()</code>.</p>
-<h1 id="snips">snips</h1>
-<p>Snippets is just easier to set up on code editor than markdown editor, and integrate well with auto completion. I use <a href="https://github.com/SirVer/ultisnips">Ultisnips</a> I have decide merge to Luasnips, but their is only little preformance enhancment, so I stay in Ultisnips. You can check my autocomplete and snippets setup in <a href="/Blog/post/vim-4/">this blog</a></p>
-<h1 id="concealment">Concealment</h1>
-<p>You can concealment markdown syntax by add the following line in your <code>vimrc</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">set</span> <span class="nx">conceallevel</span><span class="p">=</span><span class="m">2</span><span class="err">
-</span></span></span></code></pre></div><p>Example:
-<img loading="lazy" src="/Blog/post/vim4-markdownwritingsetup/conceal.gif" type="" alt="conceal1.git"  /></p>
+</span></span></span></code></pre></div><p>This first line will insert relative path to file within the root directory that contain <code>.git/</code>.</p>
+<p>This first line will insert full path to file within the root directory that contain <code>.git/</code>.</p>
+<p>I recently use this short vimscript snippets instead of the autocompletion obsidian reference link provided by <strong>obsidian.nvim</strong>, see <a href="#Autocompletion">autocompletion in markdown with vim</a></p>
+
+</details>
+
+
+<h2 id="file-explorer">file explorer</h2>
+<p>Although fzf is powerful, sometimes I don&rsquo;t remember what is the name of the file. I will use file explorer to navigate to the file I want. I use the plugin <a href="https://github.com/lambdalisue/fern.vim">fern</a>.</p>
+<blockquote>
+<p>Fern (furn) is a general purpose asynchronous tree viewer written in pure Vim script.</p>
+</blockquote>
+<p>It is very simple by default, some feature can be extended with extension/plugins, like preview file or jump to root directory(directory that contain <code>.git/</code>). It support mosue mapping, you can use mouse to open or expand file/directory as you would expect to do in another GUI editor.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">inoremap</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">e</span><span class="p">&gt;</span>   <span class="p">&lt;</span><span class="nx">Esc</span><span class="p">&gt;</span>:<span class="nx">Fern</span> . <span class="p">-</span><span class="nx">drawer</span> <span class="p">-</span><span class="nx">reveal</span><span class="p">=</span>% <span class="p">-</span><span class="nx">width</span><span class="p">=</span><span class="m">35</span> <span class="p">-</span><span class="nx">toggle</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">w</span><span class="p">&gt;=</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">e</span><span class="p">&gt;</span>   :<span class="nx">Fern</span> . <span class="p">-</span><span class="nx">drawer</span> <span class="p">-</span><span class="nx">reveal</span><span class="p">=</span>% <span class="p">-</span><span class="nx">width</span><span class="p">=</span><span class="m">35</span> <span class="p">-</span><span class="nx">toggle</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">w</span><span class="p">&gt;=</span><span class="err">
+</span></span></span></code></pre></div><p>I can toggle the file explorer with <code>Ctrl-e</code></p>
+<p>demo:
+<img loading="lazy" src="/Blog/post/vim4-markdownwritingsetup/file-explorer-mosue.gif" type="" alt="fern-demo"  /></p>
+<p>If you don&rsquo;t like the default key bindings, you can change it in <code>~/.config/nvim/ftplugin/fern.vim</code>. For exmaple I have change some of them. Fern have many API you can interact with, You can delete, rename files and directories like other GUI file finder. I don&rsquo;t make move file key bindings, because I regard it is easier to do with my shell.</p>
+<p>Preview file when navigate files using jk is helpful when sometimes I don&rsquo;t remember what is the content inside, I can toggle this with <code>p</code> in file explorer buffer. In orde to have this function you hvae to install <a href="https://github.com/yuki-yano/fern-preview.vim">fere plugin for preview</a>.</p>
+<p>demo:
+<img loading="lazy" src="/Blog/post/vim4-markdownwritingsetup/fern-preview.gif" type="" alt="fern-preview.gif"  /></p>
+<p>Another keymapping I use often are <code>R</code>, it will jump to the root of current directory(directory contain <code>.git/</code>), you will need to install <a href="https://github.com/lambdalisue/fern-mapping-project-top.vim">this fern plugin</a>.</p>
+<details>
+  <summary>fern full config</summary>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">-- ~/.config/nvim/lua/plugins/fern.lua</span>
+</span></span><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;lambdalisue/fern.vim&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dependencies</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s1">&#39;lambdalisue/fern-hijack.vim&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;lambdalisue/fern-mapping-project-top.vim&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;sokinpui/my-fern-preview.vim&#34;</span><span class="p">,</span>    
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- Set the Fern plugin configuration options in Lua</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#mark_symbol&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;●&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#renderer#default#collapsed_symbol&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;▷ &#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#renderer#default#expanded_symbol&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;▼ &#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#renderer#default#leading&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#renderer#default#leaf_symbol&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#renderer#default#root_symbol&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;~ &#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#disable_default_mappings&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#disable_drawer_auto_quit&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">[</span><span class="s2">&#34;fern#disable_viewer_hide_cursor&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">-- Define the key mappings</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_set_keymap</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;C-e&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;Esc&gt;:Fern . -drawer -reveal=% -width=35 -toggle&lt;CR&gt;&lt;C-w&gt;=&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="n">silent</span> <span class="o">=</span> <span class="kc">true</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_set_keymap</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;C-e&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;:Fern . -drawer -reveal=% -width=35 -toggle&lt;CR&gt;&lt;C-w&gt;=&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="n">noremap</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="n">silent</span> <span class="o">=</span> <span class="kc">true</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The above snippet install the plugins and change the symbol for displying in directory tree</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="c">&#34; ~/.config/nvim/ftplugin/fern.vim</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nmap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;&lt;</span><span class="nx">expr</span><span class="p">&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            \ <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">my</span><span class="p">-</span><span class="nx">open</span><span class="p">-</span><span class="nx">expand</span><span class="p">-</span><span class="nx">collapse</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            \ <span class="nx">fern</span>#<span class="nx">smart</span>#<span class="nx">leaf</span><span class="p">(</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            \   <span class="s2">&#34;\&lt;Plug&gt;(fern-action-open:select)&#34;</span><span class="p">,</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            \   <span class="s2">&#34;\&lt;Plug&gt;(fern-action-expand)&#34;</span><span class="p">,</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            \   <span class="s2">&#34;\&lt;Plug&gt;(fern-action-collapse)&#34;</span><span class="p">,</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>            \ <span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nmap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">new</span><span class="p">-</span><span class="nx">and</span><span class="p">-</span><span class="nx">edit</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>      \ <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">new</span><span class="p">-</span><span class="nx">file</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>      \ <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">open</span>:<span class="nx">select</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">my</span><span class="p">-</span><span class="nx">open</span><span class="p">-</span><span class="nx">expand</span><span class="p">-</span><span class="nx">collapse</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">TAB</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">my</span><span class="p">-</span><span class="nx">open</span><span class="p">-</span><span class="nx">expand</span><span class="p">-</span><span class="nx">collapse</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">&#34;nnoremap &lt;buffer&gt; h &lt;Plug&gt;(fern-action-collapse)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">&#34;nnoremap &lt;buffer&gt; l &lt;Plug&gt;(fern-action-expand)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="m">2</span><span class="p">-</span><span class="nx">LeftMouse</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">my</span><span class="p">-</span><span class="nx">open</span><span class="p">-</span><span class="nx">expand</span><span class="p">-</span><span class="nx">collapse</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">o</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">new</span><span class="p">-</span><span class="nx">and</span><span class="p">-</span><span class="nx">edit</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">nd</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">new</span><span class="p">-</span><span class="nx">dir</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">D</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">remove</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">rn</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">rename</span><span class="p">)</span><span class="nx">l</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">s</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">open</span>:<span class="nx">split</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">v</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">open</span>:<span class="nx">vsplit</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">&#34;nnoremap &lt;buffer&gt; r &lt;Plug&gt;(fern-action-reload)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">nowait</span><span class="p">&gt;</span> <span class="nx">d</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">hidden</span>:<span class="nx">toggle</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">nowait</span><span class="p">&gt;</span> <span class="nx">h</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">leave</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">nowait</span><span class="p">&gt;</span> <span class="nx">l</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">enter</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34;enter project root, contain .git</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">R</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">project</span><span class="p">-</span><span class="nx">top</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34; preview file</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">p</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">preview</span>:<span class="nx">auto</span>:<span class="nx">toggle</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">d</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">preview</span>:<span class="nx">scroll</span>:<span class="nx">down</span>:<span class="nx">half</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">u</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">action</span><span class="p">-</span><span class="nx">preview</span>:<span class="nx">scroll</span>:<span class="nx">up</span>:<span class="nx">half</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c">
+</span></span></span><span class="line"><span class="cl"><span class="c">&#34;smart [q]uit</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">expr</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">quit</span><span class="p">-</span><span class="nx">or</span><span class="p">-</span><span class="nx">close</span><span class="p">-</span><span class="nx">preview</span><span class="p">)</span> <span class="nx">fern_preview</span>#<span class="nx">smart_preview</span><span class="p">(</span><span class="s2">&#34;\&lt;Plug&gt;(fern-action-preview:close)&#34;</span><span class="p">,</span> <span class="s2">&#34;:q\&lt;CR&gt;&#34;</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">q</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;(</span><span class="nx">fern</span><span class="p">-</span><span class="nx">quit</span><span class="p">-</span><span class="nx">or</span><span class="p">-</span><span class="nx">close</span><span class="p">-</span><span class="nx">preview</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">setlocal</span> <span class="nx">norelativenumber</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">setlocal</span> <span class="nx">nonumber</span><span class="err">
+</span></span></span></code></pre></div><p>The above snippets change the keymap in fern file explorer buffer. <!-- raw HTML omitted -->
+<code>&lt;cr&gt;</code>, doubel-click, and <code>tab</code> will expand the directory or open the file.</p>
+<p><code>o</code> will creat new file</p>
+<p><code>nd</code> will create new directory</p>
+<p><code>D</code> will delete file or directory</p>
+<p><code>rn</code> will rename the file or directory</p>
+<p><code>s</code> will open file in split horizontial vim window</p>
+<p><code>v</code> will open file in split vertical vim window</p>
+<p><code>d</code> will show toggle hidden file</p>
+<p><code>h</code> will navigate directory one level up at the directory cursor at</p>
+<p><code>l</code> will navigate directory one level down at the directory cursor at</p>
+<p><code>R</code> will navigate to the root of current directory( contain <code>.git/</code> ), you need to install <a href="https://github.com/lambdalisue/fern-mapping-project-top.vim">this plugin</a></p>
+<p><code>p</code> will toggle file preview, recently rich contents seems to be out of support.</p>
+<p><code>&lt;c-u&gt;</code> and <code>&lt;c-d&gt;</code> scroll the preview file up and down respectively.</p>
+<p><code>q</code> will close fern buffer or close the preview float window.</p>
+
+</details>
+
+
+<h2 id="synatx-highlight">Synatx highlight</h2>
+<p>Markdown syntax is very simple, even without syntax highlight won&rsquo;t effect writing flow. However, a beautiful syntax highlight just make those special symbol standout, so less mental burden when searching sytnax with eyes. Moreover, you will have beautiful syntax highlihgt in code block.</p>
+<p>I use <a href="https://github.com/nvim-treesitter/nvim-treesitter">nvim-treesitter</a> and <a href="https://github.com/preservim/vim-markdown">vim-markdown</a> together to provide full syntax highlihgt. <strong>vim-markdown</strong> for $Latex$ and <strong>nvim-treesitter</strong> for code block. vim-markdown has option</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">vim_markdown_math</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span></span></span></code></pre></div><p>to enable syntax highlight for math block in <code>$$</code> or <code>$$ $$</code>. Install treesitter parser <code>markdown</code> to with command <code>:TSInstall markown</code>. In order to use treesitter highlight, your color scheme need to support treesitter. I use <a href="https://github.com/navarasu/onedark.nvim">onedark.nvim</a>.
+<img loading="lazy" src="/Blog/post/vim4-markdownwritingsetup/img/syntax-on-off.png" type="" alt="syntax-on-off"  /></p>
+<details>
+  <summary>nvim-treesitter full config</summary>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">-- ~/.config/nvim/lua/plugins/treesitter.lua</span>
+</span></span><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;nvim-treesitter/nvim-treesitter&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">build</span> <span class="o">=</span> <span class="s2">&#34;:TSUpdate&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span> <span class="o">=</span> <span class="kr">function</span> <span class="p">()</span> 
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">configs</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;nvim-treesitter.configs&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">configs.setup</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- 安装 language parser</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- :TSInstallInfo 命令查看支持的语言</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ensure_installed</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;html&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;css&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;vim&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;lua&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;javascript&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;typescript&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;python&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;c&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;java&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;julia&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;query&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;markdown&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">--&#34;markdown_inline&#34;,</span>
+</span></span><span class="line"><span class="cl">                    <span class="s2">&#34;bash&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- 启用代码高亮功能</span>
+</span></span><span class="line"><span class="cl">                <span class="n">highlight</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">enable</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">--additional_vim_regex_highlighting = false</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">additional_vim_regex_highlighting</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&#34;markdown&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- 启用增量选择</span>
+</span></span><span class="line"><span class="cl">                <span class="n">incremental_selection</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">enable</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">keymaps</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">--- init_selection = &#39;&lt;TAB&gt;&#39;,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">node_incremental</span> <span class="o">=</span> <span class="s1">&#39;&lt;TAB&gt;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">node_decremental</span> <span class="o">=</span> <span class="s1">&#39;&lt;S-TAB&gt;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">--- scope_incremental = &#39;&lt;TAB&gt;&#39;,</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- 启用基于Treesitter的代码格式化(=) . NOTE: This is an experimental feature.</span>
+</span></span><span class="line"><span class="cl">                <span class="n">indent</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">enable</span> <span class="o">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="n">playground</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">enable</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">disable</span> <span class="o">=</span> <span class="p">{},</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">updatetime</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span> <span class="c1">-- Debounced time for highlighting nodes in the playground from source code</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">persist_queries</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">-- Whether the query persists across vim sessions</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">keybindings</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">toggle_query_editor</span> <span class="o">=</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">toggle_hl_groups</span> <span class="o">=</span> <span class="s1">&#39;i&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">toggle_injected_languages</span> <span class="o">=</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">toggle_anonymous_nodes</span> <span class="o">=</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">toggle_language_display</span> <span class="o">=</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">focus_language</span> <span class="o">=</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">unfocus_language</span> <span class="o">=</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">update</span> <span class="o">=</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">goto_node</span> <span class="o">=</span> <span class="s1">&#39;&lt;cr&gt;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">show_help</span> <span class="o">=</span> <span class="s1">&#39;?&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="n">query_linter</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">enable</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">use_virtual_text</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">lint_events</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;BufWrite&#34;</span><span class="p">,</span> <span class="s2">&#34;CursorHold&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="p">})</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.wo</span><span class="p">.</span><span class="n">foldmethod</span> <span class="o">=</span> <span class="s1">&#39;expr&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.wo</span><span class="p">.</span><span class="n">foldexpr</span> <span class="o">=</span> <span class="s1">&#39;nvim_treesitter#foldexpr()&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- 默认不要折叠</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.wo</span><span class="p">.</span><span class="n">foldlevel</span> <span class="o">=</span> <span class="mi">99</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;nvim-treesitter/playground&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;TSPlaygroundToggle&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>incremental_selection is increat the selected region in visual mode according to treesitter filetype parser. This config is copied from an chinese article <a href="https://zhuanlan.zhihu.com/p/561676059">here</a></p>
+<p>demo:
+</p>
+
+</details>
+
+
+<h2 id="header-jumps">header jumps</h2>
+<p><a href="https://github.com/preservim/vim-markdown">vim-markdown</a> provide mapping <code>[[</code> jump to last header above cursor, and <code>]]</code> jump to next header above cursor. Or you prefer a sidebar header TOC, you can use the command <code>Toc</code> to generate a sidebar TOC, you can jump to the header by double click it or press <code>enter</code>.</p>
+<p>Demo:
+<img loading="lazy" src="/Blog/post/vim4-markdownwritingsetup/img/toc.gif" type="" alt="./img/toc.gif"  /></p>
+<h2 id="markdown-preview">Markdown preview</h2>
+<p>By me again:</p>
+<blockquote>
+<p>markdown syntax is so simple that you can preview it in your brain.</p>
+</blockquote>
+<p>Mostly the preview is for Math expression, image, video and gif. I will either open browser with <a href="https://github.com/iamcco/markdown-preview.nvim">markown-preivew.nvim</a> or <strong>Obsidian</strong> <del>(Obsidian is the best markdown viewer ever!)</del> to see how my file will be rendered. Obsidian file explorer will show rich content like <code>*.gif</code>, <code>*.png</code> or <code>*.mp4</code>. <del>typora hide them!</del></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="image-clipboard-insertion">Image clipboard insertion</h2>
+<p>Paste image from image clipboard to current buffer. Before I know this plugin, whenever I need to paste image, I will open <strong>Obsidian</strong>, because I find their is <a href="https://github.com/reorx/obsidian-paste-image-rename">extension</a> help me. But now I find this plugin, leaving Obsidian merely a markdown reader.
+<img loading="lazy" src="/Blog/post/vim4-markdownwritingsetup/img/image-clipboard.gif" type="" alt="./img/image-clipboard.gif"  /></p>
+<details>
+  <summary>vim-markdown, markown-preivew, and image-clipboard full config</summary>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;iamcco/markdown-preview.nvim&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">build</span> <span class="o">=</span> <span class="s2">&#34;cd app &amp;&amp; npm install&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ft</span> <span class="o">=</span> <span class="s2">&#34;markdown&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&#34;MarkdownPreview&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">mkdp_auto_close</span> <span class="o">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">mkdp_open_to_the_world</span> <span class="o">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">mkdp_open_ip</span> <span class="o">=</span> <span class="s2">&#34;127.0.0.1&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">mkdp_port</span> <span class="o">=</span> <span class="s2">&#34;8888&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">mkdp_browser</span> <span class="o">=</span> <span class="s2">&#34;chromium-browser&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">mkdp_echo_preview_url</span> <span class="o">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">mkdp_page_title</span> <span class="o">=</span> <span class="s2">&#34;${name}&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;preservim/vim-markdown&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ft</span> <span class="o">=</span> <span class="s2">&#34;markdown&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">vim_markdown_folding_disabled</span>        <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">vim_markdown_no_default_key_mappings</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">vim_markdown_conceal_code_blocks</span>     <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">vim_markdown_math</span>                    <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">tex_conceal</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">vim_markdown_conceal</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">vim_markdown_toc_autofit</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">vim_markdown_follow_anchor</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">vim_markdown_toml_frontmatter</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">vim_markdown_strikethrough</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;postfen/clipboard-image.nvim&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">keys</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span> <span class="s2">&#34;&lt;leader&gt;i&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;cmd&gt;PasteImg&lt;CR&gt;&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">require</span><span class="s1">&#39;clipboard-image&#39;</span><span class="p">.</span><span class="n">setup</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- Default configuration for all filetype</span>
+</span></span><span class="line"><span class="cl">                <span class="n">default</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">img_dir</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;%:p:h&#34;</span><span class="p">,</span> <span class="s2">&#34;img&#34;</span><span class="p">},</span> <span class="c1">-- Use table for nested dir (New feature form PR #20)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">img_name</span> <span class="o">=</span> <span class="kr">function</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">vim.fn</span><span class="p">.</span><span class="n">inputsave</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                        <span class="kd">local</span> <span class="n">name</span> <span class="o">=</span> <span class="n">vim.fn</span><span class="p">.</span><span class="n">input</span><span class="p">(</span><span class="s1">&#39;Name: &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">vim.fn</span><span class="p">.</span><span class="n">inputrestore</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                        <span class="kr">return</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">                    <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">affix</span> <span class="o">=</span> <span class="s2">&#34;&lt;</span><span class="se">\n</span><span class="s2">  %s</span><span class="se">\n</span><span class="s2">&gt;&#34;</span> <span class="c1">-- Multi lines affix</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- You can create configuration for ceartain filetype by creating another field (markdown, in this case)</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- If you&#39;re uncertain what to name your field to, you can run `lua print(vim.bo.filetype)`</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- Missing options from `markdown` field will be replaced by options from `default` field</span>
+</span></span><span class="line"><span class="cl">                <span class="n">markdown</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">img_dir</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;%:p:h&#34;</span><span class="p">,</span> <span class="s2">&#34;img&#34;</span><span class="p">},</span> <span class="c1">-- Use table for nested dir (New feature form PR #20)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">img_name</span> <span class="o">=</span> <span class="kr">function</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">vim.fn</span><span class="p">.</span><span class="n">inputsave</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                        <span class="kd">local</span> <span class="n">name</span> <span class="o">=</span> <span class="n">vim.fn</span><span class="p">.</span><span class="n">input</span><span class="p">(</span><span class="s1">&#39;Name: &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">vim.fn</span><span class="p">.</span><span class="n">inputrestore</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                        <span class="kr">return</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">                    <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">img_handler</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">vim.cmd</span><span class="p">(</span><span class="s2">&#34;normal! f[&#34;</span><span class="p">)</span> <span class="c1">-- go to [</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">vim.cmd</span><span class="p">(</span><span class="s2">&#34;normal! a&#34;</span> <span class="o">..</span> <span class="n">img.name</span><span class="p">)</span> <span class="c1">-- append text with image name</span>
+</span></span><span class="line"><span class="cl">                    <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">affix</span> <span class="o">=</span> <span class="s2">&#34;![](%s)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;lervag/lists.vim&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ft</span> <span class="o">=</span> <span class="s2">&#34;markdown&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.cmd</span><span class="p">(</span><span class="s2">&#34;ListsEnable&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>image-clipboard will insert image from clipboard when if you press <code>&lt;leader&gt;i</code> in normal mode,</p>
+<p>Those line will prompt the name before paste</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">img_name</span> <span class="o">=</span> <span class="kr">function</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vim.fn</span><span class="p">.</span><span class="n">inputsave</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">name</span> <span class="o">=</span> <span class="n">vim.fn</span><span class="p">.</span><span class="n">input</span><span class="p">(</span><span class="s1">&#39;Name: &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vim.fn</span><span class="p">.</span><span class="n">inputrestore</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span></code></pre></div><p>Those line keep the alt-text same as the image</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">img_handler</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vim.cmd</span><span class="p">(</span><span class="s2">&#34;normal! f[&#34;</span><span class="p">)</span> <span class="c1">-- go to [</span>
+</span></span><span class="line"><span class="cl">    <span class="n">vim.cmd</span><span class="p">(</span><span class="s2">&#34;normal! a&#34;</span> <span class="o">..</span> <span class="n">img.name</span><span class="p">)</span> <span class="c1">-- append text with image name</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span><span class="p">,</span>
+</span></span></code></pre></div><p>This line will store the image in the subfolder <code>img/</code> at the directory current file at. If <code>img/</code> don&rsquo;t exist, it will be created</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">img_dir</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;%:p:h&#34;</span><span class="p">,</span> <span class="s2">&#34;img&#34;</span><span class="p">},</span> <span class="c1">-- Use table for nested dir (New feature form PR #20)</span>
+</span></span></code></pre></div>
+</details>
+
+
+<h2 id="autocompletion">Autocompletion</h2>
+<p>The main reason I use an code editor for markdown editing even It don&rsquo;t provide live preview.</p>
+<p>Worth to mention again:</p>
+<blockquote>
+<p>markdown syntax is so simple that you can preview it in your brain.</p>
+</blockquote>
+<p>The cost of drop live preview compare to have autocompletion is nearly zero. With autocompletion, I can be lazy to type, complete the long words occur more than once. Use snippets to insert pre-defined contents. Recently, I have switch from <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> to <a href="https://github.com/hrsh7th/nvim-cmp">nvim-cmp</a> for the plugin <a href="https://github.com/epwalsh/obsidian.nvim">obsidian.nvim</a> to insert reference link. <del>BTW, I find it nearly useles</del></p>
+<p>demo:
+<img loading="lazy" src="/Blog/post/vim4-markdownwritingsetup/img/autocompletion.gif" type="" alt="./img/autocompletion.gif"  /></p>
+<details>
+  <summary>autocompletion with nvim-cmp full config</summary>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;SirVer/ultisnips&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">init</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">UltiSnipsExpandTrigger</span> <span class="o">=</span> <span class="s2">&#34;&lt;C-j&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">UltiSnipsJumpForwardTrigger</span> <span class="o">=</span> <span class="s2">&#34;&lt;C-j&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">UltiSnipsJumpBackwardTrigger</span> <span class="o">=</span> <span class="s2">&#34;&lt;C-k&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;hrsh7th/nvim-cmp&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">event</span> <span class="o">=</span> <span class="s2">&#34;InsertEnter&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dependencies</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;hrsh7th/cmp-buffer&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;FelipeLema/cmp-async-path&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;hrsh7th/cmp-nvim-lsp&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">--&#39;hrsh7th/cmp-cmdline&#39;,</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;hrsh7th/cmp-calc&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s1">&#39;onsails/lspkind-nvim&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;quangnguyen30192/cmp-nvim-ultisnips&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">config</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">-- optional call to setup (see customization section)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;cmp_nvim_ultisnips&#34;</span><span class="p">).</span><span class="n">setup</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">t</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_replace_termcodes</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">has_words_before</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                <span class="kd">local</span> <span class="n">line</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_win_get_cursor</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="n">col</span> <span class="o">~=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_buf_get_lines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">line</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="kc">true</span><span class="p">)[</span><span class="mi">1</span><span class="p">]:</span><span class="n">sub</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span><span class="n">match</span><span class="p">(</span><span class="s2">&#34;%s&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">cmp</span> <span class="o">=</span> <span class="n">require</span> <span class="s1">&#39;cmp&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">--local lspkind = require(&#39;lspkind&#39;)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">cmp.setup</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">snippet</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">expand</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">vim.fn</span><span class="p">[</span><span class="s2">&#34;UltiSnips#Anon&#34;</span><span class="p">](</span><span class="n">args.body</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sources</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;buffer&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">keyword_length</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">option</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">keyword_length</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">keyword_pattern</span> <span class="o">=</span> <span class="s">[[\k\+]]</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">get_bufnrs</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                                <span class="kr">return</span> <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_list_bufs</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;nvim_lsp&#39;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;ultisnips&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">--{ name = &#39;cmdline&#39; },</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;async_path&#39;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;calc&#39;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="n">mapping</span> <span class="o">=</span> <span class="n">cmp.mapping</span><span class="p">.</span><span class="n">preset.insert</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">[</span><span class="s1">&#39;&lt;c-e&gt;&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cmp.mapping</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">i</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">fallback</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">cmp.close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">fallback</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">[</span><span class="s2">&#34;&lt;Tab&gt;&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cmp.mapping</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">i</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">fallback</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">if</span> <span class="n">cmp.visible</span><span class="p">()</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">cmp.select_next_item</span><span class="p">({</span> <span class="n">behavior</span> <span class="o">=</span> <span class="n">cmp.SelectBehavior</span><span class="p">.</span><span class="n">Insert</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">elseif</span> <span class="n">has_words_before</span><span class="p">()</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">cmp.complete</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">fallback</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">                        <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">[</span><span class="s2">&#34;&lt;S-Tab&gt;&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cmp.mapping</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">i</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">fallback</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">if</span> <span class="n">cmp.visible</span><span class="p">()</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">cmp.select_prev_item</span><span class="p">({</span> <span class="n">behavior</span> <span class="o">=</span> <span class="n">cmp.SelectBehavior</span><span class="p">.</span><span class="n">Insert</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">fallback</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">                        <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">[</span><span class="s1">&#39;&lt;C-n&gt;&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cmp.mapping</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">c</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">if</span> <span class="n">cmp.visible</span><span class="p">()</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">cmp.select_next_item</span><span class="p">({</span> <span class="n">behavior</span> <span class="o">=</span> <span class="n">cmp.SelectBehavior</span><span class="p">.</span><span class="n">Select</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_feedkeys</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="s1">&#39;&lt;Down&gt;&#39;</span><span class="p">),</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">                        <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">i</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">fallback</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">if</span> <span class="n">cmp.visible</span><span class="p">()</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">cmp.select_next_item</span><span class="p">({</span> <span class="n">behavior</span> <span class="o">=</span> <span class="n">cmp.SelectBehavior</span><span class="p">.</span><span class="n">Select</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">fallback</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">                        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">[</span><span class="s1">&#39;&lt;C-p&gt;&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cmp.mapping</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">c</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">if</span> <span class="n">cmp.visible</span><span class="p">()</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">cmp.select_prev_item</span><span class="p">({</span> <span class="n">behavior</span> <span class="o">=</span> <span class="n">cmp.SelectBehavior</span><span class="p">.</span><span class="n">Select</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_feedkeys</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="s1">&#39;&lt;Up&gt;&#39;</span><span class="p">),</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">                        <span class="kr">end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">i</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">fallback</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">if</span> <span class="n">cmp.visible</span><span class="p">()</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">cmp.select_prev_item</span><span class="p">({</span> <span class="n">behavior</span> <span class="o">=</span> <span class="n">cmp.SelectBehavior</span><span class="p">.</span><span class="n">Select</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">fallback</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">                        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cmp.setup</span><span class="p">.</span><span class="n">cmdline</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">completion</span> <span class="o">=</span> <span class="p">{</span> <span class="n">autocomplete</span> <span class="o">=</span> <span class="kc">false</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sources</span> <span class="o">=</span> <span class="n">cmp.config</span><span class="p">.</span><span class="n">sources</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;async_path&#39;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">},</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;cmdline&#39;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">})</span>
+</span></span><span class="line"><span class="cl">            <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>You can interrupt <strong>nvim-cmp</strong> as the front end, it only provide UI, the source for completion is the backend, where you have to install separately,</p>
+<p>complete words occured in buffer, the <code>get_bufnrs</code> function allows you complete words from all opened buffers.(by default only complete words from current buffer)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;buffer&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">keyword_length</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">option</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">keyword_length</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">keyword_pattern</span> <span class="o">=</span> <span class="s">[[\k\+]]</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">get_bufnrs</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_list_bufs</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span>
+</span></span></code></pre></div><p>The source <code>calc</code> can handle some simple math calculation.</p>
+<p><code>async_path</code> will complete directory asynchronous, so won&rsquo;t cause lag when the size of directory is too big.</p>
+<p><code>&lt;Tab&gt;</code> and <code>&lt;S-Tab&gt;</code> will complete words on suggest menu, You don&rsquo;t have to press <code>&lt;CR&gt;</code> to confirm.</p>
+<p><code>&lt;C-j&gt;</code> will expand snippets and jump to next snippets cursor holder</p>
+<p><code>&lt;C-k&gt;</code> will jump to previous snippets cursor holder</p>
+<p><code>&lt;C-e&gt;</code> will close the menu</p>
+
+</details>
+
+
+<h1 id="zsh">zsh</h1>
+<p>Since using neovim in terminal, some shell hack is required to make writing even more comfortable. I don&rsquo;t use Neovim terminal, its color never display same as my original terminal. Instead, I use tmux new window if I needed. I don&rsquo;t do fancy file management with my Neovim file explorer because I prefer to manage them in shell.</p>
+<p>The last required configuration of zsh are merely tab completion and remapping the fully sucked tmux default key bindings.</p>
+<p>For zsh completion, I would recommend you read <a href="https://thevaluable.dev/zsh-completion-guide-examples/">this blog detaily cover about zsh completion</a></p>
+<p>For tmux configuration guide, I would recommend you read <a href="https://thevaluable.dev/tmux-config-mouseless/">this blog detaily cover about configure tmux</a></p>
+<h1 id="may-not-helpful">May not helpful</h1>
+<h2 id="conceal">conceal</h2>
+<p>Hide the syntax when cursor is not at the line, maybe helpful or not. Vim has this function built-in, you can set <code>set conceallevel=2</code>. vim-markdown also have options that control concealment for different group, they are:</p>
+<p><code>let g:vim_markdown_math = 1</code> to enalbe concealment for $Latex$ syntax</p>
+<p><code>let g:tex_conceal = &quot;&quot;</code> to enalbe concealment for $Latex$ delimiter</p>
+<p><code>let g:vim_markdown_conceal_code_blocks = 1</code> to enalbe concealment for code block delimiter.</p>
+<p><code>let g:vim_markdown_strikethrough = 1</code> to enable concealment for Strikethrough. <em>This featuer don&rsquo;t require conceallevel set in vim</em>
+<img loading="lazy" src="/Blog/post/vim4-markdownwritingsetup/img/strikethrough.png" type="" alt="strikethrough"  /></p>
+<p>Demo
+<img loading="lazy" src="/Blog/post/vim4-markdownwritingsetup/conceal.gif" type="" alt="./conceal.gif"  /></p>
+<h2 id="auto-list-in-vim">Auto list in vim</h2>
+<p>Since most of the GUI markdown editor support auto generate list when you hit enter. I found one plugin <a href="https://github.com/dkarter/bullets.vim">bullets.vim</a>. It will auto insert list base on the list symbol last line used. Quite helpful when you insert orderlist. But it seems to break your <code>&lt;CR&gt;</code> in other plugins, but just fine with me, please see <a href="https://www.reddit.com/r/neovim/comments/nx4s7g/is_there_an_actually_good_numbered_list_plugin/">this discussion on reddit</a> <!-- raw HTML omitted -->
+Demo:
+<img loading="lazy" src="/Blog/post/vim4-markdownwritingsetup/img/list.gif" type="" alt="./img/list.gif"  /></p>
+<h2 id="searching">Searching</h2>
+<p>I will open <strong>Obsidian</strong> and use its search box. Sometimes I will open new tmux windows and search with <a href="https://github.com/BurntSushi/ripgrep">rg(ripgrep)</a></p>
+<h1 id="after">After</h1>
+<p>As you see, the markdown system built in this blog is totally offline, so that you can choose the tools for different task, like A code editor over in editing, a notes taking app over in reading rich content. I do use some cloud based notes app like notion, However, it often lag, and low in protability, the file is difficult to edit outside it. I am forced to use the function provided by single application. I prefer offline solution than cloud based for markdown writing.</p>
 ]]></content:encoded>
     </item>
     
