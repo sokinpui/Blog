@@ -146,7 +146,7 @@ example</p>
       <guid>https://sokinpui.github.io/Blog/post/vim4-markdownwritingsetup/</guid>
       <description>Markdown setup make text editing become comfortable</description>
       <content:encoded><![CDATA[<p>Mainly Introduce Neovim plugins and share config that help markdown writing.</p>
-<p>The Full config is <a href="">here</a></p>
+<p>The Full config is <a href="https://github.com/sokinpui/dotfiles/tree/main/nvim">here</a></p>
 <h1 id="before">Before</h1>
 <p>A good markdown setup just make fun easier, though the most weighted thing in writing should be the content instead of the tools you use. But a right tools will make editing a lot easier. Recently markdown can use for note taking, documenting, or blog writing. Markdown is similiar to HTML, but have a clear and readable syntax. Only looking at the syntax, you can already have idea how the file will be reandered. Compare to Tex, the syntax is simpler but less featured, if you don&rsquo;t need complicate layout of your output file, you should consider markdown first. You can use some simple $Latex$ math expression like <code>$\int$</code> in markdown, already well supported by most of markdown editor.</p>
 <h1 id="choose-of-editor">Choose of editor</h1>
@@ -219,10 +219,10 @@ With above items, a comfortable writing environment have done half!</li>
 </span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.treesitter&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.cleverf&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.lsp&#34;</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.sandwich&#34;</span><span class="p">).</span><span class="n">config</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.multi_cursor&#34;</span><span class="p">).</span><span class="n">config</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.sandwich&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.multi_cursor&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.pairs&#34;</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.autocompletion&#34;</span><span class="p">).</span><span class="n">config</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.autocompletion&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.fzf&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.markdown&#34;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">    <span class="n">require</span><span class="p">(</span><span class="s2">&#34;plugins.fern&#34;</span><span class="p">),</span>
@@ -500,7 +500,7 @@ demo:
 <p>Markdown syntax is very simple, even without syntax highlight won&rsquo;t effect writing flow. However, a beautiful syntax highlight just make those special symbol standout, so less mental burden when searching sytnax with eyes. Moreover, you will have beautiful syntax highlihgt in code block.</p>
 <p>I use <a href="https://github.com/nvim-treesitter/nvim-treesitter">nvim-treesitter</a> and <a href="https://github.com/preservim/vim-markdown">vim-markdown</a> together to provide full syntax highlihgt. <strong>vim-markdown</strong> for $Latex$ and <strong>nvim-treesitter</strong> for code block. vim-markdown has option</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">vim_markdown_math</span> <span class="p">=</span> <span class="m">1</span><span class="err">
-</span></span></span></code></pre></div><p>to enable syntax highlight for math block in <code>$$</code> or <code>$$ $$</code>. Install treesitter parser <code>markdown</code> to with command <code>:TSInstall markown</code>. In order to use treesitter highlight, your color scheme need to support treesitter. I use <a href="https://github.com/navarasu/onedark.nvim">onedark.nvim</a>.
+</span></span></span></code></pre></div><p>to enable syntax highlight for math block in <code>$$</code> or <code>$$ $$</code>. Install treesitter parser <code>markdown</code> with command <code>:TSInstall markown</code>. In order to use treesitter highlight, your color scheme need to support treesitter. I use <a href="https://github.com/navarasu/onedark.nvim">onedark.nvim</a>.
 <img loading="lazy" src="/Blog/post/vim4-markdownwritingsetup/img/syntax-on-off.png" type="" alt="syntax-on-off"  /></p>
 <details>
   <summary>nvim-treesitter full config</summary>
