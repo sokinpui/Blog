@@ -5,7 +5,58 @@
     <link>https://sokinpui.github.io/Blog/post/</link>
     <description>Recent content in Posts on Home</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 04 Aug 2023 22:16:35 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 09 Aug 2023 09:56:52 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Strategy to remap Tmux shortcut</title>
+      <link>https://sokinpui.github.io/Blog/post/tmux-kmonad/</link>
+      <pubDate>Wed, 09 Aug 2023 09:56:52 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/tmux-kmonad/</guid>
+      <description>Save the sucked tmux default key bindings.</description>
+      <content:encoded><![CDATA[<p>If you have use tmux, you know it come with a bad key bindings. Force you to spend time config Tmux. Here are how I use tmux with kmonad to save the sucked default key bindings.</p>
+<h1 id="tmux">Tmux</h1>
+<p>Since tmux have session, window, and pane. Like navigate windows and pane must be often than session, we will prefer less key to navigate windows and pane than session</p>
+<p>Therefore shortcut related to window will in form of <code>M-*</code>(for example alt-a), shortcut related to session will in form of <code>prefix + &lt;keys&gt;</code></p>
+<h2 id="change-tmux-prefix">change tmux prefix</h2>
+<p>Tmux default prefix suck. <code>Ctrl-b</code> are far from each other, if everytim we run tmux command have to press <code>Ctrl-b</code>, I just suffer. So, I change it to <code>ctrl-space</code> instead.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">unbind C-b
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g prefix C-space 
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> C-space send-prefix 
+</span></span></code></pre></div><h2 id="session">Session</h2>
+<p>Session shortcut will in form of <code>prefix + &lt;keys&gt;</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> n new-session -t
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> r command-prompt -p <span class="s2">&#34;Enter new session name: &#34;</span> <span class="s2">&#34;rename-session &#39;%%&#39;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> j switch-client -n <span class="c1"># switch to next session</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> k switch-client - <span class="c1"># switch to previous sessionp</span>
+</span></span></code></pre></div><p><code>prefix+s</code> will show the session list
+<img loading="lazy" src="/Blog/post/tmux-kmonad/img/tmux-session-list.png" type="" alt="tmux-session-list"  /></p>
+<h2 id="window">Window</h2>
+<p>Since windows shortcut are more handy than session&rsquo;s
+Bind single key without prefix will be easier for day to day usage</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> -n M-o new-window <span class="c1"># open new window at home directory $HOME</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -n M-enter new-window -c <span class="s2">&#34;#{pane_current_path}&#34;</span> <span class="c1"># open window at the same directory as current pane</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -n M-r command-prompt -p <span class="s2">&#34;Enter new window name: &#34;</span> <span class="s2">&#34;rename-window &#39;%%&#39;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r -n M-h <span class="k">select</span>-window -t :- <span class="c1"># previous window</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r -n M-l <span class="k">select</span>-window -t :+ <span class="c1"># next window</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">unbind <span class="s1">&#39;&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">unbind %
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> - splitw -v -c <span class="s1">&#39;#{pane_current_path}&#39;</span> <span class="c1"># horizontal split </span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> <span class="p">|</span> splitw -h -c <span class="s1">&#39;#{pane_current_path}&#39;</span> <span class="c1"># vertical split</span>
+</span></span></code></pre></div><h2 id="pane">Pane</h2>
+<p>Similar to window, but since my main machine is a thinkpad, the screen is so small, I use pane less, if you have a big screen, you may swap some shortcut between window&rsquo;s and pane&rsquo;s</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> -n M-x kill-pane
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -n M-m <span class="k">select</span>-pane -t :.+ <span class="c1"># pane cycling</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -n M-f <span class="k">select</span>-pane -t :.+ <span class="c1"># pane cycline </span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r H resize-pane -L <span class="m">5</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r L resize-pane -R <span class="m">5</span> 
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r K resize-pane -U <span class="m">5</span>  
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r J resize-pane -D <span class="m">5</span>
+</span></span></code></pre></div><p>The first line will kill pane instantly, if there is single pane, kill window instead, if there is single windwo and single pane, kill session instead.</p>
+<p>If you wonder how to resolve shortcut conflict with other terminal application require modifier <code>alt</code>, I will try my best to avoid them, leaving all shortcut with <code>alt</code> for tmux, and <code>ctrl</code> for other application. BTW, if you use vim, you will have less chance to use modifier <code>alt</code>, therefore using vi-mode in shell can reduce the relay of <code>alt</code> when line editing.</p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Consider Embrance the ecosystem of Neovim.</title>
       <link>https://sokinpui.github.io/Blog/post/vim7-considerneovim/</link>
