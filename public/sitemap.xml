@@ -3,10 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://sokinpui.github.io/Blog/</loc>
-    <lastmod>2023-08-09T09:56:52+08:00</lastmod>
+    <lastmod>2023-08-09T21:58:59+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/post/</loc>
-    <lastmod>2023-08-09T09:56:52+08:00</lastmod>
+    <lastmod>2023-08-09T21:58:59+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/post/vim8-useful-keymap/</loc>
+    <lastmod>2023-08-09T21:58:59+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/series/vim/vim8/</loc>
+    <lastmod>2023-08-09T21:58:59+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/post/tmux-kmonad/</loc>
     <lastmod>2023-08-09T09:56:52+08:00</lastmod>
