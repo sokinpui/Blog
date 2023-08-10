@@ -19,6 +19,8 @@ ShowPostNavLinks: true
 
 ---
 
+> update at Thu Aug 10 01:10:36 PM CST 2023, add plugin for text object
+
 Mainly Introduce Neovim plugins and share config that help markdown writing.
 
 The Full config is [here](https://github.com/sokinpui/dotfiles/tree/main/nvim)
@@ -821,6 +823,34 @@ The source `calc` can handle some simple math calculation.
 
 `<C-e>` will close the menu
 
+{{< /details >}}
+
+## text object for markdown
+Extend text object in markdown, I found [this plugin: text object for markdown](https://github.com/coachshea/vim-textobj-markdown#code-fences), the code block text object provide by it is extremely useful. It use api from another plugin [vim-textobj-user](https://github.com/kana/vim-textobj-user).
+demo
+![./img/text-object.gif](img/text-object.gif)
+
+{{< details "text object plugin config" >}}
+```lua
+return {
+    {
+        "coachshea/vim-textobj-markdown",
+        dependencies = {
+            "kana/vim-textobj-user"
+        },
+        ft = "markdown",
+        config = function()
+            vim.g.textobj_markdown_no_default_key_mappings = 1
+            vim.cmd([[
+            onoremap ic <plug>(textobj-markdown-Bchunk-i)
+            onoremap ac <plug>(textobj-markdown-Bchunk-a)
+            vnoremap ic <plug>(textobj-markdown-Bchunk-i)
+            vnoremap ac <plug>(textobj-markdown-Bchunk-a)
+            ]])
+        end
+    }
+}
+```
 {{< /details >}}
 
 # zsh

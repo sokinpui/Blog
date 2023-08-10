@@ -299,7 +299,10 @@ example</p>
       
       <guid>https://sokinpui.github.io/Blog/post/vim4-markdownwritingsetup/</guid>
       <description>Markdown setup make text editing become comfortable</description>
-      <content:encoded><![CDATA[<p>Mainly Introduce Neovim plugins and share config that help markdown writing.</p>
+      <content:encoded><![CDATA[<blockquote>
+<p>update at Thu Aug 10 01:10:36 PM CST 2023, add plugin for text object</p>
+</blockquote>
+<p>Mainly Introduce Neovim plugins and share config that help markdown writing.</p>
 <p>The Full config is <a href="https://github.com/sokinpui/dotfiles/tree/main/nvim">here</a></p>
 <h1 id="before">Before</h1>
 <p>A good markdown setup just make fun easier, though the most weighted thing in writing should be the content instead of the tools you use. But a right tools will make editing a lot easier. Recently markdown can use for note taking, documenting, or blog writing. Markdown is similiar to HTML, but have a clear and readable syntax. Only looking at the syntax, you can already have idea how the file will be reandered. Compare to Tex, the syntax is simpler but less featured, if you don&rsquo;t need complicate layout of your output file, you should consider markdown first. You can use some simple $Latex$ math expression like <code>$\int$</code> in markdown, already well supported by most of markdown editor.</p>
@@ -1028,6 +1031,34 @@ demo:
 <p><code>&lt;C-k&gt;</code> will jump to previous snippets cursor holder</p>
 <p><code>&lt;C-e&gt;</code> will close the menu</p>
 
+</details>
+
+
+<h2 id="text-object-for-markdown">text object for markdown</h2>
+<p>Extend text object in markdown, I found <a href="https://github.com/coachshea/vim-textobj-markdown#code-fences">this plugin: text object for markdown</a>, the code block text object provide by it is extremely useful. It use api from another plugin <a href="https://github.com/kana/vim-textobj-user">vim-textobj-user</a>.
+demo
+<img loading="lazy" src="/Blog/post/vim4-markdownwritingsetup/img/text-object.gif" type="" alt="./img/text-object.gif"  /></p>
+<details>
+  <summary>text object plugin config</summary>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;coachshea/vim-textobj-markdown&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dependencies</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;kana/vim-textobj-user&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ft</span> <span class="o">=</span> <span class="s2">&#34;markdown&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">config</span> <span class="o">=</span> <span class="kr">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">textobj_markdown_no_default_key_mappings</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.cmd</span><span class="p">(</span><span class="s">[[
+</span></span></span><span class="line"><span class="cl"><span class="s">            onoremap ic &lt;plug&gt;(textobj-markdown-Bchunk-i)
+</span></span></span><span class="line"><span class="cl"><span class="s">            onoremap ac &lt;plug&gt;(textobj-markdown-Bchunk-a)
+</span></span></span><span class="line"><span class="cl"><span class="s">            vnoremap ic &lt;plug&gt;(textobj-markdown-Bchunk-i)
+</span></span></span><span class="line"><span class="cl"><span class="s">            vnoremap ac &lt;plug&gt;(textobj-markdown-Bchunk-a)
+</span></span></span><span class="line"><span class="cl"><span class="s">            ]]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
 </details>
 
 
