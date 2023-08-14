@@ -1,5 +1,5 @@
 baseURL: "https://sokinpui.github.io/Blog/"
-title: Home
+title: So
 paginate: 100
 theme: PaperModX
 
@@ -24,10 +24,10 @@ outputs:
 
 params:
     env: production # to enable google analytics, opengraph, twitter-cards and schema.
-    title: Home
+    title: So's blog
     description: "So's blog"
-    keywords: [Blog, Portfolio, PaperModX]
-    author: So Kin Pui
+    keywords: [sokinpui, Blog, Portfolio, PaperModX]
+    author: Sokinpui
     # author: ["Me", "You"] # multiple authors
     images: ["<link or path of image for opengraph, twitter-cards>"]
     DateFormat: "January 2, 2006"
