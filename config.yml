@@ -22,6 +22,19 @@ outputs:
     - RSS
     - JSON # is necessary
 
+[outputFormats.json]
+  name = "json"
+  mediaType = "application/feed+json"
+  baseName = "index"
+  isPlainText = false
+  rel = "alternate"
+  isHTML = false
+  noUgly = true
+  permalinkable = false
+
+[outputs]
+    section = ["json", "html", "rss"]
+
 params:
     env: production # to enable google analytics, opengraph, twitter-cards and schema.
     title: Home
