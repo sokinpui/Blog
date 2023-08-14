@@ -9,7 +9,7 @@ draft: false
 hidemeta: false
 comments: true
 description: "Desc Text."
-canonicalURL: "https://canonical.url/to/page"
+canonicalURL: ""
 disableShare: false
 hideSummary: false
 searchHidden: false
