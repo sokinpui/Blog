@@ -302,6 +302,9 @@ example</p>
       <content:encoded><![CDATA[<blockquote>
 <p>update at Thu Aug 10 01:10:36 PM CST 2023, add plugin for text object</p>
 </blockquote>
+<blockquote>
+<p>update at Mon Aug 14 01:05:19 PM CST 2023, tex_conceal</p>
+</blockquote>
 <p>Mainly Introduce Neovim plugins and share config that help markdown writing.</p>
 <p>The Full config is <a href="https://github.com/sokinpui/dotfiles/tree/main/nvim">here</a></p>
 <h1 id="before">Before</h1>
@@ -791,7 +794,7 @@ demo:
 </span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">vim_markdown_no_default_key_mappings</span> <span class="o">=</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">vim_markdown_conceal_code_blocks</span>     <span class="o">=</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">vim_markdown_math</span>                    <span class="o">=</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">tex_conceal</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">tex_conceal</span> <span class="o">=</span> <span class="s2">&#34;abmgs&#34;</span>
 </span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">vim_markdown_conceal</span> <span class="o">=</span> <span class="mi">1</span>
 </span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">vim_markdown_toc_autofit</span> <span class="o">=</span> <span class="mi">1</span>
 </span></span><span class="line"><span class="cl">            <span class="n">vim.g</span><span class="p">.</span><span class="n">vim_markdown_follow_anchor</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1071,7 +1074,7 @@ demo
 <h2 id="conceal">conceal</h2>
 <p>Hide the syntax when cursor is not at the line, maybe helpful or not. Vim has this function built-in, you can set <code>set conceallevel=2</code>. vim-markdown also have options that control concealment for different group, they are:</p>
 <p><code>let g:vim_markdown_math = 1</code> to enalbe concealment for $Latex$ syntax</p>
-<p><code>let g:tex_conceal = &quot;&quot;</code> to enalbe concealment for $Latex$ delimiter</p>
+<p><code>let g:tex_conceal = &quot;abmgs&quot;</code> to set the concealment options for tex object in both markdown and tex file, see <code>:help tex_conceal</code> to see details of options.</p>
 <p><code>let g:vim_markdown_conceal_code_blocks = 1</code> to enalbe concealment for code block delimiter.</p>
 <p><code>let g:vim_markdown_strikethrough = 1</code> to enable concealment for Strikethrough. <em>This featuer don&rsquo;t require conceallevel set in vim</em>
 <img loading="lazy" src="/Blog/post/vim4-markdownwritingsetup/img/strikethrough.png" type="" alt="strikethrough"  /></p>

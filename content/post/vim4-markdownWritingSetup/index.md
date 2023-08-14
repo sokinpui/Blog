@@ -21,6 +21,8 @@ ShowPostNavLinks: true
 
 > update at Thu Aug 10 01:10:36 PM CST 2023, add plugin for text object
 
+> update at Mon Aug 14 01:05:19 PM CST 2023, tex_conceal
+
 Mainly Introduce Neovim plugins and share config that help markdown writing.
 
 The Full config is [here](https://github.com/sokinpui/dotfiles/tree/main/nvim)
@@ -563,7 +565,7 @@ return {
             vim.g.vim_markdown_no_default_key_mappings = 0
             vim.g.vim_markdown_conceal_code_blocks     = 0
             vim.g.vim_markdown_math                    = 1
-            vim.g.tex_conceal = ""
+            vim.g.tex_conceal = "abmgs"
             vim.g.vim_markdown_conceal = 1
             vim.g.vim_markdown_toc_autofit = 1
             vim.g.vim_markdown_follow_anchor = 0
@@ -868,7 +870,7 @@ Hide the syntax when cursor is not at the line, maybe helpful or not. Vim has th
 
 `let g:vim_markdown_math = 1` to enalbe concealment for $Latex$ syntax
 
-`let g:tex_conceal = ""` to enalbe concealment for $Latex$ delimiter
+`let g:tex_conceal = "abmgs"` to set the concealment options for tex object in both markdown and tex file, see `:help tex_conceal` to see details of options.
 
 `let g:vim_markdown_conceal_code_blocks = 1` to enalbe concealment for code block delimiter.
 
