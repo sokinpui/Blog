@@ -16,7 +16,6 @@ searchHidden: false
 ShowReadingTime: true
 ShowBreadCrumbs: true
 ShowPostNavLinks: true
-medium_enabled: false
 
 ---
 
