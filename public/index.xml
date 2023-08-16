@@ -5,7 +5,39 @@
     <link>https://sokinpui.github.io/Blog/</link>
     <description>Recent content in Home on So</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 14 Aug 2023 18:44:18 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Aug 2023 12:34:25 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Efficient vim editing: master regular expression</title>
+      <link>https://sokinpui.github.io/Blog/post/vim10-efficient-regex/</link>
+      <pubDate>Tue, 15 Aug 2023 12:34:25 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/vim10-efficient-regex/</guid>
+      <description>Use regular expression when it do the best</description>
+      <content:encoded><![CDATA[<p>When will be used in editing?</p>
+<h1 id="learn-regular-expression">Learn regular expression</h1>
+<p>regular expression, usually shorten in <strong>regex</strong>. Not only helpful inside Vim, heavily used in bash script, and any thing related to text stream editing. Regex provide rules to abstract text. As a editor user, most of the time is working with text, master such rule will be handy. Use regex smart can reduce the need of repeitive editing, and hence improve the productivity.</p>
+<h1 id="use-regular-expression-in-vim">Use regular expression in Vim</h1>
+<p>There are serveral case you will use regualar expression</p>
+<ol>
+<li>search <code>/</code></li>
+<li><code>:s/</code></li>
+<li><code>:g/</code></li>
+<li><code>:vimgrep</code></li>
+<li><code>:grep</code></li>
+</ol>
+<hr>
+<p>setting visual the regex you type: increment search
+<code>set insearch</code></p>
+<p>a-zA-z0-9_</p>
+<p>special characters</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">(){}[].*+!#@%^&amp;*\|$&#34;&#39;&lt;&gt;/-
+</span></span></code></pre></div><p>grouping
+() \1 \2 \3</p>
+<p>magic option</p>
+<p>use case and demo</p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Efficient vim editing: Don&#39;t use visual mode if possible</title>
       <link>https://sokinpui.github.io/Blog/post/vim9-efficient-editing/</link>
@@ -336,6 +368,9 @@ example</p>
 </blockquote>
 <blockquote>
 <p>update at Mon Aug 14 01:05:19 PM CST 2023, tex_conceal</p>
+</blockquote>
+<blockquote>
+<p>update at Wed Aug 16 07:33:25 PM CST 2023, Yet another solution to preview markdown file</p>
 </blockquote>
 <p>Mainly Introduce Neovim plugins and share config that help markdown writing.</p>
 <p>The Full config is <a href="https://github.com/sokinpui/dotfiles/tree/main/nvim">here</a></p>
@@ -795,6 +830,7 @@ demo:
 <p>markdown syntax is so simple that you can preview it in your brain.</p>
 </blockquote>
 <p>Mostly the preview is for Math expression, image, video and gif. I will either open browser with <a href="https://github.com/iamcco/markdown-preview.nvim">markown-preivew.nvim</a> or <strong>Obsidian</strong> <del>(Obsidian is the best markdown viewer ever!)</del> to see how my file will be rendered. Obsidian file explorer will show rich content like <code>*.gif</code>, <code>*.png</code> or <code>*.mp4</code>. <del>typora hide them!</del></p>
+<p>New plugin found at Wed Aug 16 07:34:40 PM CST 2023, I now totally dropped <strong>markown-preivew.nvim</strong>, and use <a href="https://github.com/sokinpui/open-in-obsidian.nvim">this plugin: open-in-obsidian.nvim</a>. You can open the file using command <code>Obsidian</code> to &ldquo;preview&rdquo; current file in obsidian! why would I need a browser if the file I am editing is already a file inside obsidian vault?</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <h2 id="image-clipboard-insertion">Image clipboard insertion</h2>

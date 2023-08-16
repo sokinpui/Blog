@@ -23,6 +23,10 @@ ShowPostNavLinks: true
 
 > update at Mon Aug 14 01:05:19 PM CST 2023, tex_conceal
 
+> update at Wed Aug 16 07:33:25 PM CST 2023, Yet another solution to preview markdown file
+
+
+
 Mainly Introduce Neovim plugins and share config that help markdown writing.
 
 The Full config is [here](https://github.com/sokinpui/dotfiles/tree/main/nvim)
@@ -530,6 +534,9 @@ By me again:
 > markdown syntax is so simple that you can preview it in your brain. 
 
 Mostly the preview is for Math expression, image, video and gif. I will either open browser with [markown-preivew.nvim](https://github.com/iamcco/markdown-preview.nvim) or **Obsidian** ~~(Obsidian is the best markdown viewer ever!)~~ to see how my file will be rendered. Obsidian file explorer will show rich content like `*.gif`, `*.png` or `*.mp4`. ~~typora hide them!~~
+
+
+New plugin found at Wed Aug 16 07:34:40 PM CST 2023, I now totally dropped **markown-preivew.nvim**, and use [this plugin: open-in-obsidian.nvim](https://github.com/sokinpui/open-in-obsidian.nvim). You can open the file using command `Obsidian` to "preview" current file in obsidian! why would I need a browser if the file I am editing is already a file inside obsidian vault?
 
 <!--
 difference between typora and obsidian file explorer

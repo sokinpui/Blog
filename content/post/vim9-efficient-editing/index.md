@@ -4,7 +4,7 @@ date: 2023-08-14T18:44:18+08:00
 tags: [""]
 author: "So Kin Pui"
 showToc: true
-TocOpen: true
+TocOpen: false
 draft: false
 hidemeta: false
 comments: true

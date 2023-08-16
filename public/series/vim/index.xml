@@ -7,6 +7,38 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 01 Aug 2023 23:03:06 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/series/vim/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Efficient vim editing: Don&#39;t use visual mode if possible</title>
+      <link>https://sokinpui.github.io/Blog/series/vim/vim9/</link>
+      <pubDate>Mon, 14 Aug 2023 18:44:18 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/series/vim/vim9/</guid>
+      <description>Visual selected and then yank? Why don&amp;#39;t you just yank the text object?</description>
+      <content:encoded><![CDATA[<p>Efficient tips for you, the beginers vimers.</p>
+<h1 id="why">why?</h1>
+<p>because it has the same effect, but visual mode have more keys storke</p>
+<p>If you often use visual mode before yank or delete text, you should take care, you may be in situation of inefficient editing.</p>
+<h1 id="operator-pending-mode-vs-visual-mode">Operator-pending mode vs Visual mode</h1>
+<p>Operator-pending mode are mode when vim is waiting your <strong>motion</strong>. What is <strong>motion</strong> in vim? <strong>Motion</strong> means the range of text you would like vim to apply the command. <em>This range</em> can be <code>w</code>, <code>iw</code>, <code>e</code>, or <code>i{</code>. In another words, <strong>motion</strong> means the region of selection. The <strong>motion</strong> I have just mentioned control how the region of text will be applied by the command. Like <code>d</code> in <code>diw</code>.</p>
+<p>Visual mode, similiar to drag your mouse selecting random region, for vimers, we usually selected by keyboard, We will be involved to visual mode first, either by <code>v</code>, <code>V</code> or <code>&lt;C-v&gt;</code>, then you move your cursor to select the region you want. Similiar to Operator-pending mode, right? But we take a look how much key you have pressed.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Here is the example text:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">local M = {
+</span></span><span class="line"><span class="cl">    local function doSomething(x, y)
+</span></span><span class="line"><span class="cl">        local x, y = x, y
+</span></span><span class="line"><span class="cl">        return x * y
+</span></span><span class="line"><span class="cl">    end
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><p>We assume you want to delete the text inside M. If you prefer visual mode.
+<img loading="lazy" src="/Blog/series/vim/vim9/img/visual-mode.gif" type="" alt="./img/visual-mode.gif"  />
+the key sequence: <code>vi{x</code></p>
+<p>If you prefer Operator-pending mode.
+<img loading="lazy" src="/Blog/series/vim/vim9/img/omode.gif" type="" alt="./img/omode.gif"  />
+The key sequence: <code>di{</code></p>
+<p>You will save one key by the end. Actually, if you prefer first enter visual-mode, it may be the inertia from using other GUI application with mouse. But remember you don&rsquo;t have to keep such practice in vim, you can directly delete or yank with <strong>motion</strong>. It may be little save in once. However, if you are preparing to use vim for future, you should keep upgrading your editing style smoother. Leverge Operator-pending mode is basic practice for efficient editing.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
       <title>Useful Vim mappings</title>
       <link>https://sokinpui.github.io/Blog/series/vim/vim8/</link>
       <pubDate>Wed, 09 Aug 2023 21:58:59 +0800</pubDate>
@@ -209,6 +241,9 @@ This plugins allow you check the startup time afte open Neovim, maybe more intut
 </blockquote>
 <blockquote>
 <p>update at Mon Aug 14 01:05:19 PM CST 2023, tex_conceal</p>
+</blockquote>
+<blockquote>
+<p>update at Wed Aug 16 07:33:25 PM CST 2023, Yet another solution to preview markdown file</p>
 </blockquote>
 <p>Mainly Introduce Neovim plugins and share config that help markdown writing.</p>
 <p>The Full config is <a href="https://github.com/sokinpui/dotfiles/tree/main/nvim">here</a></p>
@@ -668,6 +703,7 @@ demo:
 <p>markdown syntax is so simple that you can preview it in your brain.</p>
 </blockquote>
 <p>Mostly the preview is for Math expression, image, video and gif. I will either open browser with <a href="https://github.com/iamcco/markdown-preview.nvim">markown-preivew.nvim</a> or <strong>Obsidian</strong> <del>(Obsidian is the best markdown viewer ever!)</del> to see how my file will be rendered. Obsidian file explorer will show rich content like <code>*.gif</code>, <code>*.png</code> or <code>*.mp4</code>. <del>typora hide them!</del></p>
+<p>New plugin found at Wed Aug 16 07:34:40 PM CST 2023, I now totally dropped <strong>markown-preivew.nvim</strong>, and use <a href="https://github.com/sokinpui/open-in-obsidian.nvim">this plugin: open-in-obsidian.nvim</a>. You can open the file using command <code>Obsidian</code> to &ldquo;preview&rdquo; current file in obsidian! why would I need a browser if the file I am editing is already a file inside obsidian vault?</p>
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <h2 id="image-clipboard-insertion">Image clipboard insertion</h2>
