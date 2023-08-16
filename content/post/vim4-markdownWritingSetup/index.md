@@ -29,7 +29,7 @@ ShowPostNavLinks: true
 
 Mainly Introduce Neovim plugins and share config that help markdown writing.
 
-The Full config is [here](https://github.com/sokinpui/dotfiles/tree/main/nvim)
+The Full config is [here](https://github.com/sokinpui/.dotfiles/tree/main/nvim)
 
 # Before
 A good markdown setup just make fun easier, though the most weighted thing in writing should be the content instead of the tools you use. But a right tools will make editing a lot easier. Recently markdown can use for note taking, documenting, or blog writing. Markdown is similiar to HTML, but have a clear and readable syntax. Only looking at the syntax, you can already have idea how the file will be reandered. Compare to Tex, the syntax is simpler but less featured, if you don't need complicate layout of your output file, you should consider markdown first. You can use some simple $Latex$ math expression like `$\int$` in markdown, already well supported by most of markdown editor.

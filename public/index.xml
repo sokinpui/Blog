@@ -373,7 +373,7 @@ example</p>
 <p>update at Wed Aug 16 07:33:25 PM CST 2023, Yet another solution to preview markdown file</p>
 </blockquote>
 <p>Mainly Introduce Neovim plugins and share config that help markdown writing.</p>
-<p>The Full config is <a href="https://github.com/sokinpui/dotfiles/tree/main/nvim">here</a></p>
+<p>The Full config is <a href="https://github.com/sokinpui/.dotfiles/tree/main/nvim">here</a></p>
 <h1 id="before">Before</h1>
 <p>A good markdown setup just make fun easier, though the most weighted thing in writing should be the content instead of the tools you use. But a right tools will make editing a lot easier. Recently markdown can use for note taking, documenting, or blog writing. Markdown is similiar to HTML, but have a clear and readable syntax. Only looking at the syntax, you can already have idea how the file will be reandered. Compare to Tex, the syntax is simpler but less featured, if you don&rsquo;t need complicate layout of your output file, you should consider markdown first. You can use some simple $Latex$ math expression like <code>$\int$</code> in markdown, already well supported by most of markdown editor.</p>
 <h1 id="choose-of-editor">Choose of editor</h1>
