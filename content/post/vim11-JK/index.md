@@ -19,9 +19,7 @@ ShowPostNavLinks: true
 
 ---
 
-> update at Sat Aug 19 03:24:56 PM CST 2023
-
-TL;DR, I find my blog is too verbose, let me summarize it.
+**TL;DR**, I find my blog is too verbose, let me summarize it.
 
 I am try to find the least key solution to jump within certain numbers of lines, that is
 Assume we map J and K to <n>j and <n>k respectively, for example, `nmap J 5J`
@@ -30,6 +28,10 @@ lines = a \times n \times j/k + b \times j/k
 $$
 
 We want the $min(a+b)$ among the $n$ we test.
+
+ALthough I have written this blog to calculate the best remap for J/K, ironcially I find I cannot build muscale memory to use J/K to jumps. I still prefer using 5k, 4k, 10k instead of a fixing number jumps.
+
+**This blog is just for fun AH HA.**
 
 ---
 

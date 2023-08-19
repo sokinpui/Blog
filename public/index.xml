@@ -5,7 +5,30 @@
     <link>https://sokinpui.github.io/Blog/</link>
     <description>Recent content in Home on So</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 18 Aug 2023 13:14:48 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Aug 2023 21:20:53 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Efficient Vim: try not to overwrite vim default keybindings.</title>
+      <link>https://sokinpui.github.io/Blog/post/vim12-stopaddfeatures/</link>
+      <pubDate>Sat, 19 Aug 2023 21:20:53 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/vim12-stopaddfeatures/</guid>
+      <description>Try to stand with Vim default key bindings!</description>
+      <content:encoded><![CDATA[<p>We know Vim is known as its extentability, why would I recommend you stop making your own configuration? Because it comes with cost.</p>
+<h1 id="the-issue">The issue</h1>
+<p>You find <code>cw</code> is difficult to type, you find that <code>cl</code> is overlapping with <code>s</code>, you add some remap to your <code>vimrc</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">onoremap</span> <span class="nx">l</span> <span class="nx">w</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">onoremap</span> <span class="nx">L</span> <span class="nx">W</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">onoremap</span> <span class="nx">h</span> <span class="nx">iw</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">onoremap</span> <span class="nx">H</span> <span class="nx">iW</span><span class="err">
+</span></span></span></code></pre></div><p>Indeed, this is how I used to use vim. ( <a href="https://sokinpui.github.io/Blog/post/vim8-useful-keymap/">link to post</a> ). The keybindings help me, but just so little improvement. Just like other vimers, I tends to use vim style in other application like zsh, Emacs, obsidian and tmux etc. When I sit down and going to work hard, I find the keybindings on them are just wrong, I forget to sync my config on Vim to other application, I have to find solution for each application, luckly, those application is say to be easy to config with their vi-mode. While I can&rsquo;t make sure current situation can apply to future, I can&rsquo;t promise I stil using same set of tools or using the same vim config. The more application I use, the more time I have to spend on finding solution in other to make the application prefectly fix my using case.</p>
+<p>I am afraid If I having too much personalization, I would loss the vim compability from any vim emulation one day. One reason keep me using vim is that  there is vim-emulation everywhere, Once I have learn the keybindings, I can keep the same workflow no matter the tools. Therefore, I stop overwriting vim default keybindings. Remapping I use currently are mostly related to plugins, and is trigger by leader key.</p>
+<h1 id="outside-vim-the-keyboard-layout-the-cose-of-too-much-personalization">Outside Vim, the keyboard layout, the cose of too much personalization</h1>
+<p>The keyboard layout I current I use are my own personalized version, it is build on QWERTY, but I have some change with modifiers, I have made <code>space</code> as sapce-shift(tap as space, held as shift), shift when held, I have made <code>left shift</code> as esc-ctrl, make some changes wiht special symbols, turn <code>caps lock</code> become layer raiser, <code>{</code>, <code>}</code> <code>[</code> and <code>]</code> are <code>caps lock</code> + <code>kjiu</code>. Since those key are highly related to vim motion, my editing and typing speed are dropped significantly when I use any vanilla QWERTY keyboard, inside and outside Vim. Especially <code>shift</code> is mapped to <code>space</code>, there are just so many vim motion require capital letter or symbols <code>!@#$%^&amp;*(</code> to use. I afraid if one day I have to use some public workstation, I may just stand in front it, type like those who use computer first time.</p>
+<p>To change your keyboard layout, either via software( karabiner elements on Mac, xinput on linux ), or via hardware. I haven&rsquo;t touch my Macbook since I have upgrade my keyboard layout on a second hand thinkpad. One of the reason are the keyboard layout on two machine have a huge different after upgrade, since the software used are different on Mac and Linux, I don&rsquo;t want to spend extra day config Macbook just to sync the layout.</p>
+<p>Or I can purchase a complible keybord to have the universal layout on different mahcine. Nevertheless, they are expensive and I still need to bring my laptop work outside physical keyboard may not be a good choice.</p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Try to find the least key solution to navigate up and down in Vim</title>
       <link>https://sokinpui.github.io/Blog/post/vim11-jk/</link>
@@ -13,16 +36,15 @@
       
       <guid>https://sokinpui.github.io/Blog/post/vim11-jk/</guid>
       <description>Try to find the least key solution for vertical motion in vanilla Vim</description>
-      <content:encoded><![CDATA[<blockquote>
-<p>update at Sat Aug 19 03:24:56 PM CST 2023</p>
-</blockquote>
-<p>TL;DR, I find my blog is too verbose, let me summarize it.</p>
+      <content:encoded><![CDATA[<p><strong>TL;DR</strong>, I find my blog is too verbose, let me summarize it.</p>
 <p>I am try to find the least key solution to jump within certain numbers of lines, that is
 Assume we map J and K to <!-- raw HTML omitted -->j and <!-- raw HTML omitted -->k respectively, for example, <code>nmap J 5J</code>
 $$
 lines = a \times n \times j/k + b \times j/k
 $$</p>
 <p>We want the $min(a+b)$ among the $n$ we test.</p>
+<p>ALthough I have written this blog to calculate the best remap for J/K, ironcially I find I cannot build muscale memory to use J/K to jumps. I still prefer using 5k, 4k, 10k instead of a fixing number jumps.</p>
+<p><strong>This blog is just for fun AH HA.</strong></p>
 <hr>
 <p>In this blog, I am try to navigate up and down using <code>&lt;c-d&gt;</code>, <code>&lt;c-u&gt;</code>, the remapped <code>J</code> and <code>K</code>, they are remapped to <code>&lt;x&gt;j</code> and <code>&lt;x&gt;k</code> respectively. And jk of course.</p>
 <h1 id="why-this-blog">Why this blog?</h1>
@@ -96,38 +118,6 @@ $$</p>
 </span></span><span class="line"><span class="cl">average jumps needed for JK mapped to 19 is 8.29
 </span></span><span class="line"><span class="cl">average jumps needed for JK mapped to 20 is 9.1
 </span></span></code></pre></div><p>And we can see, 5 is the best in this case.</p>
-]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>Efficient vim editing: master regular expression</title>
-      <link>https://sokinpui.github.io/Blog/post/vim10-efficient-regex/</link>
-      <pubDate>Tue, 15 Aug 2023 12:34:25 +0800</pubDate>
-      
-      <guid>https://sokinpui.github.io/Blog/post/vim10-efficient-regex/</guid>
-      <description>Use regular expression when it do the best</description>
-      <content:encoded><![CDATA[<p>When will be used in editing?</p>
-<h1 id="learn-regular-expression">Learn regular expression</h1>
-<p>regular expression, usually shorten in <strong>regex</strong>. Not only helpful inside Vim, heavily used in bash script, and any thing related to text stream editing. Regex provide rules to abstract text. As a editor user, most of the time is working with text, master such rule will be handy. Use regex smart can reduce the need of repeitive editing, and hence improve the productivity.</p>
-<h1 id="use-regular-expression-in-vim">Use regular expression in Vim</h1>
-<p>There are serveral case you will use regualar expression</p>
-<ol>
-<li>search <code>/</code></li>
-<li><code>:s/</code></li>
-<li><code>:g/</code></li>
-<li><code>:vimgrep</code></li>
-<li><code>:grep</code></li>
-</ol>
-<hr>
-<p>setting visual the regex you type: increment search
-<code>set insearch</code></p>
-<p>a-zA-z0-9_</p>
-<p>special characters</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">(){}[].*+!#@%^&amp;*\|$&#34;&#39;&lt;&gt;/-
-</span></span></code></pre></div><p>grouping
-() \1 \2 \3</p>
-<p>magic option</p>
-<p>use case and demo</p>
 ]]></content:encoded>
     </item>
     
