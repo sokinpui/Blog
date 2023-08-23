@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/post/vim11-JK/index.md",
+                "file": "content/post/kmonad-introduction/index.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/post/vim11-JK/index.md",
+                "file": "content/post/kmonad-introduction/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/post/vim11-JK/index.md",
+                "file": "content/post/kmonad-introduction/index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/post/vim11-JK/index.md"
+                "file": "content/post/kmonad-introduction/index.md"
               }
             }
           }
