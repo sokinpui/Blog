@@ -1,5 +1,5 @@
 ---
-title: "Cross platfrom keymaps layout remapper: Kmonad"
+title: "KMonad: The Software version of QMK"
 date: 2023-08-20T18:29:07+08:00
 tags: [""]
 author: "So Kin Pui"
