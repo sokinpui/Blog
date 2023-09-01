@@ -120,9 +120,3 @@ With the help of snippets and auto completion, I now write code with less demand
 to type all the symbols manually, therefor a entire symbols layers on homerow is 
 no needed(Previously I have one, use space to active, convert home row into 
 common used symbols.)
-
-
-![image](/1.png)
-![image](/iii.png)
-![image](/img/iii.png)
-![image](/img/1.png)
