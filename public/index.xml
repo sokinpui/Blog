@@ -945,42 +945,6 @@ quick 5 line jump</p>
     </item>
     
     <item>
-      <title>Kmonad</title>
-      <link>https://sokinpui.github.io/Blog/post/kmonad/</link>
-      <pubDate>Wed, 09 Aug 2023 16:51:55 +0800</pubDate>
-      
-      <guid>https://sokinpui.github.io/Blog/post/kmonad/</guid>
-      <description>Remap keyboard with kmonad</description>
-      <content:encoded><![CDATA[<h1 id="what-is-kmonad">What is kmonad?</h1>
-<p><a href="https://github.com/kmonad/kmonad">kmoand</a>:</p>
-<blockquote>
-<p>KMonad is an advanced tool that lets you infinitely customize and extend the functionalities of almost any keyboard.</p>
-</blockquote>
-<p>You can create layer, remap keyboard keys, make a <a href="https://colemak.com/">colemak</a> on qwerty layout keyboard, create <a href="https://precondition.github.io/home-row-mods">home row modifier</a>, or record keyboard macros.</p>
-<p>Since it is a software, you don&rsquo;t have to complie QMK or buy a new keyboard that support recomplied. BTW, I haven&rsquo;t felt laggy when using kmonad, it works both on X11 and Wayland.</p>
-<h2 id="install-kmonad">Install kmonad</h2>
-<p>The official repo recently support download directly from package manager of Arch Linux, GNU Guix and Void Linux. Non of this is my using distro, so I complied it from source with its <a href="https://github.com/kmonad/kmonad/blob/master/doc/installation.md#using-stack">tutorial</a>.</p>
-<p>First we need to clone the repo, then change directory into the cloned repo, finally build it with haskell build tools <strong>stack</strong>, if you haven&rsquo;t install stack, you need to first install it.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git clone https://github.com/kmonad/kmonad.git
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> kmonad
-</span></span><span class="line"><span class="cl">stack install
-</span></span></code></pre></div><p>Now you can test if it has successfully installed.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kmonad
-</span></span></code></pre></div><p>Kmonad has a lot of feature you can leverge with, in this blog, I will only introduce features that will be used in tmux. For more details you can check its <a href="https://github.com/kmonad/kmonad/blob/master/keymap/tutorial.kbd">official tutorial</a> or <a href="https://www.youtube.com/watch?v=Dhj1eauljwU&amp;t=199s&amp;pp=ygUGa21vbmFk">tutorial on youtube</a></p>
-<h2 id="kmonad-how">KMonad how</h2>
-<p>Snippet from kmonad configuration file: (keymaps of 100% keyboard)</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defsrc</span>
-</span></span><span class="line"><span class="cl">  <span class="nv">esc</span>  <span class="nv">f1</span>   <span class="nv">f2</span>   <span class="nv">f3</span>   <span class="nv">f4</span>   <span class="nv">f5</span>   <span class="nv">f6</span>   <span class="nv">f7</span>   <span class="nv">f8</span>   <span class="nv">f9</span>   <span class="nv">f10</span>  <span class="nv">f11</span>  <span class="nv">f12</span>  <span class="nv">pause</span> <span class="nv">del</span>  <span class="nv">home</span> <span class="nv">end</span>  <span class="nv">pgup</span>  <span class="nv">pgdn</span> 
-</span></span><span class="line"><span class="cl">  <span class="nv">grv</span>  <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">3</span>    <span class="mi">4</span>    <span class="mi">5</span>    <span class="mi">6</span>    <span class="mi">7</span>    <span class="mi">8</span>    <span class="mi">9</span>    <span class="mi">0</span>    <span class="nf">-</span>    <span class="nf">=</span>    <span class="nv">bspc</span>       <span class="nv">nlck</span> <span class="nv">kp/</span>  <span class="nv">kp*</span>  <span class="nv">kp-</span>
-</span></span><span class="line"><span class="cl">  <span class="nv">tab</span>  <span class="nv">q</span>    <span class="nv">w</span>    <span class="nv">e</span>    <span class="nv">r</span>    <span class="no">t</span>    <span class="nv">y</span>    <span class="nv">u</span>    <span class="nv">i</span>    <span class="nv">o</span>    <span class="nv">p</span>    <span class="nv">[</span>    <span class="nv">]</span>    <span class="nv">\ </span>         <span class="nv">kp7</span>  <span class="nv">kp8</span>  <span class="nv">kp9</span>  <span class="nv">kp+</span>
-</span></span><span class="line"><span class="cl">  <span class="nv">caps</span> <span class="nv">a</span>    <span class="nv">s</span>    <span class="nv">d</span>    <span class="nv">f</span>    <span class="nv">g</span>    <span class="nv">h</span>    <span class="nv">j</span>    <span class="nv">k</span>    <span class="nv">l</span>    <span class="c1">;    &#39;    ret             kp4  kp5  kp6</span>
-</span></span><span class="line"><span class="cl">  <span class="nv">lsft</span> <span class="nv">z</span>    <span class="nv">x</span>    <span class="nv">c</span>    <span class="nv">v</span>    <span class="nv">b</span>    <span class="nv">n</span>    <span class="nv">m</span>    <span class="o">,</span>    <span class="o">.</span>    <span class="nf">/</span>    <span class="nv">rsft</span> <span class="nv">up</span>              <span class="nv">kp1</span>  <span class="nv">kp2</span>  <span class="nv">kp3</span>  <span class="nv">kprt</span>
-</span></span><span class="line"><span class="cl">  <span class="nv">lctl</span> <span class="nv">lmet</span> <span class="nv">lalt</span>           <span class="nv">spc</span>            <span class="nv">ralt</span> <span class="nv">cmp</span>   <span class="nv">rctl</span> <span class="nv">left</span> <span class="nv">down</span> <span class="nv">rght</span>       <span class="nv">kp0</span>  <span class="nv">kp.</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span></code></pre></div>]]></content:encoded>
-    </item>
-    
-    <item>
       <title>Strategy to remap Tmux shortcut</title>
       <link>https://sokinpui.github.io/Blog/post/tmux-kmonad/</link>
       <pubDate>Wed, 09 Aug 2023 09:56:52 +0800</pubDate>
