@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Keyboard layout on So</title>
+    <link>https://sokinpui.github.io/Blog/post/kmonad/</link>
+    <description>Recent content in Keyboard layout on So</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 01 Aug 2023 23:03:06 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/post/kmonad/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>KMonad: The Software version of QMK</title>
+      <link>https://sokinpui.github.io/Blog/post/kmonad/kmonad-introduction/</link>
+      <pubDate>Sun, 20 Aug 2023 18:29:07 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/kmonad/kmonad-introduction/</guid>
+      <description>Kmonad is a software that can be run on MacOS, Linux, Windows, reject the need of complible keyboard</description>
+      <content:encoded><![CDATA[<p>Kmonad repository on Github <a href="https://github.com/kmonad/kmonad">https://github.com/kmonad/kmonad</a></p>
+<p>I find the default QWERTY keyboard layout have too much keys that require pinkys to type. Chances is very high that My pinkys will sucks first before I can become a hacker! If you don&rsquo;t like complible keyboard like me for whatever reason. Kmonad is likely to be the ultimate solution, Works on most platform, super protable, install Kmonad, copy keymaps file to new mahcine, finally get Kmonad run, and you have your own keymaps on any machine able to run kmoand. Moreover, Kmonad is one of the fews solution you can change your keyboard layouts on laptop.</p>
+<p>Kmonad run on both Xory and Wayland on linux without any extra tweakings.</p>
+<p>The only issue is &hellip; I nearly unable to have natural typing experience on vanilla QWERTY keyboard. Merely a few keys change will have huge influence!</p>
+<p>Though I have mentioned that Kmonad is crossplatform, I find Kmoand work the best on linux. You will end up ith some issue and require extra tweaks on MacOS and Windows.</p>
+<p><div style="text-align: center;">
+    snippets of kmoand files
+</div>
+
+
+<img loading="lazy" src="/Blog/post/kmonad/kmonad-introduction/img/kmoand-in-vim.png" type="" alt="kmoand-in-vim"  /></p>
+<h1 id="what-can-kmonad-do">What can Kmonad do?</h1>
+<p>Kmonad is used to create <a href="https://blog.splitkb.com/introduction-to-qmk-features/">layer</a> on top of your keyboard, you can think Kmonad is software implemention of QMK firmware. Similiar tools like Karabiner-Elements may not give the same levels of visualizing layer, Since Karabiner-Elements by default don&rsquo;t provide preview to the layer. While we define each keys&rsquo; action in every layer when you writing Kmonad file. The code already talk you how the layer will be, saving time from memorize and debug.</p>
+<p>Nevertheless, if you merely swap a few keys, Kmoand may not be the best choice. Instead choose simpler tools like Karabiner-Elements or xinput will help you.</p>
+<h1 id="install-kmonad">Install Kmonad</h1>
+<p>You can either install its binary execute file, package(for Arch, Void, GNU Guix, NixOS only), or build it from source(work for most platform).</p>
+<p>The official guide: <a href="https://github.com/kmonad/kmonad/blob/master/doc/installation.md">https://github.com/kmonad/kmonad/blob/master/doc/installation.md</a></p>
+<h2 id="build-from-source">Build from source</h2>
+<p>Let&rsquo;s do this, Since Kmonad is written in Haskell, you will need Haskell project manager: <a href="https://github.com/commercialhaskell/stack">stack</a> installed, it should be avalible via package manager on most of linux distro.</p>
+<p>Clone kmoand repo and Build:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git clone https://github.com/kmonad/kmonad.git kmonad <span class="o">&amp;&amp;</span> <span class="nb">cd</span> kmonad <span class="o">&amp;&amp;</span> stack install
+</span></span></code></pre></div><p>After build, Kmonad will be in <code>$PATH</code>.</p>
+<p>Run <code>stack</code> to check if it is installed</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kmoand
+</span></span></code></pre></div><h1 id="lets-configure-the-keyboard-layout">Let&rsquo;s configure the keyboard layout!</h1>
+<h2 id="basic">basic</h2>
+<p>Create kmonad config file</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">vim config.kbd
+</span></span></code></pre></div><p>Kmonad file use lisp syntax style, The way to comment out code is use <code>;;</code>, note that it should be double semi-colon, since single <code>;</code> is literaly sending keycode of <code>;</code>. Block comments are start with <code>#|</code> and end with <code>|#</code>. For example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="cm">#|  This block is comment                                                              
+</span></span></span><span class="line"><span class="cl"><span class="cm">(deflayer name-of-the-layer
+</span></span></span><span class="line"><span class="cl"><span class="cm">  _   _   _   _   _   _   _   _   _   _   _   _   _   _     _  _ _  _  _ 
+</span></span></span><span class="line"><span class="cl"><span class="cm">  _   _   _   _   _   _   _   _   _   _   _   _   _   _     _ _  _  _
+</span></span></span><span class="line"><span class="cl"><span class="cm">  _   _   _   _   _   _   _   _   _   _   _   _   _   _     _  _  _  _
+</span></span></span><span class="line"><span class="cl"><span class="cm">  _   _   _   _   _   _   _   _   _   _   _   _   _         _  _  _
+</span></span></span><span class="line"><span class="cl"><span class="cm">  _   _   _   _   _   _   _   _   _   _   _   _ _           _  _  _  _
+</span></span></span><span class="line"><span class="cl"><span class="cm">  _   _ _           _         _   _   _   _   _ _           _  _
+</span></span></span><span class="line"><span class="cl"><span class="cm">)
+</span></span></span><span class="line"><span class="cl"><span class="cm">|#</span>
+</span></span></code></pre></div><p>Every function will be in parenthesis <code>()</code> as usual in lisp-like language.</p>
+<h2 id="structure-of-kmonad-file">Structure of Kmonad file</h2>
+<p>There are few block you will use.</p>
+<ol>
+<li>(defcfg)</li>
+<li>(defsrc)</li>
+<li>(defalias)</li>
+<li>(deflayer)</li>
+</ol>
+<p>Overview:</p>
+<ul>
+<li>We configure at <code>defcfg</code> block</li>
+<li>We define the region you want to remap with kmonad at <code>defsrc</code></li>
+<li>We alias at <code>defalias</code>, alias layer, marco&hellip; etc</li>
+<li>We define how layer works at <code>deflayer</code></li>
+</ul>
+<h3 id="defcfg">defcfg</h3>
+<p>It contains some essential config information, like the source of input, where does output sink etc</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defcfg</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">input</span>  <span class="p">(</span><span class="nv">device-file</span> <span class="s">&#34;/dev/input/by-path/pci-0000:00:14.0-usb-0:4:1.0-event-kbd&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">output</span> <span class="p">(</span><span class="nv">uinput-sink</span> <span class="s">&#34;100 keyboard&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">fallthrough</span> <span class="nv">true</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">allow-cmd</span> <span class="nv">true</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">fallthrough true
+</span></span></code></pre></div><p>It is recommend turn it on, <code>fallthrough</code> make sure when events is out of deifne, the keycode will be sent literaly instead of ignored. It will save you from mistake when define layers. You still got those keys typed.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">allow-cmd true
+</span></span></code></pre></div><p>If you have some keymaps mapped to shell command, they will be run if you set <code>allow-cmd</code> to <code>true</code>. Otherwise, they will sipmly send to shell as <a href="https://www.computerhope.com/jargon/s/stdout.htm">stdout</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="nv">input</span>  <span class="p">(</span><span class="nv">device-file</span> <span class="s">&#34;/dev/input/by-path/pci-0000:00:14.0-usb-0:4:1.0-event-kbd&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Talk kmoand where is your original keyboard locate.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="nv">output</span> <span class="p">(</span><span class="nv">uinput-sink</span> <span class="s">&#34;100 keyboard&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Talk kmoand how to handle the sent keycode so to make your defined layers work.</p>
+<p><strong>Notes that output and input are different on Linux, MacOS, Windows</strong>
+<details>
+  <summary>Linux example</summary>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defcfg</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">input</span>  <span class="p">(</span><span class="nv">device-file</span> <span class="s">&#34;/dev/input/by-path/pci-0000:00:14.0-usb-0:4:1.0-event-kbd&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">output</span> <span class="p">(</span><span class="nv">uinput-sink</span> <span class="s">&#34;100 keyboard&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">fallthrough</span> <span class="nv">true</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">allow-cmd</span> <span class="nv">true</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>official tutorial said that:</p>
+<blockquote>
+<p>In Linux we deal with input by performing an ioctl-grab on a specific
+device-file. This allows us to hook KMonad on the input of exactly 1 keyboard,
+and allows you to run multiple instances of KMonad for different keyboards. We
+make an input using:
+(device-file &ldquo;/dev/input/by-id/my-keyboard-kbd&rdquo;)</p>
+<p>NOTE: Any valid path to a device-file will work, but it is recommended to use
+the &lsquo;by-id&rsquo; directory, since these names will not change if you replug the
+device.</p>
+<p>We deal with output by creating a &lsquo;uinput&rsquo; device. This requires that the
+&lsquo;uinput&rsquo; kernel module is loaded. The easiest way to ensure this is by calling
+&lsquo;sudo modprobe uinput&rsquo;. We create a uinput device using:
+(uinput-sink &ldquo;name&rdquo; &ldquo;optional post-init command&rdquo;)</p>
+</blockquote>
+
+</details>
+
+</p>
+<details>
+  <summary>Window example</summary>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defcfg</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">input</span>  <span class="p">(</span><span class="nv">low-level-hook</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">output</span> <span class="p">(</span><span class="nv">send-event-sink</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">fallthrough</span> <span class="nv">true</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">allow-cmd</span> <span class="nv">true</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>official tutorial said that:</p>
+<blockquote>
+<p>&ndash; Windows &mdash;-</p>
+<p>In Windows we do not get such fine-grained control. We use a low-level
+keyboard hook to intercept all non-injected keyboard events. There is
+currently an open issue to improve the C-bindings used to capture windows
+keyevents, and if you have a better way to approach this issue, help is deeply
+appreciated. You specify a windows input using:
+(low-level-hook)</p>
+<p>Similarly, the output in Windows lacks the fine-grained control. We use the
+SendEvent API to emit key events directly to Windows. Since these are
+&lsquo;artificial&rsquo; events we won&rsquo;t end up catching them again by the
+<code>low-level-hook</code>. It is very likely that KMonad does not play well with other
+programs that capture keyboard input like AHK. You specify windows output using:
+(send-event-sink)</p>
+<p>Specific to Windows, KMonad also handles key auto-repeat.  Therefore your
+Windows system settings for key repeat delay and key repeat rate will have no
+effect when KMonad is running.  To set the repeat delay and rate from KMonad,
+pass the optional arguments pair to <code>send-event-sink</code>:
+(send-event-sink [ <!-- raw HTML omitted --> <!-- raw HTML omitted --> ])
+where:
+<!-- raw HTML omitted --> : how many ms before a key starts repeating
+<!-- raw HTML omitted -->  : how many ms between each repeat event
+A value of 500 ms delay and 30 ms rate should mimic the default Windows
+settings pretty well:
+(send-event-sink 500 30)</p>
+</blockquote>
+
+</details>
+
+
+<details>
+  <summary>MacOS example</summary>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defcfg</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">input</span>  <span class="p">(</span><span class="nv">iokit-name</span> <span class="s">&#34;my-keyboard-product-string&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">output</span> <span class="p">(</span><span class="nv">kext</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">fallthrough</span> <span class="nv">true</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">allow-cmd</span> <span class="nv">true</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>official tutorial said that:</p>
+<blockquote>
+<p>&ndash; Mac OS &mdash;&ndash;</p>
+<p>For Mac questions I suggest filing an issue and tagging @thoelze1, he wrote
+the MacOS API. However, input using:
+(iokit-name &ldquo;optional product string&rdquo;)</p>
+<p>By default this should grab all keyboards, however if a product string is
+provided, KMonad will only capture those devices that match the provided
+product string. If you would like to provide a product string, you can run
+<code>make; ./list-keyboards</code> in c_src/mac to list the product strings of all
+connected keyboards.</p>
+<p>You initialize output on MacOS using:
+(kext)</p>
+</blockquote>
+
+</details>
+
+
+<h3 id="defsrc">defsrc</h3>
+<p>We will deifne the region in the keyboard you want to remap with kmond. The number of keys in defsrc can be less or more than the actual number on your keyboard. If you using a 60% keyboard, it is fine to use the template of 100% keyboard. Merely you will not able to trigger thsoe extra keys. Conversely, you can define 60% region of your 100% keyboard in <code>defsrc</code>. It should work unless you have defined worong keycode. The remaining keys will work as normal if you have set <code>fallthrough</code> true. If you got confused, let see some real example!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defsrc</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">esc</span>  <span class="nv">f1</span>   <span class="nv">f2</span>   <span class="nv">f3</span>   <span class="nv">f4</span>   <span class="nv">f5</span>   <span class="nv">f6</span>   <span class="nv">f7</span>   <span class="nv">f8</span>   <span class="nv">f9</span>   <span class="nv">f10</span>  <span class="nv">f11</span>  <span class="nv">f12</span>  <span class="nv">pause</span> <span class="nv">del</span>  <span class="nv">home</span> <span class="nv">end</span>  <span class="nv">pgup</span>  <span class="nv">pgdn</span> 
+</span></span><span class="line"><span class="cl">  <span class="nv">grv</span>  <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">3</span>    <span class="mi">4</span>    <span class="mi">5</span>    <span class="mi">6</span>    <span class="mi">7</span>    <span class="mi">8</span>    <span class="mi">9</span>    <span class="mi">0</span>    <span class="nf">-</span>    <span class="nf">=</span>    <span class="nv">bspc</span>       <span class="nv">nlck</span> <span class="nv">kp/</span>  <span class="nv">kp*</span>  <span class="nv">kp-</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">tab</span>  <span class="nv">q</span>    <span class="nv">w</span>    <span class="nv">e</span>    <span class="nv">r</span>    <span class="no">t</span>    <span class="nv">y</span>    <span class="nv">u</span>    <span class="nv">i</span>    <span class="nv">o</span>    <span class="nv">p</span>    <span class="nv">[</span>    <span class="nv">]</span>    <span class="nv">\ </span>         <span class="nv">kp7</span>  <span class="nv">kp8</span>  <span class="nv">kp9</span>  <span class="nv">kp+</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">caps</span> <span class="nv">a</span>    <span class="nv">s</span>    <span class="nv">d</span>    <span class="nv">f</span>    <span class="nv">g</span>    <span class="nv">h</span>    <span class="nv">j</span>    <span class="nv">k</span>    <span class="nv">l</span>    <span class="c1">;    &#39;    ret             kp4  kp5  kp6</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">lsft</span> <span class="nv">z</span>    <span class="nv">x</span>    <span class="nv">c</span>    <span class="nv">v</span>    <span class="nv">b</span>    <span class="nv">n</span>    <span class="nv">m</span>    <span class="o">,</span>    <span class="o">.</span>    <span class="nf">/</span>    <span class="nv">rsft</span> <span class="nv">up</span>              <span class="nv">kp1</span>  <span class="nv">kp2</span>  <span class="nv">kp3</span>  <span class="nv">kprt</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">lctl</span> <span class="nv">lmet</span> <span class="nv">lalt</span>           <span class="nv">spc</span>            <span class="nv">ralt</span> <span class="nv">cmp</span>  <span class="nv">rctl</span> <span class="nv">left</span> <span class="nv">down</span> <span class="nv">rght</span>       <span class="nv">kp0</span>  <span class="nv">kp.</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p><div style="text-align: center;">
+    Here is my 100% keyboard:
+</div>
+
+
+<img loading="lazy" src="/Blog/post/kmonad/kmonad-introduction/img/my-keyboard.jpg" type="" alt="./img/my-keyboard.jpg"  />
+Since lisp-like syntax is used, the indention can be ignore, they are only for readability. If you want, you can write them in single line.</p>
+<p>If I don&rsquo;t want to remap numberpad, I can remove them from <code>defsrc</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defsrc</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">esc</span>  <span class="nv">f1</span>   <span class="nv">f2</span>   <span class="nv">f3</span>   <span class="nv">f4</span>   <span class="nv">f5</span>   <span class="nv">f6</span>   <span class="nv">f7</span>   <span class="nv">f8</span>   <span class="nv">f9</span>   <span class="nv">f10</span>  <span class="nv">f11</span>  <span class="nv">f12</span>  <span class="nv">pause</span> <span class="nv">del</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">grv</span>  <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">3</span>    <span class="mi">4</span>    <span class="mi">5</span>    <span class="mi">6</span>    <span class="mi">7</span>    <span class="mi">8</span>    <span class="mi">9</span>    <span class="mi">0</span>    <span class="nf">-</span>    <span class="nf">=</span>    <span class="nv">bspc</span>       
+</span></span><span class="line"><span class="cl">  <span class="nv">tab</span>  <span class="nv">q</span>    <span class="nv">w</span>    <span class="nv">e</span>    <span class="nv">r</span>    <span class="no">t</span>    <span class="nv">y</span>    <span class="nv">u</span>    <span class="nv">i</span>    <span class="nv">o</span>    <span class="nv">p</span>    <span class="nv">[</span>    <span class="nv">]</span>    <span class="nv">\ </span>         
+</span></span><span class="line"><span class="cl">  <span class="nv">caps</span> <span class="nv">a</span>    <span class="nv">s</span>    <span class="nv">d</span>    <span class="nv">f</span>    <span class="nv">g</span>    <span class="nv">h</span>    <span class="nv">j</span>    <span class="nv">k</span>    <span class="nv">l</span>    <span class="c1">;    &#39;    ret             </span>
+</span></span><span class="line"><span class="cl">  <span class="nv">lsft</span> <span class="nv">z</span>    <span class="nv">x</span>    <span class="nv">c</span>    <span class="nv">v</span>    <span class="nv">b</span>    <span class="nv">n</span>    <span class="nv">m</span>    <span class="o">,</span>    <span class="o">.</span>    <span class="nf">/</span>    <span class="nv">rsft</span> <span class="nv">up</span>              
+</span></span><span class="line"><span class="cl">  <span class="nv">lctl</span> <span class="nv">lmet</span> <span class="nv">lalt</span>           <span class="nv">spc</span>            <span class="nv">ralt</span> <span class="nv">cmp</span>  <span class="nv">rctl</span> <span class="nv">left</span> <span class="nv">down</span> <span class="nv">rght</span>       
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>The numberpad is cut. Nevertheless, <code>fallthrough</code> is set to be true, the nubmer pad still work perfectly. According to my experience, the order is not important, if they are in the same relative location in <code>deflayer</code>. You can imagine you are input the keys you would like kmonad to handle, so the order is not important. However, the following layer defining should follow the order you have defined here. Detailed explaiation in <a href="#relation-between-defsrc-and-deflayer">here</a>.</p>
+<p>Keycode is at maximum four chararcters long. Here is a short reference</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">esc == escape key
+</span></span><span class="line"><span class="cl">grv == `
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">caps == caps lock
+</span></span><span class="line"><span class="cl">lctl == left control
+</span></span><span class="line"><span class="cl">lmet == left meta or left window keys on window.
+</span></span><span class="line"><span class="cl">lalt == left alt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">spc == spacebar
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cmp == fn on external keyboard
+</span></span><span class="line"><span class="cl">fn == fn on mac keyboard
+</span></span><span class="line"><span class="cl">wkup == fn on thinkpad built in keyboard
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">bspc == backspace
+</span></span><span class="line"><span class="cl">ret == return or enter
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">up == up arrow
+</span></span><span class="line"><span class="cl">left == left arrow
+</span></span><span class="line"><span class="cl">right == right arrow
+</span></span><span class="line"><span class="cl">down == down arrow
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">kp0 == 0 on numberpad
+</span></span><span class="line"><span class="cl">kp1 == 1 on numberpad
+</span></span><span class="line"><span class="cl">kp2 == 2 on numberpad
+</span></span><span class="line"><span class="cl">kp3 == 3 on numberpad
+</span></span><span class="line"><span class="cl">kp4 == 4 on numberpad
+</span></span><span class="line"><span class="cl">kp5 == 5 on numberpad
+</span></span><span class="line"><span class="cl">kp6 == 6 on numberpad
+</span></span><span class="line"><span class="cl">kp7 == 7 on numberpad
+</span></span><span class="line"><span class="cl">kp8 == 8 on numberpad
+</span></span><span class="line"><span class="cl">kp9 == 9 on numberpad
+</span></span><span class="line"><span class="cl">kp* == * on numberpad
+</span></span><span class="line"><span class="cl">kp+ == + on numberpad
+</span></span><span class="line"><span class="cl">kp- == - on numberpad
+</span></span><span class="line"><span class="cl">kp/ == / on numberpad
+</span></span><span class="line"><span class="cl">kprt == return or enter on numberpad
+</span></span><span class="line"><span class="cl">kp. == . or del on numberpad
+</span></span><span class="line"><span class="cl">nlck == number lock on keyboard(my keyboard have one single physical button for this function, I know some are done by combination keys)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ins == insert
+</span></span><span class="line"><span class="cl">del == delete
+</span></span><span class="line"><span class="cl">pgup == page up
+</span></span><span class="line"><span class="cl">pgdown == page down
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sys == prtint screen on Thinkpad laptop built in keyboard
+</span></span><span class="line"><span class="cl">ssrq == print screen or PrtSc external keyboard
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">slck == scroll lock on external keyboard
+</span></span><span class="line"><span class="cl">pause == pause on external keyboard
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">102d == backslash on left on ISO keyboard
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">C-x == held down Control and x
+</span></span><span class="line"><span class="cl">A-x == held down Alt and x
+</span></span><span class="line"><span class="cl">S-x == held down shift and x
+</span></span><span class="line"><span class="cl">M-x == held down Meta and x
+</span></span><span class="line"><span class="cl">C-S-x == held down Control, shift and x
+</span></span><span class="line"><span class="cl">C-S-A-x == held down Control, shift, Alt and x
+</span></span><span class="line"><span class="cl">C-S-A-M-x == held down Control, shift, Alt, Meta and x
+</span></span></code></pre></div><p>There is too many keymaps that impossible to list all of them here, you can check them on <a href="https://github.com/kmonad/kmonad/tree/master/keymap/template">kmonad provided templates</a>. Note that the keycode is case sensitive, <code>A</code> is equal to <code>S-a</code>.</p>
+<h3 id="defalias">defalias</h3>
+<p>This part allow you make magic with kmoand!
+Let&rsquo;s see an example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defalias</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">SS</span> <span class="p">(</span><span class="nv">layer-toggle</span> <span class="nv">space-shift</span><span class="p">)</span> <span class="c1">;; alias layer space-shift to SS</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">-&gt;</span> <span class="o">#(</span><span class="nf">-</span> <span class="nf">&gt;</span> <span class="ss">:delay</span> <span class="mi">20</span><span class="p">)</span> <span class="c1">;;keyboard macro, will simulate the key pressed with delay time 20 each.</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">kp1</span> <span class="nv">M-1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nv">layer1</span> <span class="p">(</span><span class="nv">tap-next-press</span> <span class="nf">=</span>   <span class="nv">@SS</span><span class="p">)</span> <span class="c1">;; tap as =, hold to active SS, same as layer space-shift</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>We can recall alias by adding prefix <code>@</code>, just like how you will define function in lisp, alias name followed by the command, macros, layer you want to alias. You can use defined alias in other alias. Alias is not necessary, but to avoid terrified readability, it is recommend to alias name to long buttons. You can put alias into single <code>defalias</code> block or separate them with multi <code>defalias</code>. Make sure you define alias properly beefor use somewhere else.</p>
+<h3 id="deflayer">deflayer</h3>
+<p>Here you will do the magic! The first <code>deflayer</code> will be the default layer, in other terms, the first layer when kmonad startup. To be convenient, usually named <strong>base</strong>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">base</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">caps</span> <span class="nv">f1</span>   <span class="nv">f2</span>   <span class="nv">f3</span>   <span class="nv">f4</span>   <span class="nv">f5</span>   <span class="nv">f6</span>   <span class="nv">f7</span>   <span class="nv">f8</span>   <span class="nv">f9</span>   <span class="nv">f10</span>  <span class="nv">f11</span>  <span class="nv">f12</span>  <span class="nv">pause</span> <span class="nv">del</span>  <span class="nv">home</span> <span class="nv">end</span>  <span class="nv">pgup</span>  <span class="nv">pgdn</span> 
+</span></span><span class="line"><span class="cl">  <span class="nv">S-grv</span> <span class="mi">1</span>    <span class="mi">2</span>    <span class="mi">3</span>    <span class="mi">4</span>    <span class="mi">5</span>    <span class="mi">6</span>    <span class="mi">7</span>    <span class="mi">8</span>    <span class="mi">9</span>    <span class="mi">0</span>   <span class="nv">\\</span>    <span class="o">`</span>  <span class="nv">bspc</span>       <span class="nv">nlck</span> <span class="nv">kp/</span>  <span class="nv">@kp*</span>  <span class="nv">@kp-</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">tab</span>   <span class="nv">q</span>    <span class="nv">w</span>    <span class="nv">e</span>    <span class="nv">r</span>    <span class="no">t</span>    <span class="nv">y</span>    <span class="nv">u</span>    <span class="nv">i</span>    <span class="nv">o</span>    <span class="nv">p</span>    <span class="nv">S-</span><span class="o">&#39;</span>  <span class="nv">[</span>  <span class="nv">]</span>          <span class="nv">@kp7</span>  <span class="nv">@kp8</span>  <span class="nv">@kp9</span>  <span class="nv">@kp+</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">@EP</span>   <span class="nv">a</span>    <span class="nv">s</span>    <span class="nv">d</span>    <span class="nv">f</span>    <span class="nv">g</span>    <span class="nv">h</span>    <span class="nv">j</span>    <span class="nv">k</span>    <span class="nv">l</span>    <span class="c1">;    -    ret           @kp4  @kp5  @kp6</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">@ESC</span>  <span class="nv">z</span>    <span class="nv">x</span>    <span class="nv">c</span>    <span class="nv">v</span>    <span class="nv">b</span>    <span class="nv">n</span>    <span class="nv">m</span>    <span class="o">,</span>    <span class="o">.</span>    <span class="nf">/</span>    <span class="nv">rsft</span> <span class="nv">up</span>            <span class="nv">@kp1</span>  <span class="nv">@kp2</span>  <span class="nv">@kp3</span>  <span class="nv">@kprt</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">lctl</span>  <span class="nv">lmet</span> <span class="nv">lalt</span>           <span class="nv">@SPC</span>           <span class="nv">@ALT</span> <span class="nv">cmp</span>   <span class="nv">rctl</span> <span class="nv">left</span> <span class="nv">down</span> <span class="nv">rght</span>    <span class="nv">@kp0</span>  <span class="nv">@kp.</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>There are fews points you should noted:</p>
+<ol>
+<li>**<code>( ) \ _** need to be escaped by</code>`, as they have special meaning in kmonad.</li>
+<li>Aliass can be called by <code>@</code></li>
+<li><code>_</code> means transparent, you can leave unmapped key in layer with <code>_</code>, so that it will fallthrough to the last layer you enter. If it is the first layer, it will fallthrough to buttons define in <code>defsrc</code>.</li>
+<li>The buttons define here will follow corresponding entry in the <code>defsrc</code></li>
+</ol>
+<p>The last one may seems to be difficult to understand.</p>
+<h4 id="relation-between-defsrc-and-deflayer">Relation between defsrc and deflayer</h4>
+<p>If I only want to play with only three keys on my keyboard. I will define them in <code>defsrc</code> like so:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defsrc</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">q</span> <span class="nv">w</span> <span class="nv">e</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Kmonad will then only care that three keys on your keyboard, that is <code>q</code>, <code>w</code>, and <code>e</code>, the first three buttons on top row on normal QWERTY keyboard. I want them to be ctrl-c, ctrl-v, and ctrl-a respectively. Then I will define them like so in <code>deflayer</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">base</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">C-c</span> <span class="nv">C-v</span> <span class="nv">C-a</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Do you remember I have mentioned that the order is not important? It is partial correct. If you have swap the order of key. For exampe I swap q and e in <code>defsrc</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defsrc</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">e</span> <span class="nv">w</span> <span class="nv">q</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Note that kmonad will still able to locate this three keys on keyboard, but the order in <code>deflayer</code> has to be changed as well in order to have same mapping as above:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">base</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">C-a</span> <span class="nv">C-v</span> <span class="nv">C-c</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Otherwise if you keep doing this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">base</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">C-c</span> <span class="nv">C-v</span> <span class="nv">C-a</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p><code>e</code> will mapped to <code>C-c</code>, <code>q</code> will mappped to <code>C-a</code>. Everything will not go as you expected. Therefore, I would recommend you define buttons in <code>defsrc</code> as how your keyboard look like. Define buttons in <code>deflayer</code> will get a lot easier.</p>
+<h2 id="start-building-your-own-keyboard-layer">Start building your own keyboard layer</h2>
+<p>There is some useful implemention that is useful to add to your keyboard, they are:</p>
+<ol>
+<li>layer, or in other terms: modifier key, when you hold down some keys, different layer will be active.</li>
+<li>leader-key, or some will call it dead key, unlike modifier keys require holding manys keys at a time, leader-key usually use key sequence, type one by one.</li>
+<li>tap-mod, give double purpose to single keys, tap it and hold it will trigger two different event</li>
+<li>tap-dance, give single different purpose depends on amount of time pressed.</li>
+<li>magic keys, usually refer to single key act like 4 modifier hold together(shift+meta+ctrl+alt) when holding</li>
+</ol>
+<p>For convenience, I would like to define a small keyboard for demostration:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defsrc</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">q</span> <span class="nv">w</span> <span class="nv">e</span> <span class="nv">r</span> <span class="no">t</span> <span class="nv">y</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>The example below will base on this little keyboard.</p>
+<h3 id="model-of-kmonad">Model of Kmonad</h3>
+<p>Kmonad model layer as <a href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)">stack</a>, it will always try to match input event to the top most layer. Still remember the first layer is the default layer, because it is the only layer that addedd to stack when kmonad startup. Noted that incorrect layer push and pop can break your keyboard. It is better to have two keyboard when you config Kmonad, so that you are still able to repair after accidently broke the keyboard.</p>
+<h3 id="how-to-write-the-first-layer">How to write the first layer</h3>
+<p>Here is an example function, you don&rsquo;t need to know what it is now.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(sticky-key &lt;timeout&gt; &lt;event&gt;)
+</span></span></code></pre></div><p>Timeout is counted in <code>ms</code> within kmonad, every timeout you see later is also counted in <code>ms</code>. You can alias name to this function like so:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defalias</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">sctl</span> <span class="p">(</span><span class="nv">sticky-key</span> <span class="mi">500</span> <span class="nv">lctl</span><span class="p">)</span> <span class="c1">;; although alias is recommended no longer than 3 words</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">base</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">@sctl</span> <span class="nv">w</span> <span class="nv">e</span> <span class="nv">r</span> <span class="no">t</span> <span class="nv">y</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>This is good demo how you can use alias in layer. It is equivalent to:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(deflayer base
+</span></span><span class="line"><span class="cl">  (sticky-key 500 lctl) w e r t y
+</span></span><span class="line"><span class="cl">)
+</span></span></code></pre></div><p>To define a layer:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defalias</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">l1</span> <span class="p">(</span><span class="nv">layer-toggle</span> <span class="nv">my-first-layer</span><span class="p">)</span> <span class="c1">;; layer is pushed when active, pop when inactive, just means to be &#34;toggle&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">tri</span> <span class="p">(</span><span class="nv">tap-next</span> <span class="nv">w</span> <span class="nv">@l1</span><span class="p">)</span> <span class="c1">;; tap as w, hold as @l1, which will active my-first-layer</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">base</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">q</span> <span class="nv">@tri</span> <span class="nv">e</span> <span class="nv">r</span> <span class="no">t</span> <span class="nv">y</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">my-first-layer</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">_</span> <span class="nv">_</span> <span class="nv">a</span> <span class="nv">_</span> <span class="nv">b</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>So, when you tap <code>w</code>, it will emit <code>w</code>, when you hold <code>w</code>, my-first-layer will active, if you press <code>e</code> now, it will become <code>a</code>, if you press <code>q</code> now, it will emit <code>q</code>, as <code>q</code> is transparent in <code>my-first-layer</code>, KMonad will try to match this key event in the next layer(layer under my-first-layer in stack) until matched. In our case which is <code>q</code> in layer <code>base</code>.</p>
+<p>Again, if don&rsquo;t use any alias:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">base</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">q</span> <span class="p">(</span><span class="nv">tap-next</span> <span class="nv">w</span> <span class="p">(</span><span class="nv">layer-toggle</span> <span class="nv">my-first-layer</span><span class="p">))</span> <span class="nv">e</span> <span class="nv">r</span> <span class="no">t</span> <span class="nv">y</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">my-first-layer</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">_</span> <span class="nv">_</span> <span class="nv">a</span> <span class="nv">_</span> <span class="nv">b</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Layer can be neste in layers, for example layer2 can be actived when you press some keys in <code>my-first-layer</code>. KMonad syntax is simple, the magic comes from the combination of different function and alias. Below is explaiation of KMonad functions.</p>
+<h3 id="difference-between-tap-and-holding">Difference between tap and holding</h3>
+<p>Tap idealy is press and release instantly without delay. In KMonad, which accept if key is released within some threshold value will be triggered as <strong>Tap</strong>. Otherwise, it is holding.</p>
+<h3 id="kmonad-functions">KMonad functions</h3>
+<p>KMonad will run the function when it is being active. How? when you press the keys, the function will be active if it has been defined in the <code>deflayer</code> block. Moreover, function call be called by other function. For example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defalias</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">b1</span> <span class="p">(</span><span class="nv">f1</span> <span class="p">(</span><span class="nv">f2</span> <span class="p">(</span><span class="nv">f3</span> <span class="p">(</span><span class="nv">f4</span> <span class="nv">arg</span><span class="p">))))</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">base</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">@b1</span> <span class="nv">w</span> <span class="nv">e</span> <span class="nv">r</span> <span class="no">t</span> <span class="nv">y</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Q is mapped to the function f1, which will call function f2, which will call &hellip;. f4</p>
+<p>Note that the fucntion will only interact with your keyboard, they will not interact with other function, no value will be return. There is no variable assign. It is configuration, not scripting.</p>
+<h4 id="sticky-key">sticky-key</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defalias</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">bt1</span> <span class="p">(</span><span class="nv">sticky-key</span> <span class="nv">&lt;timeout&gt;</span> <span class="nv">&lt;event&gt;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>sticky-key allow you tap two keys consequencely instead of holding two keys at the same time. <strong>event</strong> should be a modifier.</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(deflayer base
+</span></span><span class="line"><span class="cl">  @bt1 w e r t y
+</span></span><span class="line"><span class="cl">)
+</span></span></code></pre></div><p>How it works:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">tap q tap wer -&gt; Wer
+</span></span></code></pre></div><h4 id="around">around</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defalias</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">bt1</span> <span class="p">(</span><span class="nv">around</span> <span class="nv">&lt;button1&gt;</span> <span class="nv">&lt;button2&gt;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Simulate holding <strong>button1</strong> and <strong>button2</strong>. <code>(around lctl c)</code> is equal to <code>C-c</code>. You can create nested <code>around</code>, like <code>(around lctl (around lsft c))</code>, which is equivalent to <code>C-S-c</code></p>
+<h4 id="around-next">around-next</h4>
+<p>Very simliar to <code>sticky-key</code>, <strong>event</strong> can be layer which is not limited in modifier keys( actually I haven&rsquo;t test it, it is not stated clearly in offical tutorial.)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">around-next</span> <span class="nv">lsft</span><span class="p">)</span> <span class="c1">;; shift the next key pressed</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">around</span> <span class="nv">@my-first-layer</span><span class="p">)</span> <span class="c1">;; next press in my-first-layer</span>
+</span></span></code></pre></div><h4 id="around-next-timeout">around-next-timeout</h4>
+<p>Similiar to <code>around-next</code> but added timeout, if not following key is pressed within timeout, the last key will be insert (of course it is not limited to key, you can bind it to any event that is valid).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">around-next-timeout</span> <span class="mi">500</span> <span class="nv">sft</span> <span class="nv">q</span><span class="p">)</span> <span class="c1">;; shift the next key if pressed within 500ms, otherwise q is inserted</span>
+</span></span></code></pre></div><h4 id="tap-macro">tap-macro</h4>
+<p>record key sequence marco, simulate as those keys is pressed. You can either use <code>tap-macro</code> function or shorten as <code>#()</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">tap-macro</span> <span class="nv">K</span> <span class="nv">M</span> <span class="nv">o</span> <span class="nv">n</span> <span class="nv">a</span> <span class="nv">d</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">#(</span><span class="nv">K</span> <span class="nv">M</span> <span class="nv">o</span> <span class="nv">n</span> <span class="nv">a</span> <span class="nv">d</span><span class="p">)</span>
+</span></span></code></pre></div><p>marco can be used in other macro like so@:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defalias</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">m1</span> <span class="p">(</span><span class="nv">tap-macro</span> <span class="nv">K</span> <span class="nv">M</span> <span class="nv">o</span> <span class="nv">n</span> <span class="nv">a</span> <span class="nv">d</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">m2</span> <span class="o">#(</span><span class="nv">K</span> <span class="nv">M</span> <span class="nv">o</span> <span class="nv">n</span> <span class="nv">a</span> <span class="nv">d</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">m3</span> <span class="o">#(</span><span class="nv">@m1</span> <span class="nv">@m2</span> <span class="no">t</span> <span class="nv">h</span> <span class="nv">r</span> <span class="nv">e</span> <span class="nv">e</span> <span class="nv">C-c</span> <span class="nv">C-v</span> <span class="nv">C-a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>Since sometimes the delay between keys matter, you can use <code>:delay</code> to separate each key.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#(K M o n a d :delay 10) ;; same as K 100ms M 100ms ....
+</span></span></code></pre></div><h4 id="tap-macro-release">tap-macro-release</h4>
+<p>similar to tap-macro but the last key is delay sometimes by default</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">tap-macro-release</span> <span class="nv">q</span> <span class="nv">w</span> <span class="nv">e</span><span class="p">)</span> <span class="c1">;; same as q w delay e</span>
+</span></span></code></pre></div><h4 id="pause">pause</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">pause</span> <span class="nv">&lt;time&gt;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">P&lt;time&gt;</span> <span class="c1">;; shortcode, for example P5 is same as (pause 5)</span>
+</span></span></code></pre></div><p>Pause <strong>time</strong> ms, useful to work with macro to have non-uniform delay</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="o">#(</span><span class="nv">K</span> <span class="nv">P5</span> <span class="nv">M</span> <span class="nv">P100</span> <span class="nv">m</span> <span class="nv">P10000</span> <span class="nv">o</span> <span class="nv">n</span> <span class="nv">P500</span> <span class="nv">d</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">#(</span><span class="nv">K</span> <span class="p">(</span><span class="nv">pause</span> <span class="mi">5</span><span class="p">)</span> <span class="nv">M</span> <span class="p">(</span><span class="nv">pause</span> <span class="mi">100</span><span class="p">)</span> <span class="nv">m</span> <span class="p">(</span><span class="nv">pause</span> <span class="mi">10000</span><span class="p">)</span> <span class="nv">o</span> <span class="nv">n</span> <span class="p">(</span><span class="nv">pause</span> <span class="mi">500</span><span class="p">)</span> <span class="nv">d</span><span class="p">)</span> <span class="c1">;; they are equivalent</span>
+</span></span></code></pre></div><h4 id="layer-toggle">layer-toggle</h4>
+<p>It is the first function that is related to layer manipulaiton. Add the layer to the stack when active, remove from stack when inactive. The layer is temporary live when you trigger it, we ususally bind it to keys.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defalias</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">b1</span> <span class="p">(</span><span class="nv">layer-toggle</span> <span class="nv">layer1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">base</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">@b1</span> <span class="nv">w</span> <span class="nv">e</span> <span class="nv">r</span> <span class="no">t</span> <span class="nv">y</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">layer1</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">_</span> <span class="nv">C-c</span> <span class="nv">C-v</span> <span class="nv">S-s</span> <span class="nv">_</span> <span class="nv">_</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p><code>layer-toggle</code> will be remove from stack when inactive, in other to switch to layer1, I have to hold <code>q</code>( the button mapped to layer, remember <a href="#start-building-your-own-keyboard-layer">the little keyboard define above</a>? ).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hold q tap w -&gt; C-c
+</span></span><span class="line"><span class="cl">hold q tap r -&gt; S
+</span></span><span class="line"><span class="cl">hold q tap t -&gt; t
+</span></span></code></pre></div><h4 id="layer-delay">layer-delay</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">layer-delay</span> <span class="nv">&lt;timeout&gt;</span> <span class="nv">layer-name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">layer-delay</span> <span class="mi">500</span> <span class="nv">layer2</span><span class="p">)</span> <span class="c1">;; example</span>
+</span></span></code></pre></div><p><code>layer-delay</code> is similiar to <code>around-next-timeout</code>. The difference are <code>layer-delay</code> will add the layer to stack and remove after <strong>timeout</strong></p>
+<h4 id="layer-next">layer-next</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">layer-next</span> <span class="nv">layer-name</span><span class="p">)</span>
+</span></span></code></pre></div><p>like <code>layer-delay</code> without <strong>timeout</strong> limit but the layer will be removed from stack once a key is pressed.</p>
+<p>But note that from offical tutorial:</p>
+<blockquote>
+<p><code>layer-next</code>, once pressed, primes KMonad to handle the next press from some
+arbitrary layer. This aims to fill the same usecase as <code>layer-delay</code>: the
+beginnings of &rsquo;leader-key&rsquo; style behavior. I think this whole button will get
+deleted soon, because the more general <code>around-next</code> now exists (see below)
+and this is nothing more than:</p>
+<p>(around-next (layer-toggle layer-name))</p>
+<p>Until then though, use <code>layer-next</code> like this:</p>
+<p>(layer-next layer-name)</p>
+</blockquote>
+<h4 id="layer-switch">layer-switch</h4>
+<p>The above three layer is almost save since the layer is changed temporarily, start from now on, everything become &ldquo;dangerous&rdquo;. The layer will be changed permanently.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">layer-switch</span> <span class="nv">layer-name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">layer-switch</span> <span class="nv">colemak</span><span class="p">)</span> <span class="c1">;;example</span>
+</span></span></code></pre></div><p>Note that <code>layer-switch</code> will remove the <strong>bottom-most</strong> layer, which is the <strong>default</strong> layer. Make sure you have way to get back <strong>default</strong> layer. Otherwise, your keyboard can be broken.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defalias</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">col</span> <span class="p">(</span><span class="nv">layer-switch</span> <span class="nv">colemak</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">qwe</span> <span class="p">(</span><span class="nv">layer-switch</span> <span class="nv">qwerty</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">qwerty</span> <span class="c1">;; the name of default layer is arbitrary</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">q</span> <span class="nv">w</span> <span class="nv">e</span> <span class="nv">r</span> <span class="no">t</span> <span class="nv">@col</span> <span class="c1">;; when I tap y, layout is switched from QWERTY to Colemak</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">colemak</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">c</span> <span class="nv">o</span> <span class="nv">l</span> <span class="nv">e</span> <span class="nv">m</span> <span class="nv">@qwe</span> <span class="c1">;; when I tap y, layout is switched from Colemak to QWERTY</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><h4 id="layer-add">layer-add</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">layer-add</span> <span class="nv">layer-name</span><span class="p">)</span>
+</span></span></code></pre></div><p>Push layer to stack( add to the top ).</p>
+<h4 id="layer-rem">layer-rem</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">layer-rem</span> <span class="nv">layer-name</span><span class="p">)</span>
+</span></span></code></pre></div><p>Remove layer from stack by name. Note it is not <a href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)">pop</a>. The specified layer will be remove directly.</p>
+<h4 id="tap-next">tap-next</h4>
+<p>Function about layer is ended, following function aims to give keys mulit purpose when it is being tapped or held.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">tap-next</span> <span class="nv">&lt;tap&gt;</span> <span class="nv">&lt;hold&gt;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">tap-next</span> <span class="nv">q</span> <span class="nv">lsft</span><span class="p">)</span>
+</span></span></code></pre></div><p>The <strong>tap</strong> and <strong>hold</strong> can replaced by alias, like <code>layer-toggle</code> or <code>tap-macro</code>. They accept either keycode, function or alias.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defalias</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">layer1</span> <span class="p">(</span><span class="nv">layer-toggle</span> <span class="nv">layer1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">tm1</span> <span class="p">(</span><span class="nv">tap-next</span> <span class="nv">q</span> <span class="nv">@layer1</span><span class="p">)</span> <span class="c1">;; the alias used here is not the one define in deflayer block. Instead the above line&#39;s one.</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">tm2</span> <span class="p">(</span><span class="nv">tap-next</span> <span class="nv">w</span> <span class="nv">lsft</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">base</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">@tm1</span> <span class="nv">@tm2</span> <span class="nv">e</span> <span class="nv">r</span> <span class="no">t</span> <span class="nv">y</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">layer1</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">_</span> <span class="nv">C-c</span> <span class="nv">C-v</span> <span class="nv">S-s</span> <span class="nv">_</span> <span class="nv">_</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">press q relase q                   -&gt; insert q
+</span></span><span class="line"><span class="cl">press w tap erty release w         -&gt; insert ERTY
+</span></span><span class="line"><span class="cl">press w press e relase w release e -&gt; insert EEEEEEEEeeeeeeeee..... 
+</span></span></code></pre></div><p>If any event is involved with the gap between press and release, <strong>hold</strong> event is triggered. Otherwise, <strong>tap</strong> event is triggered. If <code>tap-next</code> is released before any holding keys, <code>tap-next</code> will also fallback to <strong>tap</strong> event.</p>
+<h4 id="tap-hold">tap-hold</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">tap-hold</span> <span class="nv">&lt;timeout&gt;</span> <span class="nv">&lt;tap&gt;</span> <span class="nv">&lt;hold&gt;</span><span class="p">)</span>
+</span></span></code></pre></div><p><code>tap-hold</code> is similar to <code>tap-next</code>, the difference lay in <code>tap-hold</code> will pause untill KMonad determine should it be <strong>tap</strong> or <strong>hold</strong>. <code>tap-hold</code> will trigger <strong>tap</strong> if it is released within <strong>timeout</strong>, no matter how much key you pressed during timeout.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defalias</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">tm2</span> <span class="p">(</span><span class="nv">tap-hold</span> <span class="mi">1000</span> <span class="nv">w</span> <span class="nv">lsft</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">base</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">q</span> <span class="nv">@tm2</span> <span class="nv">e</span> <span class="nv">r</span> <span class="no">t</span> <span class="nv">y</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">press w
+</span></span><span class="line"><span class="cl">press e for 900ms
+</span></span><span class="line"><span class="cl">release w
+</span></span><span class="line"><span class="cl">insert: eeeeeeeeeeeee....
+</span></span></code></pre></div><p>Since w(<code>tap-hold</code>) is relase before timeout end.</p>
+<h4 id="tap-hold-next">tap-hold-next</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">tap-hold-next</span> <span class="nv">&lt;timeout&gt;</span> <span class="nv">&lt;tap&gt;</span> <span class="nv">&lt;hold&gt;</span> <span class="ss">:timeout-button</span> <span class="nv">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; :timeout-button is optional, by default it is the hold event</span>
+</span></span></code></pre></div><p>Combination of <code>tap-hold</code> and <code>tap-next</code>. When holding <code>tap-hold-next</code> button longer than <strong>timeout</strong>, it will become <strong>hold</strong> event or you can specify the button after timeout. If the key is susposed to be held like <code>ret</code>, many newline will be inserted(so call autorepeat).</p>
+<h4 id="tap-next-release">tap-next-release</h4>
+<p>Just like tap-next, but <strong>hold</strong> event will only trigger if other keys is tap(press and relase) before <code>tap-next-release</code> relase. If you relase other keys before <code>tap-next-release</code> release, <code>tap-next-release</code> will trigger <strong>tap</strong> event. See the example below.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">tap-next-release</span> <span class="nv">&lt;tap&gt;</span> <span class="nv">&lt;hold&gt;</span><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defalias</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">tm2</span> <span class="p">(</span><span class="nv">tap-next-release</span> <span class="nv">w</span> <span class="nv">lsft</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">base</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">q</span> <span class="nv">@tm2</span> <span class="nv">e</span> <span class="nv">r</span> <span class="no">t</span> <span class="nv">y</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">press w press e relase w release e -&gt; insert we
+</span></span><span class="line"><span class="cl">press w press e relase e release w -&gt; insert E
+</span></span></code></pre></div><h4 id="tap-next-press">tap-next-press</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">tap-next-press</span> <span class="nv">&lt;tap&gt;</span> <span class="nv">&lt;hold&gt;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Just like <code>tap-next-release</code> but it will always be <strong>hold</strong> event if you have press other keys after pressing <code>tap-next-press</code>. Using the same example as <a href="#tap-next-release">tap-next-release</a> but using <code>tap-next-press</code> this time.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">press w press e relase w release e -&gt; insert E
+</span></span><span class="line"><span class="cl">press w press e relase e release w -&gt; insert E
+</span></span></code></pre></div><h4 id="tap-hold-next-release">tap-hold-next-release</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">tap-hold-next-release</span> <span class="nv">&lt;timeout&gt;</span> <span class="nv">&lt;tap&gt;</span> <span class="nv">&lt;hold&gt;</span> <span class="ss">:timeout-button</span> <span class="nv">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; :timeout-button is optional, by default it is the hold event</span>
+</span></span></code></pre></div><p>Just like <a href="#tap-next-release">tap-next-release</a>, but turn into <strong>hold</strong> event after holding longer than <strong>timeout</strong> like <a href="#tap-hold-next">tap-hold-next</a>.</p>
+<h4 id="multi-tap">multi-tap</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">multi-tap</span> <span class="nv">&lt;timeout</span> <span class="nv">&lt;1&gt;</span> <span class="nv">&lt;timeout&gt;</span> <span class="nv">&lt;2&gt;</span> <span class="nv">&lt;timeout&gt;</span> <span class="nv">&lt;3&gt;</span> <span class="nv">&lt;timeout&gt;</span> <span class="nv">&lt;4&gt;</span> <span class="o">....</span> <span class="nv">&lt;timeout&gt;</span> <span class="nv">&lt;n-1&gt;</span> <span class="nv">&lt;n&gt;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">multi-tap</span> <span class="mi">300</span> <span class="nv">a</span> <span class="mi">300</span> <span class="nv">b</span> <span class="mi">300</span> <span class="nv">c</span> <span class="mi">300</span> <span class="nv">d</span> <span class="nv">e</span><span class="p">)</span>
+</span></span></code></pre></div><p>Trigger different base numbers of time you tap. Just like combo in fighting game. If you want the combo numbers increaes, you have to continue within some time. In <code>multi-tap</code> you have to release that key before the <strong>timeout</strong>.</p>
+<h4 id="cmd-button">cmd-button</h4>
+<p>If you have set <code>allow-cmd</code> true in <a href="#defcfg">defcfg</a>, you can map button to run shell command.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">cmd-button</span> <span class="s">&#34;brightnessctl set +2% &gt;&gt; /dev/null&#34;</span><span class="p">)</span> <span class="c1">;; increase brightness</span>
+</span></span></code></pre></div><p>Note that the command should be paired by quote.</p>
+<h3 id="how-to-choose-the-fucntion">How to choose the fucntion</h3>
+<p>There is six <code>tap-xxx</code> function that is similar, don&rsquo;t know which one should you pick? Actucally, the difference between them may are not that obvious when you typing. For exampe, the pairs <a href="#tap-next-release">tap-next-release</a> and <a href="#tap-next-press">tap-next-press</a>. I have only occur the difference when I type to fast. Sometime when I type too fast, I will accidently release the key in wrong order so that the <strong>hold</strong> event is not triggered. However, I do agree some is more powerful. Like <a href="#tap-hold-next-release">tap-hold-next-release</a> and <a href="#tap-hold-next">tap-hold-next</a> are way more comfortable. Because most of the time, when one use <code>tap-mod</code> dual function key, you won&rsquo;t want it to fallback to <strong>tap</strong> after holding for some becuase can&rsquo;t decide which key you use. For exmaple</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">tap-next-release</span> <span class="nv">spc</span> <span class="nv">lsft</span><span class="p">)</span> <span class="c1">;; tap as spacebar hold as shift</span>
+</span></span></code></pre></div><p>You hold the spacebar, want to insert <code>I</code>, but find that actually you should insert <code>i</code>, but since you using <code>tap-next-release</code>, when you relase spacebar, a space is inserted, you have to press backspace. However if you use <code>tap-hold-next-release</code>, this issue will not even happen.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">tap-hold-next-release</span> <span class="mi">250</span> <span class="nv">spc</span> <span class="nv">lsft</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;; tap as spacebar hold as shift, after hold 250ms become shift</span>
+</span></span></code></pre></div><p>Same situation, but this time when you release spacebar, it will insert left shift instead, actually nothing inserted. But I should not stop other using the same pattern as me, as one may accidently find the function fix their need perfectly. You can try different function, and decide which one to use. Make a change is just so easy, change the config file, run kmonad, that is. ( a lot easier that recomplie QMK firmware, though KMonad is less feature and powerful as QMK)</p>
+<p>Although <code>tap-hold-next-release</code> and <code>tap-hold-next</code> is &ldquo;better&rdquo; than <code>tap-next-press</code> as they will not trigger <strong>tap</strong> event after holding some time, but if I type too fast, I foudn sometimes space is eaten. So I personaly prefer <code>tap-next-press</code> more than any other function.</p>
+<h1 id="run-on-startup">run on startup</h1>
+<p>After finishing the config file, we can move to the final step. Run KMonad on startup, here provide example I use, which use <a href="https://en.wikipedia.org/wiki/Systemd">systemd service</a></p>
+<p>create <code>/usr/lib/systemd/system/kmonad.service</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo -e /usr/lib/systemd/system/kmonad.service
+</span></span></code></pre></div><p>add below lines into the last created <code>/usr/lib/systemd/system/kmonad.service</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-service" data-lang="service"><span class="line"><span class="cl"><span class="k">[Unit]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">kmonad keyboard config</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Service]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+</span></span><span class="line"><span class="cl"><span class="na">RestartSec</span><span class="o">=</span><span class="s">3</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStart</span><span class="o">=</span><span class="s">/path/to/kmonad /path/to/config.kbd</span>
+</span></span><span class="line"><span class="cl"><span class="na">Nice</span><span class="o">=</span><span class="s">-20</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[Install]</span>
+</span></span><span class="line"><span class="cl"><span class="na">WantedBy</span><span class="o">=</span><span class="s">default.target</span>
+</span></span></code></pre></div><p>Find path to kmonad by</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">which kmonad
+</span></span></code></pre></div><p>Enable the service</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo systemctl daemon-reload
+</span></span><span class="line"><span class="cl">sudo systemctl start kmonad.service <span class="c1"># start the service</span>
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> kmonad.service <span class="c1"># run service at startup</span>
+</span></span></code></pre></div><h1 id="some-example-implemention">Some example implemention</h1>
+<p>Here are some partial example of how to turn discrete functions into something useful. The example below will using the six key little keyboard (qwerty)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(defcfg
+</span></span><span class="line"><span class="cl">  input (...)
+</span></span><span class="line"><span class="cl">  output ...
+</span></span><span class="line"><span class="cl">  fallthrough true
+</span></span><span class="line"><span class="cl">  allow-cmd true
+</span></span><span class="line"><span class="cl">)
+</span></span><span class="line"><span class="cl">(defsrc
+</span></span><span class="line"><span class="cl">  q w e r t y 
+</span></span><span class="line"><span class="cl">)
+</span></span></code></pre></div><h2 id="leader-key">leader-key</h2>
+<p>If you use vim, you may have some mappings like <code>nmap &lt;leader&gt;we &lt;Cmd&gt;W | e!&lt;Cr&gt;</code>. Leader key is keyboard shortcut that is triggered by input keys sequence instead of holding many buttons at the same time. Use <code>&lt;leader&gt;we</code> as an example, we should first choose a key to be leader-key. In may little keyboard, I choose <code>q</code>, so <code>&lt;leader&gt;we</code> is basically <code>qwe</code>. Here is how to implement it in KMonad.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defalias</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">ld</span> <span class="p">(</span><span class="nv">layer-next</span> <span class="nv">leader-triggered</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">mid</span> <span class="p">(</span><span class="nv">layer-next</span> <span class="nv">key-after-leader-q</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">out</span> <span class="o">#(</span><span class="nv">K</span> <span class="nv">M</span> <span class="nv">o</span> <span class="nv">n</span> <span class="nv">a</span> <span class="nv">d</span><span class="p">)</span> <span class="c1">;; this is what &lt;leader&gt;we will do</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">base</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">@ld</span> <span class="nv">w</span> <span class="nv">e</span> <span class="nv">r</span> <span class="no">t</span> <span class="nv">y</span> <span class="c1">;; leader is q</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">leader-triggered</span> <span class="c1">;; active when we enter q</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">_</span> <span class="nv">@mid</span> <span class="nv">_</span> <span class="nv">_</span> <span class="nv">_</span> <span class="nv">_</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">key-after-leader-q</span> <span class="c1">;; active when we enter qw</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">_</span> <span class="nv">_</span> <span class="nv">@out</span> <span class="nv">_</span> <span class="nv">_</span> <span class="nv">_</span> <span class="c1">;; @out will trigger when we finish qwe</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>leader-key is definitly define serveral layer, enter next layer by using the correct &ldquo;key&rdquo;</p>
+<h2 id="tap-mod">tap-mod</h2>
+<p>The example will use <code>tap-next-press</code>, becuase I personally prefer this over others.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defalias</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">cv</span> <span class="p">(</span><span class="nv">layer-toggle</span> <span class="nv">cv-engineering</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">tm</span> <span class="p">(</span><span class="nv">tap-next-press</span> <span class="nv">q</span> <span class="nv">@cv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">base</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">@tm</span> <span class="nv">w</span> <span class="nv">e</span> <span class="nv">r</span> <span class="no">t</span> <span class="nv">y</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">cv-engineering</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">_</span> <span class="nv">C-c</span> <span class="nv">C-v</span> <span class="nv">C-a</span> <span class="nv">C-t</span> <span class="nv">C-x</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>This is, you can think layer-toggle as a <strong>hold</strong> event( actually it is, it actives only when key bind to is held ). When I tap <code>q</code>, it insert <code>q</code>, when I holding <code>q</code>, Keyboard enter layer <code>cv-engineering</code> which allow me easy copy and paste.</p>
+<h2 id="tap-dance">tap-dance</h2>
+<p>I want <code>q</code> become <code>q</code> when it is tap once, <code>C-c</code> when tap twic, <code>C-v</code> when tap triple.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">defalias</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">qcv</span> <span class="p">(</span><span class="nv">multi-tap</span> <span class="mi">500</span> <span class="nv">q</span> <span class="mi">500</span> <span class="nv">C-c</span> <span class="mi">500</span> <span class="nv">C-v</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">base</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">@qcv</span> <span class="nv">w</span> <span class="nv">e</span> <span class="nv">r</span> <span class="no">t</span> <span class="nv">y</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><h2 id="generate-transparent-layer-for-easier-configuraiton">Generate transparent layer for easier configuraiton</h2>
+<p>As you won&rsquo;t want to manually create fallthrough case for each keys. Normally, we make changes on transparent layer which is a template layer that replace all buttons in <code>defsrc</code> by <code>_</code>. See the real world example below:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="p">(</span><span class="nv">deflayer</span> <span class="nv">windows</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>     <span class="nv">_</span>  <span class="nv">_</span>  <span class="nv">_</span>  <span class="nv">_</span>  <span class="nv">_</span> 
+</span></span><span class="line"><span class="cl">  <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>     <span class="nv">_</span>  <span class="nv">_</span>  <span class="nv">_</span>  <span class="nv">_</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>     <span class="nv">_</span>  <span class="nv">_</span>  <span class="nv">_</span>  <span class="nv">_</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">_</span> <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span> <span class="nv">_</span> <span class="nv">_</span>         <span class="nv">_</span>  <span class="nv">_</span>  <span class="nv">_</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">@switch</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>  <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span> <span class="nv">_</span>           <span class="nv">_</span>  <span class="nv">_</span>  <span class="nv">_</span>  <span class="nv">_</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">_</span>   <span class="nv">_</span> <span class="nv">_</span>           <span class="nv">_</span>         <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span>   <span class="nv">_</span> <span class="nv">_</span>           <span class="nv">_</span>  <span class="nv">_</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>which is come from the transparent layer</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="cl"><span class="cm">#|                                                               
+</span></span></span><span class="line"><span class="cl"><span class="cm">(deflayer name-of-the-layer
+</span></span></span><span class="line"><span class="cl"><span class="cm">  _   _   _   _   _   _   _   _   _   _   _   _   _   _     _  _ _  _  _ 
+</span></span></span><span class="line"><span class="cl"><span class="cm">  _   _   _   _   _   _   _   _   _   _   _   _   _   _     _ _  _  _
+</span></span></span><span class="line"><span class="cl"><span class="cm">  _   _   _   _   _   _   _   _   _   _   _   _   _   _     _  _  _  _
+</span></span></span><span class="line"><span class="cl"><span class="cm">  _   _   _   _   _   _   _   _   _   _   _   _   _         _  _  _
+</span></span></span><span class="line"><span class="cl"><span class="cm">  _   _   _   _   _   _   _   _   _   _   _   _ _           _  _  _  _
+</span></span></span><span class="line"><span class="cl"><span class="cm">  _   _ _           _         _   _   _   _   _ _           _  _
+</span></span></span><span class="line"><span class="cl"><span class="cm">)
+</span></span></span><span class="line"><span class="cl"><span class="cm">|#</span>
+</span></span></code></pre></div><p>Here is a quick hack to generate transparent layer with vim ex command</p>
+<ol>
+<li>select the buttons inside <code>defsrc</code></li>
+<li>run the ex command &rsquo;s/\v\S+/_/g'</li>
+</ol>
+<p>KMonad contains infinite possible, it is only limited by our creativity, start building your keyboard layout now.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Strategy to remap Tmux shortcut</title>
+      <link>https://sokinpui.github.io/Blog/post/kmonad/tmux-kmonad/</link>
+      <pubDate>Wed, 09 Aug 2023 09:56:52 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/kmonad/tmux-kmonad/</guid>
+      <description>Save the sucked tmux default key bindings.</description>
+      <content:encoded><![CDATA[<p>If you have use tmux, you know it come with a bad key bindings. Force you to spend time config Tmux. Here are how I use tmux with kmonad to save the sucked default key bindings.</p>
+<h1 id="tmux">Tmux</h1>
+<p>Since tmux have session, window, and pane. Like navigate windows and pane must be often than session, we will prefer less key to navigate windows and pane than session</p>
+<p>Therefore shortcut related to window will in form of <code>M-*</code>(for example alt-a), shortcut related to session will in form of <code>prefix + &lt;keys&gt;</code></p>
+<h2 id="change-tmux-prefix">change tmux prefix</h2>
+<p>Tmux default prefix suck. <code>Ctrl-b</code> are far from each other, if everytim we run tmux command have to press <code>Ctrl-b</code>, I just suffer. So, I change it to <code>ctrl-space</code> instead.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">unbind C-b
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -g prefix C-space 
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> C-space send-prefix 
+</span></span></code></pre></div><h2 id="session">Session</h2>
+<p>Session shortcut will in form of <code>prefix + &lt;keys&gt;</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> n new-session -t
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> r command-prompt -p <span class="s2">&#34;Enter new session name: &#34;</span> <span class="s2">&#34;rename-session &#39;%%&#39;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> j switch-client -n <span class="c1"># switch to next session</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> k switch-client - <span class="c1"># switch to previous sessionp</span>
+</span></span></code></pre></div><p><code>prefix+s</code> will show the session list
+<img loading="lazy" src="/Blog/post/kmonad/tmux-kmonad/img/tmux-session-list.png" type="" alt="tmux-session-list"  /></p>
+<h2 id="window">Window</h2>
+<p>Since windows shortcut are more handy than session&rsquo;s
+Bind single key without prefix will be easier for day to day usage</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> -n M-o new-window <span class="c1"># open new window at home directory $HOME</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -n M-enter new-window -c <span class="s2">&#34;#{pane_current_path}&#34;</span> <span class="c1"># open window at the same directory as current pane</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -n M-r command-prompt -p <span class="s2">&#34;Enter new window name: &#34;</span> <span class="s2">&#34;rename-window &#39;%%&#39;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r -n M-h <span class="k">select</span>-window -t :- <span class="c1"># previous window</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r -n M-l <span class="k">select</span>-window -t :+ <span class="c1"># next window</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">unbind <span class="s1">&#39;&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">unbind %
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> - splitw -v -c <span class="s1">&#39;#{pane_current_path}&#39;</span> <span class="c1"># horizontal split </span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> <span class="p">|</span> splitw -h -c <span class="s1">&#39;#{pane_current_path}&#39;</span> <span class="c1"># vertical split</span>
+</span></span></code></pre></div><h2 id="pane">Pane</h2>
+<p>Similar to window, but since my main machine is a thinkpad, the screen is so small, I use pane less, if you have a big screen, you may swap some shortcut between window&rsquo;s and pane&rsquo;s</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> -n M-x kill-pane
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -n M-m <span class="k">select</span>-pane -t :.+ <span class="c1"># pane cycling</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -n M-f <span class="k">select</span>-pane -t :.+ <span class="c1"># pane cycline </span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r H resize-pane -L <span class="m">5</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r L resize-pane -R <span class="m">5</span> 
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r K resize-pane -U <span class="m">5</span>  
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> -r J resize-pane -D <span class="m">5</span>
+</span></span></code></pre></div><p>The first line will kill pane instantly, if there is single pane, kill window instead, if there is single windwo and single pane, kill session instead.</p>
+<p>If you wonder how to resolve shortcut conflict with other terminal application require modifier <code>alt</code>, I will try my best to avoid them, leaving all shortcut with <code>alt</code> for tmux, and <code>ctrl</code> for other application. BTW, if you use vim, you will have less chance to use modifier <code>alt</code>, therefore using vi-mode in shell can reduce the relay of <code>alt</code> when line editing.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Dynamic number-symbol row in vim</title>
+      <link>https://sokinpui.github.io/Blog/post/kmonad/3-dyn-num-sym/</link>
+      <pubDate>Fri, 07 Apr 2023 17:43:58 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/kmonad/3-dyn-num-sym/</guid>
+      <description>Abstraction Provide a way to dynamic swap numbers and symbols in vim according to current mode.
+How this idea come When I write code or writing, I often find the symbols should be easily type as single key stroke, while in vim normal mode I find I would like to press number in single mode instead of pressing with shift. At first, I searched online for solution, many of them suggested to swap numbers and symbols, and I agree it may convient while coding.</description>
+      <content:encoded><![CDATA[<h1 id="abstraction">Abstraction</h1>
+<p>Provide a way to dynamic swap numbers and symbols in vim according to current
+mode.</p>
+<h1 id="how-this-idea-come">How this idea come</h1>
+<p>When I write code or writing, I often find the symbols should be easily type as
+single key stroke, while in vim normal mode I find I would like to press number
+in single mode instead of pressing with <code>shift</code>. At first, I searched online for
+solution, many of them suggested to swap numbers and symbols, and I agree it may
+convient while coding. However, I am not coding all day, even during coding, in
+vim normal mode something it is handy to use number for <code>[count]</code> and command
+together. So swapping force you to choose one of them for more convenience
+typing. Another solution is to use number pad layer, I would say it is same as
+swapping, since I have to press with another key to use numbers, the problem
+havn&rsquo;t been solved.</p>
+<p>One day, When I was editing code, the idea of toggling nubmer-symbol row come in
+my mind, then I implement it, and find it solve the problem quite well regarding
+not prefect.</p>
+<h1 id="number-symbols-toggle">Number-symbols toggle</h1>
+<p>Well, it is actually a dead key leader, when I press the <code>toggle key</code> which is
+<code>equal sign</code> of my keyboard. The nubmer row will swap to symbol row, press
+again, back to number.</p>
+<h1 id="dynamic-number-symbols-row-in-vim">Dynamic Number-symbols row in vim</h1>
+<p>Since vim is modual, when insert mode, I prefer using symbols over numbers, when
+normal mode, I prefer the opposite. Then I add some rules for the toggle keys.</p>
+<p>Back to normal mode, which is equivalent to press the <code>esc</code> key, so when press
+<code>esc</code> key, define <code>nst</code> to False. It means toggle number rows.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[:escape :left_control nil {:alone [ [&#34;nst&#34; 0] [&#34;n-layer&#34; 0] :escape  ]} ]
+</span></span></code></pre></div><p>The above snippets is goku code, a config layer on top of <a href="https://karabiner-elements.pqrs.org/">Download
+Karabiner Elements</a>, which is a tools for
+Mac to remap keyboard layouts.</p>
+<p>Enter insert mode, is equivalent to <code>a</code>, <code>i</code>, <code>s</code>, <code>A</code>, <code>I</code>, <code>S</code>, <code>o</code>, <code>O</code>, <code>c</code>,
+<code>C</code>. Then turn <code>nst</code> to True when type those key.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[:i                           [:i  [&#34;nst&#34; 1]]]   
+</span></span><span class="line"><span class="cl">[:a                           [:a  [&#34;nst&#34; 1]]]   
+</span></span><span class="line"><span class="cl">[:s                           [:s  [&#34;nst&#34; 1]]]   
+</span></span><span class="line"><span class="cl">[:c                           [:c  [&#34;nst&#34; 1]]]   
+</span></span><span class="line"><span class="cl">[:o                           [:o  [&#34;nst&#34; 1]]]   
+</span></span></code></pre></div><p>The above code define <code>nst</code> to True when type <code>i</code> ( not <code>I</code> ).</p>
+<p>Furthur more, there is a few more situation I would prefer symbols over number,
+they are searching and command mode. Then I add those lines also.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[:semicolon                   [:semicolon [&#34;nst&#34; 1]]]   
+</span></span><span class="line"><span class="cl">[:slash                       [:slash [&#34;nst&#34; 1]] ]
+</span></span></code></pre></div><h1 id="inprefect">Inprefect</h1>
+<p>Since the layer is define outside vim, it can not avoid symbols row toggle
+during normal mode, when I type <code>yip</code> in normal mode, the symbol row toggle.
+Although I can have some line like <code>inoremap 1 !</code> and <code>cnoremap 2 @</code>, I don&rsquo;t
+want to pollute my mapping to much, I give up to implement this in pure vim way.
+I am interesting to find how to let karabiner know that I am in vim normal mode,
+so that avoid toggle symbol row accidently.</p>
+<p>I have remap <code>equal sign</code> to the <code>caps lock</code>, so it is possible for me to have
+one dead key, if you want to implement also, you may find your own.</p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

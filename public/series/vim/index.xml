@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Using Vim on So</title>
+    <title>Vim on So</title>
     <link>https://sokinpui.github.io/Blog/series/vim/</link>
-    <description>Recent content in Using Vim on So</description>
+    <description>Recent content in Vim on So</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 01 Aug 2023 23:03:06 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/series/vim/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Efficient vim editing: Don&#39;t use visual mode if possible</title>
-      <link>https://sokinpui.github.io/Blog/series/vim/vim9/</link>
+      <link>https://sokinpui.github.io/Blog/series/vim/vim9-efficient-editing/</link>
       <pubDate>Mon, 14 Aug 2023 18:44:18 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/Blog/series/vim/vim9/</guid>
+      <guid>https://sokinpui.github.io/Blog/series/vim/vim9-efficient-editing/</guid>
       <description>Visual selected and then yank? Why don&amp;#39;t you just yank the text object?</description>
       <content:encoded><![CDATA[<p>Efficient tips for you, the beginers vimers.</p>
 <h1 id="why">why?</h1>
@@ -29,10 +29,10 @@
 </span></span><span class="line"><span class="cl">    end
 </span></span><span class="line"><span class="cl">}
 </span></span></code></pre></div><p>We assume you want to delete the text inside M. If you prefer visual mode.
-<img loading="lazy" src="/Blog/series/vim/vim9/img/visual-mode.gif" type="" alt="./img/visual-mode.gif"  />
+<img loading="lazy" src="/Blog/series/vim/vim9-efficient-editing/img/visual-mode.gif" type="" alt="./img/visual-mode.gif"  />
 the key sequence: <code>vi{x</code></p>
 <p>If you prefer Operator-pending mode.
-<img loading="lazy" src="/Blog/series/vim/vim9/img/omode.gif" type="" alt="./img/omode.gif"  />
+<img loading="lazy" src="/Blog/series/vim/vim9-efficient-editing/img/omode.gif" type="" alt="./img/omode.gif"  />
 The key sequence: <code>di{</code></p>
 <p>You will save one key by the end. Actually, if you prefer first enter visual-mode, it may be the inertia from using other GUI application with mouse. But remember you don&rsquo;t have to keep such practice in vim, you can directly delete or yank with <strong>motion</strong>. It may be little save in once. However, if you are preparing to use vim for future, you should keep upgrading your editing style smoother. Leverge Operator-pending mode is basic practice for efficient editing.</p>
 ]]></content:encoded>
@@ -40,10 +40,10 @@ The key sequence: <code>di{</code></p>
     
     <item>
       <title>Useful Vim mappings</title>
-      <link>https://sokinpui.github.io/Blog/series/vim/vim8/</link>
+      <link>https://sokinpui.github.io/Blog/series/vim/vim8-useful-keymap/</link>
       <pubDate>Wed, 09 Aug 2023 21:58:59 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/Blog/series/vim/vim8/</guid>
+      <guid>https://sokinpui.github.io/Blog/series/vim/vim8-useful-keymap/</guid>
       <description>Useful mappings I have collect from day to day</description>
       <content:encoded><![CDATA[<h1 id="highlight-search-with-n-n----">Highlight search with n, N, *, #, /, ?</h1>
 <p>Highlight search, highlight search contain, clear when buffer has occur any change, or enter insert mode</p>
@@ -108,7 +108,7 @@ quick 5 line jump</p>
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">onoremap</span> <span class="nx">h</span> <span class="nx">iw</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">onoremap</span> <span class="nx">L</span> <span class="nx">W</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">onoremap</span> <span class="nx">H</span> <span class="nx">iW</span><span class="err">
-</span></span></span></code></pre></div><p><img loading="lazy" src="/Blog/series/vim/vim8/img/type-cw.jpg" type="" alt="./img/type-cw.jpg"  />
+</span></span></span></code></pre></div><p><img loading="lazy" src="/Blog/series/vim/vim8-useful-keymap/img/type-cw.jpg" type="" alt="./img/type-cw.jpg"  />
 <div style="text-align: center;">
     It is how I type <code>cw</code>
 </div>
@@ -137,16 +137,16 @@ quick 5 line jump</p>
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">cnoreabbrev</span> <span class="p">&lt;</span><span class="nx">expr</span><span class="p">&gt;</span> <span class="nx">wq</span> <span class="nx">getcmdtype</span><span class="p">()</span> <span class="p">==</span> <span class="s1">&#39;:&#39;</span> &amp;&amp; <span class="nx">getcmdline</span><span class="p">()</span> <span class="p">=~</span># <span class="s1">&#39;^wq&#39;</span> ? <span class="s1">&#39;wqa&#39;</span> : <span class="s1">&#39;wq&#39;</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">cnoreabbrev</span> <span class="p">&lt;</span><span class="nx">expr</span><span class="p">&gt;</span> <span class="nx">Q</span> <span class="nx">getcmdtype</span><span class="p">()</span> <span class="p">==</span> <span class="s1">&#39;:&#39;</span> &amp;&amp; <span class="nx">getcmdline</span><span class="p">()</span> <span class="p">=~</span># <span class="s1">&#39;^Q&#39;</span> ? <span class="s1">&#39;q&#39;</span> : <span class="s1">&#39;Q&#39;</span><span class="err">
 </span></span></span></code></pre></div><p>Prevent typo when exit vim.
-<img loading="lazy" src="/Blog/series/vim/vim8/img/commandline-alias.gif" type="" alt="./img/commandline-alias.gif"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim8-useful-keymap/img/commandline-alias.gif" type="" alt="./img/commandline-alias.gif"  /></p>
 ]]></content:encoded>
     </item>
     
     <item>
       <title>Consider Embrance the ecosystem of Neovim.</title>
-      <link>https://sokinpui.github.io/Blog/series/vim/vim7/</link>
+      <link>https://sokinpui.github.io/Blog/series/vim/vim7-considerneovim/</link>
       <pubDate>Fri, 04 Aug 2023 22:16:35 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/Blog/series/vim/vim7/</guid>
+      <guid>https://sokinpui.github.io/Blog/series/vim/vim7-considerneovim/</guid>
       <description>Blog written for those who are struggling about switch to Neovim from Vim</description>
       <content:encoded><![CDATA[<p>Neovim in 2023 has become an popular choice of editor, its version become stable those day. Neovim to Vim is like Vim to Vi those day, it has introduced a clear lua API for writing plugins, built-in LSP support. Although some plugins like <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> has provide feature like LSP and auto-completion similar as VSCode, the built-in LSP support just give the sense of it will last longer and improved by a larger community as it is built-in. Also, more lua plugins has come out, which sadly only support Neovim, as they need Neovim API.</p>
 <h1 id="vim">Vim</h1>
@@ -154,9 +154,9 @@ quick 5 line jump</p>
 <h1 id="neovim">Neovim</h1>
 <p>The plugin I switch for is <a href="https://github.com/nvim-treesitter/nvim-treesitter">nvim-treesitter</a>. Treesitter provide correct highlight by understanding your code structure. Recently Vim/Neovim highlihgt is base on regular expression, which may not cover all the case, therefore render syntax highlight wrong,</p>
 <p>My <code>init.vim</code> without Treesitter:
-<img loading="lazy" src="/Blog/series/vim/vim7/no-treesitter.png" type="" alt="no-treesitter"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim7-considerneovim/no-treesitter.png" type="" alt="no-treesitter"  /></p>
 <p>My <code>init.vim</code> with Treesitter:
-<img loading="lazy" src="/Blog/series/vim/vim7/treesitter.png" type="" alt="treesitter"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim7-considerneovim/treesitter.png" type="" alt="treesitter"  /></p>
 <p>Correct highlight is one of feature treesitter can provide, other feature like indention, selection increment/decrement are also supported. If the language you are using have treesitter parse, you can enjoy those features. The abstruct syntax tree where treesitter powered from, is also a good source for writing a plugin, extend you text object to function, class, object, or declaration. Of course regular expression can do so, it just can&rsquo;t make sure 100% correct and need to build rule for matching. I know emacs also integrate Treesitter in Emacs29. I believe plugins that can understand the code will keep exploring more surprise usage, introducting more useful features in the future. Therefor I make switch.</p>
 <p>The switching actually don&rsquo;t cost anytime, I spend minutes finding the color scheem support treesitter. Installing them using the plugins manager I used in vim, everything just work.</p>
 <h1 id="why-neovim">Why Neovim</h1>
@@ -171,26 +171,26 @@ quick 5 line jump</p>
     
     <item>
       <title>Neovim plugins: vim-startuptime, make startup time information readable</title>
-      <link>https://sokinpui.github.io/Blog/series/vim/vim6/</link>
+      <link>https://sokinpui.github.io/Blog/series/vim/vim6-plugin-starttime/</link>
       <pubDate>Fri, 04 Aug 2023 15:23:09 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/Blog/series/vim/vim6/</guid>
+      <guid>https://sokinpui.github.io/Blog/series/vim/vim6-plugin-starttime/</guid>
       <description>Desc Text.</description>
       <content:encoded><![CDATA[<p>You can check the startup time of Vim/Neovim by add the option <code>--startuptime &lt;name of log file&gt;</code>, however meaningful information is difficult to find Maybe you may want to find the plugin that affect startup time most significantly, but lost in tones of numbers and lines. This plugins make testing and viewing startuptime log easier.
-<img loading="lazy" src="/Blog/series/vim/vim6/vim-startup.png" type="" alt="vim-startup"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim6-plugin-starttime/vim-startup.png" type="" alt="vim-startup"  /></p>
 <h1 id="plugins-vim-startuptimehttpsgithubcomdstein64vim-startuptime">Plugins: <a href="https://github.com/dstein64/vim-startuptime">vim-startuptime</a></h1>
 <p>Screenshot:
-<img loading="lazy" src="/Blog/series/vim/vim6/plugin.png" type="" alt="demo"  />
+<img loading="lazy" src="/Blog/series/vim/vim6-plugin-starttime/plugin.png" type="" alt="demo"  />
 This plugins allow you check the startup time afte open Neovim, maybe more intutitive than using option <code>--startuptime</code>?</p>
 ]]></content:encoded>
     </item>
     
     <item>
       <title>Neovim plugins recommendation: Auto pair and multi cursor</title>
-      <link>https://sokinpui.github.io/Blog/series/vim/vim5/</link>
+      <link>https://sokinpui.github.io/Blog/series/vim/vim5-plugin-autopairs/</link>
       <pubDate>Thu, 03 Aug 2023 22:23:12 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/Blog/series/vim/vim5/</guid>
+      <guid>https://sokinpui.github.io/Blog/series/vim/vim5-plugin-autopairs/</guid>
       <description>Auto pair plugin that work with multi cursor without any issue.</description>
       <content:encoded><![CDATA[<p>I use multi cursor plugin and auto pairs together, unfortunately I find my old two plugins don&rsquo;t integrate well. <a href="https://github.com/LunarWatcher/auto-pairs">This autopairs from LunarWatcher</a> often throw error: <code>E117: Unknown function: AutoPairsTryInit</code> when end editing with [multi cursor plugin]((<a href="https://github.com/mg979/vim-visual-multi)">https://github.com/mg979/vim-visual-multi)</a>. Although this plugin is already improved to be more compatible with <strong>vim-visual-multi</strong>. To be mentioned, this bug is fixed in this <a href="https://github.com/LunarWatcher/auto-pairs/issues/12#issue-780680284">issue</a>. I still find the bug occur.</p>
 <h1 id="another-auto-pair-plugins">Another auto pair plugins</h1>
@@ -231,10 +231,10 @@ This plugins allow you check the startup time afte open Neovim, maybe more intut
     
     <item>
       <title>Setup Markdown writing environment with zsh &#43; Neovim</title>
-      <link>https://sokinpui.github.io/Blog/series/vim/vim4/</link>
+      <link>https://sokinpui.github.io/Blog/series/vim/vim4-markdownwritingsetup/</link>
       <pubDate>Thu, 03 Aug 2023 09:26:43 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/Blog/series/vim/vim4/</guid>
+      <guid>https://sokinpui.github.io/Blog/series/vim/vim4-markdownwritingsetup/</guid>
       <description>Markdown setup make text editing become comfortable</description>
       <content:encoded><![CDATA[<blockquote>
 <p>update at Thu Aug 10 01:10:36 PM CST 2023, add plugin for text object</p>
@@ -399,7 +399,7 @@ The benefit os using lazy.nvim is you can lazy load plugins on key, autocmd even
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">fp</span> :<span class="nx">execute</span> <span class="s1">&#39;Files&#39;</span> <span class="nx">system</span><span class="p">(</span><span class="s1">&#39;git rev-parse --show-toplevel 2&gt; /dev/null&#39;</span><span class="p">)</span>[:<span class="m">-2</span>]<span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
 </span></span></span></code></pre></div><p>This line use the command <code>Files</code> from <strong>fzf.vim</strong> to fuzzy find the top directory that contain <code>.git/</code>. <!-- raw HTML omitted -->
 demo:
-<img loading="lazy" src="/Blog/series/vim/vim4/fzf-root.gif" type="" alt="fzf-root"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4-markdownwritingsetup/fzf-root.gif" type="" alt="fzf-root"  /></p>
 <p>The notes directory can be obsidian vault or any folder sturcture that have the concept of root.</p>
 <details>
   <summary>fzf.vim full config</summary>
@@ -490,11 +490,11 @@ demo:
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">e</span><span class="p">&gt;</span>   :<span class="nx">Fern</span> . <span class="p">-</span><span class="nx">drawer</span> <span class="p">-</span><span class="nx">reveal</span><span class="p">=</span>% <span class="p">-</span><span class="nx">width</span><span class="p">=</span><span class="m">35</span> <span class="p">-</span><span class="nx">toggle</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">w</span><span class="p">&gt;=</span><span class="err">
 </span></span></span></code></pre></div><p>I can toggle the file explorer with <code>Ctrl-e</code></p>
 <p>demo:
-<img loading="lazy" src="/Blog/series/vim/vim4/file-explorer-mosue.gif" type="" alt="fern-demo"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4-markdownwritingsetup/file-explorer-mosue.gif" type="" alt="fern-demo"  /></p>
 <p>If you don&rsquo;t like the default key bindings, you can change it in <code>~/.config/nvim/ftplugin/fern.vim</code>. For exmaple I have change some of them. Fern have many API you can interact with, You can delete, rename files and directories like other GUI file finder. I don&rsquo;t make move file key bindings, because I regard it is easier to do with my shell.</p>
 <p>Preview file when navigate files using jk is helpful when sometimes I don&rsquo;t remember what is the content inside, I can toggle this with <code>p</code> in file explorer buffer. In orde to have this function you hvae to install <a href="https://github.com/yuki-yano/fern-preview.vim">fere plugin for preview</a>.</p>
 <p>demo:
-<img loading="lazy" src="/Blog/series/vim/vim4/fern-preview.gif" type="" alt="fern-preview.gif"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4-markdownwritingsetup/fern-preview.gif" type="" alt="fern-preview.gif"  /></p>
 <p>Another keymapping I use often are <code>R</code>, it will jump to the root of current directory(directory contain <code>.git/</code>), you will need to install <a href="https://github.com/lambdalisue/fern-mapping-project-top.vim">this fern plugin</a>.</p>
 <details>
   <summary>fern full config</summary>
@@ -601,7 +601,7 @@ demo:
 <p>I use <a href="https://github.com/nvim-treesitter/nvim-treesitter">nvim-treesitter</a> and <a href="https://github.com/preservim/vim-markdown">vim-markdown</a> together to provide full syntax highlihgt. <strong>vim-markdown</strong> for $Latex$ and <strong>nvim-treesitter</strong> for code block. vim-markdown has option</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="k">let</span> <span class="nx">g</span>:<span class="nx">vim_markdown_math</span> <span class="p">=</span> <span class="m">1</span><span class="err">
 </span></span></span></code></pre></div><p>to enable syntax highlight for math block in <code>$$</code> or <code>$$ $$</code>. Install treesitter parser <code>markdown</code> with command <code>:TSInstall markown</code>. In order to use treesitter highlight, your color scheme need to support treesitter. I use <a href="https://github.com/navarasu/onedark.nvim">onedark.nvim</a>.
-<img loading="lazy" src="/Blog/series/vim/vim4/img/syntax-on-off.png" type="" alt="syntax-on-off"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4-markdownwritingsetup/img/syntax-on-off.png" type="" alt="syntax-on-off"  /></p>
 <details>
   <summary>nvim-treesitter full config</summary>
   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">-- ~/.config/nvim/lua/plugins/treesitter.lua</span>
@@ -696,7 +696,7 @@ demo:
 <h2 id="header-jumps">header jumps</h2>
 <p><a href="https://github.com/preservim/vim-markdown">vim-markdown</a> provide mapping <code>[[</code> jump to last header above cursor, and <code>]]</code> jump to next header above cursor. Or you prefer a sidebar header TOC, you can use the command <code>Toc</code> to generate a sidebar TOC, you can jump to the header by double click it or press <code>enter</code>.</p>
 <p>Demo:
-<img loading="lazy" src="/Blog/series/vim/vim4/img/toc.gif" type="" alt="./img/toc.gif"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4-markdownwritingsetup/img/toc.gif" type="" alt="./img/toc.gif"  /></p>
 <h2 id="markdown-preview">Markdown preview</h2>
 <p>By me again:</p>
 <blockquote>
@@ -708,7 +708,7 @@ demo:
 <!-- raw HTML omitted -->
 <h2 id="image-clipboard-insertion">Image clipboard insertion</h2>
 <p>Paste image from image clipboard to current buffer. Before I know this plugin, whenever I need to paste image, I will open <strong>Obsidian</strong>, because I find their is <a href="https://github.com/reorx/obsidian-paste-image-rename">extension</a> help me. But now I find this plugin, leaving Obsidian merely a markdown reader.
-<img loading="lazy" src="/Blog/series/vim/vim4/img/image-clipboard.gif" type="" alt="./img/image-clipboard.gif"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4-markdownwritingsetup/img/image-clipboard.gif" type="" alt="./img/image-clipboard.gif"  /></p>
 <details>
   <summary>vim-markdown, markown-preivew, and image-clipboard full config</summary>
   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
@@ -816,7 +816,7 @@ demo:
 </blockquote>
 <p>The cost of drop live preview compare to have autocompletion is nearly zero. With autocompletion, I can be lazy to type, complete the long words occur more than once. Use snippets to insert pre-defined contents. Recently, I have switch from <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> to <a href="https://github.com/hrsh7th/nvim-cmp">nvim-cmp</a> for the plugin <a href="https://github.com/epwalsh/obsidian.nvim">obsidian.nvim</a> to insert reference link. <del>BTW, I find it nearly useles</del></p>
 <p>demo:
-<img loading="lazy" src="/Blog/series/vim/vim4/img/autocompletion.gif" type="" alt="./img/autocompletion.gif"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4-markdownwritingsetup/img/autocompletion.gif" type="" alt="./img/autocompletion.gif"  /></p>
 <details>
   <summary>autocompletion with nvim-cmp full config</summary>
   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
@@ -981,7 +981,7 @@ demo:
 <h2 id="text-object-for-markdown">text object for markdown</h2>
 <p>Extend text object in markdown, I found <a href="https://github.com/coachshea/vim-textobj-markdown#code-fences">this plugin: text object for markdown</a>, the code block text object provide by it is extremely useful. It use api from another plugin <a href="https://github.com/kana/vim-textobj-user">vim-textobj-user</a>.
 demo
-<img loading="lazy" src="/Blog/series/vim/vim4/img/text-object.gif" type="" alt="./img/text-object.gif"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4-markdownwritingsetup/img/text-object.gif" type="" alt="./img/text-object.gif"  /></p>
 <details>
   <summary>text object plugin config</summary>
   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kr">return</span> <span class="p">{</span>
@@ -1018,13 +1018,13 @@ demo
 <p><code>let g:tex_conceal = &quot;abmgs&quot;</code> to set the concealment options for tex object in both markdown and tex file, see <code>:help tex_conceal</code> to see details of options.</p>
 <p><code>let g:vim_markdown_conceal_code_blocks = 1</code> to enalbe concealment for code block delimiter.</p>
 <p><code>let g:vim_markdown_strikethrough = 1</code> to enable concealment for Strikethrough. <em>This featuer don&rsquo;t require conceallevel set in vim</em>
-<img loading="lazy" src="/Blog/series/vim/vim4/img/strikethrough.png" type="" alt="strikethrough"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4-markdownwritingsetup/img/strikethrough.png" type="" alt="strikethrough"  /></p>
 <p>Demo
-<img loading="lazy" src="/Blog/series/vim/vim4/conceal.gif" type="" alt="./conceal.gif"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4-markdownwritingsetup/conceal.gif" type="" alt="./conceal.gif"  /></p>
 <h2 id="auto-list-in-vim">Auto list in vim</h2>
 <p>Since most of the GUI markdown editor support auto generate list when you hit enter. I found one plugin <a href="https://github.com/dkarter/bullets.vim">bullets.vim</a>. It will auto insert list base on the list symbol last line used. Quite helpful when you insert orderlist. But it seems to break your <code>&lt;CR&gt;</code> in other plugins, but just fine with me, please see <a href="https://www.reddit.com/r/neovim/comments/nx4s7g/is_there_an_actually_good_numbered_list_plugin/">this discussion on reddit</a> <!-- raw HTML omitted -->
 Demo:
-<img loading="lazy" src="/Blog/series/vim/vim4/img/list.gif" type="" alt="./img/list.gif"  /></p>
+<img loading="lazy" src="/Blog/series/vim/vim4-markdownwritingsetup/img/list.gif" type="" alt="./img/list.gif"  /></p>
 <h2 id="searching">Searching</h2>
 <p>I will open <strong>Obsidian</strong> and use its search box. Sometimes I will open new tmux windows and search with <a href="https://github.com/BurntSushi/ripgrep">rg(ripgrep)</a></p>
 <h1 id="after">After</h1>
@@ -1034,10 +1034,10 @@ Demo:
     
     <item>
       <title>XDG base configuration for Vim</title>
-      <link>https://sokinpui.github.io/Blog/series/vim/vim3/</link>
+      <link>https://sokinpui.github.io/Blog/series/vim/vim3-xdgforvim/</link>
       <pubDate>Thu, 03 Aug 2023 09:11:30 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/Blog/series/vim/vim3/</guid>
+      <guid>https://sokinpui.github.io/Blog/series/vim/vim3-xdgforvim/</guid>
       <description>Simple hack to have XDG based configuration for Vim</description>
       <content:encoded><![CDATA[<p>I have seen some post and issue on Vim github that want XDG base configuration become one of the runtimpath of Vim(not Neovim), actually a simple hack can done so.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir <span class="nv">$HOME</span>/.config/vim
@@ -1052,14 +1052,14 @@ Demo:
     
     <item>
       <title>Use git to version control your config</title>
-      <link>https://sokinpui.github.io/Blog/series/vim/vim2/</link>
+      <link>https://sokinpui.github.io/Blog/series/vim/vim2-gityourconfig/</link>
       <pubDate>Wed, 02 Aug 2023 22:49:02 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/Blog/series/vim/vim2/</guid>
+      <guid>https://sokinpui.github.io/Blog/series/vim/vim2-gityourconfig/</guid>
       <description>Use git to try new feature easily and broken change</description>
       <content:encoded><![CDATA[<p>This blog is written for those how nothing about git. Just a quick start about what you can do with your command line tools <a href="https://git-scm.com/">git</a>.</p>
 <h1 id="what-is-git">What is git</h1>
-<p><img loading="lazy" src="/Blog/series/vim/vim2/2023-08-02.png" type="" alt="git"  />
+<p><img loading="lazy" src="/Blog/series/vim/vim2-gityourconfig/2023-08-02.png" type="" alt="git"  />
 This picture describe what is git, imagine your working direction of your project, when you want to try something new and don&rsquo;t want to break and manually merge new feature to your development, create a branch, like parallel universe, you can take another try in parallel universe, after that, you can merge those branch to your <strong>main</strong> branch or simply delete the branch. <em><strong>&ldquo;Branch is cheap&rdquo;</strong></em>.</p>
 <h1 id="basic-usage">basic usage</h1>
 <p>convert current directory into git repo, all subdirectory will be managed by git</p>
@@ -1097,10 +1097,10 @@ This picture describe what is git, imagine your working direction of your projec
     
     <item>
       <title>Another attribute to use Vim</title>
-      <link>https://sokinpui.github.io/Blog/series/vim/vim1/</link>
+      <link>https://sokinpui.github.io/Blog/series/vim/vim1-usingvimintro/</link>
       <pubDate>Wed, 02 Aug 2023 13:18:11 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/Blog/series/vim/vim1/</guid>
+      <guid>https://sokinpui.github.io/Blog/series/vim/vim1-usingvimintro/</guid>
       <description>Ha? you want productivity? Vim is useful only when you edit you vim configuration!</description>
       <content:encoded><![CDATA[<p>Do you still remember why you choose one editor, because it get the job done? Or its extenability? Or its plugins ecosystem? My first editor is VSCode, introduced by CS50, back to those day, I regard VSCode is the only tools exist on earth that can write code. But I am scared by its UI, there is too much button, too many options. <em>In the future, I find VSCode is defintily one of the easiest get into and out of the box editor.</em> &ldquo;What does plugin means? What is auto pairs? What is completion?&rdquo; I don&rsquo;t understand those terms, I am too young to know manual exist and google for help.</p>
 <p>The chance I know Vim is from university Unix talk, it is the first time I know one can navigation using hjkl instead of arrow key. I can&rsquo;t describe how excited I was, since I can&rsquo;t blindtype arrow key, everytime I press arrow I have to look at the keyboard and find them. Although I still use Vim now, I don&rsquo;t feel their is significant productivity increment, since Vim modal editing is avalible many where, I keep using vim simply because changing behaviour of the editor just feel more natural on Vim/Neovim.</p>

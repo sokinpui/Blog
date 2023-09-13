@@ -8,28 +8,10 @@
     <lastBuildDate>Thu, 03 Aug 2023 09:11:30 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/tags/vimrc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>XDG base configuration for Vim</title>
-      <link>https://sokinpui.github.io/Blog/post/vim3-xdgforvim/</link>
+      <link>https://sokinpui.github.io/Blog/post/vim/vim3-xdgforvim/</link>
       <pubDate>Thu, 03 Aug 2023 09:11:30 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/Blog/post/vim3-xdgforvim/</guid>
-      <description>Simple hack to have XDG based configuration for Vim</description>
-      <content:encoded><![CDATA[<p>I have seen some post and issue on Vim github that want XDG base configuration become one of the runtimpath of Vim(not Neovim), actually a simple hack can done so.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir <span class="nv">$HOME</span>/.config/vim
-</span></span><span class="line"><span class="cl">mkdir <span class="nv">$HOME</span>/.vim
-</span></span><span class="line"><span class="cl">mv <span class="nv">$HOME</span>/.vimrc <span class="nv">$HOME</span>/.vim/vimrc
-</span></span><span class="line"><span class="cl">mv <span class="nv">$HOME</span>/.vim <span class="nv">$HOME</span>/.config/vim 
-</span></span><span class="line"><span class="cl">ln -s <span class="nv">$HOME</span>/.config/vim <span class="nv">$HOME</span>/.vim
-</span></span></code></pre></div><p>Do you know there your <code>vimrc</code> can located at either <code>$HOME/.vimrc</code> or <code>$HOME/.vim/vimrc</code>, so you can move your whole runtimpath to <code>$HOME/.config/vim</code>, then create a symbolic link <code>$HOME/.vim</code> point to <code>$HOME/.config/vim</code>.</p>
-<p>Although I know XDG is more than just a directory, it may still be helpful for group all your configuration together.</p>
-]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>XDG base configuration for Vim</title>
-      <link>https://sokinpui.github.io/Blog/series/vim/vim3/</link>
-      <pubDate>Thu, 03 Aug 2023 09:11:30 +0800</pubDate>
-      
-      <guid>https://sokinpui.github.io/Blog/series/vim/vim3/</guid>
+      <guid>https://sokinpui.github.io/Blog/post/vim/vim3-xdgforvim/</guid>
       <description>Simple hack to have XDG based configuration for Vim</description>
       <content:encoded><![CDATA[<p>I have seen some post and issue on Vim github that want XDG base configuration become one of the runtimpath of Vim(not Neovim), actually a simple hack can done so.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir <span class="nv">$HOME</span>/.config/vim

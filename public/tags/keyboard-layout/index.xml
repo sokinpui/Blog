@@ -8,10 +8,10 @@
     <lastBuildDate>Fri, 07 Apr 2023 17:43:58 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/tags/keyboard-layout/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Dynamic number-symbol row in vim</title>
-      <link>https://sokinpui.github.io/Blog/post/3-dyn-num-sym/</link>
+      <link>https://sokinpui.github.io/Blog/post/kmonad/3-dyn-num-sym/</link>
       <pubDate>Fri, 07 Apr 2023 17:43:58 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/Blog/post/3-dyn-num-sym/</guid>
+      <guid>https://sokinpui.github.io/Blog/post/kmonad/3-dyn-num-sym/</guid>
       <description>Abstraction Provide a way to dynamic swap numbers and symbols in vim according to current mode.
 How this idea come When I write code or writing, I often find the symbols should be easily type as single key stroke, while in vim normal mode I find I would like to press number in single mode instead of pressing with shift. At first, I searched online for solution, many of them suggested to swap numbers and symbols, and I agree it may convient while coding.</description>
       <content:encoded><![CDATA[<h1 id="abstraction">Abstraction</h1>

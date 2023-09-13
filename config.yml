@@ -79,8 +79,6 @@ params:
         buttons:
             - name: post
               url: post
-            - name: series
-              url: series
 
     # home-info mode
     homeInfoParams:
@@ -143,9 +141,6 @@ menu:
           name: Post
           url: /post/
           weight: 30
-        - identifier: series
-          name: Series
-          url: /series/
           weight: 20
         #- identifier: example
         #  name: example.org

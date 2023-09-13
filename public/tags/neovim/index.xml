@@ -8,10 +8,10 @@
     <lastBuildDate>Fri, 04 Aug 2023 22:16:35 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/tags/neovim/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Consider Embrance the ecosystem of Neovim.</title>
-      <link>https://sokinpui.github.io/Blog/post/vim7-considerneovim/</link>
+      <link>https://sokinpui.github.io/Blog/post/vim/vim7-considerneovim/</link>
       <pubDate>Fri, 04 Aug 2023 22:16:35 +0800</pubDate>
       
-      <guid>https://sokinpui.github.io/Blog/post/vim7-considerneovim/</guid>
+      <guid>https://sokinpui.github.io/Blog/post/vim/vim7-considerneovim/</guid>
       <description>Blog written for those who are struggling about switch to Neovim from Vim</description>
       <content:encoded><![CDATA[<p>Neovim in 2023 has become an popular choice of editor, its version become stable those day. Neovim to Vim is like Vim to Vi those day, it has introduced a clear lua API for writing plugins, built-in LSP support. Although some plugins like <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> has provide feature like LSP and auto-completion similar as VSCode, the built-in LSP support just give the sense of it will last longer and improved by a larger community as it is built-in. Also, more lua plugins has come out, which sadly only support Neovim, as they need Neovim API.</p>
 <h1 id="vim">Vim</h1>
@@ -19,37 +19,9 @@
 <h1 id="neovim">Neovim</h1>
 <p>The plugin I switch for is <a href="https://github.com/nvim-treesitter/nvim-treesitter">nvim-treesitter</a>. Treesitter provide correct highlight by understanding your code structure. Recently Vim/Neovim highlihgt is base on regular expression, which may not cover all the case, therefore render syntax highlight wrong,</p>
 <p>My <code>init.vim</code> without Treesitter:
-<img loading="lazy" src="/Blog/post/vim7-considerneovim/no-treesitter.png" type="" alt="no-treesitter"  /></p>
+<img loading="lazy" src="/Blog/post/vim/vim7-considerneovim/no-treesitter.png" type="" alt="no-treesitter"  /></p>
 <p>My <code>init.vim</code> with Treesitter:
-<img loading="lazy" src="/Blog/post/vim7-considerneovim/treesitter.png" type="" alt="treesitter"  /></p>
-<p>Correct highlight is one of feature treesitter can provide, other feature like indention, selection increment/decrement are also supported. If the language you are using have treesitter parse, you can enjoy those features. The abstruct syntax tree where treesitter powered from, is also a good source for writing a plugin, extend you text object to function, class, object, or declaration. Of course regular expression can do so, it just can&rsquo;t make sure 100% correct and need to build rule for matching. I know emacs also integrate Treesitter in Emacs29. I believe plugins that can understand the code will keep exploring more surprise usage, introducting more useful features in the future. Therefor I make switch.</p>
-<p>The switching actually don&rsquo;t cost anytime, I spend minutes finding the color scheem support treesitter. Installing them using the plugins manager I used in vim, everything just work.</p>
-<h1 id="why-neovim">Why Neovim</h1>
-<p>Simply becuase you will have a greater community, both vim and neovim community, merely missing compatible with Vim9script. You can enjoy plugins from Vim and Neovim. This reason is strong enough for one who have struggling between Neovim and Vim. The number of plugins that is written in Vim9script are handfully small.</p>
-<h1 id="neovim-from-vim">Neovim from Vim</h1>
-<p>Before using Neovim, I use <code>:sh</code> often. However, this command was dropped in Neovim, I don&rsquo;t understand why this is dropped. Nevertheless, I change my habit, even better practice after change. I use new tmux window instead of <code>:sh</code> to recall the shell Neovim from. If I really want to copy some content from the shell opened Neovim, I can use <code>Ctrl-Z</code> to suspend Neovim and use <code>fg</code> continue Neovim process.</p>
-<p>I agree some discussion about switching or not, some people hold that there is no features they need in Neovim. That maybe true, but how about plugin ecosystem, it seems more powerful plugins come out, you may want one of them in the future. Switch early so that suffer less in the future. Switch won&rsquo;t consume too much time if you going to keep you configuration in vimscirpt, if necessary to use lua, you can use <code>lua</code> in you <code>*.vim</code> file.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">lua</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;&lt;name of lua moduale&gt;&#34;</span><span class="p">)</span><span class="err">
-</span></span></span></code></pre></div><p>Switching to Neovim from Vim are simple because you are still using <em>&ldquo;the same&rdquo;</em> editor, the configuration, the way how vim handle text editor, the way to extend is similiar. Unlike switching to other types of editor like Emacs, which definitly have different <em>&ldquo;Emacs way&rdquo;</em> you need to adapt.</p>
-]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>Consider Embrance the ecosystem of Neovim.</title>
-      <link>https://sokinpui.github.io/Blog/series/vim/vim7/</link>
-      <pubDate>Fri, 04 Aug 2023 22:16:35 +0800</pubDate>
-      
-      <guid>https://sokinpui.github.io/Blog/series/vim/vim7/</guid>
-      <description>Blog written for those who are struggling about switch to Neovim from Vim</description>
-      <content:encoded><![CDATA[<p>Neovim in 2023 has become an popular choice of editor, its version become stable those day. Neovim to Vim is like Vim to Vi those day, it has introduced a clear lua API for writing plugins, built-in LSP support. Although some plugins like <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> has provide feature like LSP and auto-completion similar as VSCode, the built-in LSP support just give the sense of it will last longer and improved by a larger community as it is built-in. Also, more lua plugins has come out, which sadly only support Neovim, as they need Neovim API.</p>
-<h1 id="vim">Vim</h1>
-<p>Back to the day I launch Vim first time, Vim have already give me different feel from modern editor, its default color scheme, its &ldquo;non-beginner friendly&rdquo; default setting force me to google solution many times. After use Vim for sometimes, I have known Neovim, a forked version of Vim, fully compatible with vimscirpt plugins, a modern version of Vim, and extended in different language lua, At the beginning, I don&rsquo;t want to make a switch, current state of Vim was already make me satisfed. The introduction of Vim9script excited me a lot, I wrote vimscirpt before lua, in my opinion, vimscirpt as a Domain Specify Language, it is less verbose than lua. Also, I don&rsquo;t write big plugins, lua API don&rsquo;t attact me much. But the performance of Vim9script has been improved a lot compare to lengency vimscirpt. I still want to stay with Vim. However I discover quite many vimers I have followed on online has switch to Neovim, it is the first time I have consider seriously about making a switch. I can&rsquo;t found myself a good reason not to change other than it may waste my time. Since I use Vim first, the plugins I relay on are still pure vimscirpt plugins, making switching no benefits. I told myself, if there is a must have plugins that is specified to Neovim, I should make a switch.</p>
-<h1 id="neovim">Neovim</h1>
-<p>The plugin I switch for is <a href="https://github.com/nvim-treesitter/nvim-treesitter">nvim-treesitter</a>. Treesitter provide correct highlight by understanding your code structure. Recently Vim/Neovim highlihgt is base on regular expression, which may not cover all the case, therefore render syntax highlight wrong,</p>
-<p>My <code>init.vim</code> without Treesitter:
-<img loading="lazy" src="/Blog/series/vim/vim7/no-treesitter.png" type="" alt="no-treesitter"  /></p>
-<p>My <code>init.vim</code> with Treesitter:
-<img loading="lazy" src="/Blog/series/vim/vim7/treesitter.png" type="" alt="treesitter"  /></p>
+<img loading="lazy" src="/Blog/post/vim/vim7-considerneovim/treesitter.png" type="" alt="treesitter"  /></p>
 <p>Correct highlight is one of feature treesitter can provide, other feature like indention, selection increment/decrement are also supported. If the language you are using have treesitter parse, you can enjoy those features. The abstruct syntax tree where treesitter powered from, is also a good source for writing a plugin, extend you text object to function, class, object, or declaration. Of course regular expression can do so, it just can&rsquo;t make sure 100% correct and need to build rule for matching. I know emacs also integrate Treesitter in Emacs29. I believe plugins that can understand the code will keep exploring more surprise usage, introducting more useful features in the future. Therefor I make switch.</p>
 <p>The switching actually don&rsquo;t cost anytime, I spend minutes finding the color scheem support treesitter. Installing them using the plugins manager I used in vim, everything just work.</p>
 <h1 id="why-neovim">Why Neovim</h1>

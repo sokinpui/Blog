@@ -2,16 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://sokinpui.github.io/Blog/post/kmonad/</loc>
+    <lastmod>2023-08-01T23:03:06+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/post/vim/</loc>
+    <lastmod>2023-08-01T23:03:06+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/post/diy-keyboard/</loc>
+    <lastmod>2023-09-07T08:48:57+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/</loc>
+    <lastmod>2023-09-07T08:48:57+08:00</lastmod>
+  </url><url>
+    <loc>https://sokinpui.github.io/Blog/post/</loc>
+    <lastmod>2023-09-07T08:48:57+08:00</lastmod>
+  </url><url>
     <loc>https://sokinpui.github.io/Blog/post/addictive-config/</loc>
     <lastmod>2023-09-01T13:39:05+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/</loc>
-    <lastmod>2023-09-01T13:39:05+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/post/</loc>
-    <lastmod>2023-09-01T13:39:05+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/post/kmonad-introduction/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/kmonad/kmonad-introduction/</loc>
     <lastmod>2023-08-20T18:29:07+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/post/vim12-stopaddfeatures/</loc>
@@ -20,25 +29,16 @@
     <loc>https://sokinpui.github.io/Blog/post/vim11-jk/</loc>
     <lastmod>2023-08-18T13:14:48+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/post/vim9-efficient-editing/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/vim/vim9-efficient-editing/</loc>
     <lastmod>2023-08-14T18:44:18+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/series/vim/vim9/</loc>
-    <lastmod>2023-08-14T18:44:18+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/post/vim8-useful-keymap/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/vim/vim8-useful-keymap/</loc>
     <lastmod>2023-08-09T21:58:59+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/series/vim/vim8/</loc>
-    <lastmod>2023-08-09T21:58:59+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/post/tmux-kmonad/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/kmonad/tmux-kmonad/</loc>
     <lastmod>2023-08-09T09:56:52+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/post/vim7-considerneovim/</loc>
-    <lastmod>2023-08-04T22:16:35+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/series/vim/vim7/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/vim/vim7-considerneovim/</loc>
     <lastmod>2023-08-04T22:16:35+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/tags/neovim/</loc>
@@ -53,34 +53,22 @@
     <loc>https://sokinpui.github.io/Blog/tags/vim-plugin/</loc>
     <lastmod>2023-08-04T22:16:35+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/post/vim6-plugin-starttime/</loc>
-    <lastmod>2023-08-04T15:23:09+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/series/vim/vim6/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/vim/vim6-plugin-starttime/</loc>
     <lastmod>2023-08-04T15:23:09+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/post/tmuxandzshpasteandcopy/</loc>
     <lastmod>2023-08-04T12:50:18+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/post/vim5-plugin-autopairs/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/vim/vim5-plugin-autopairs/</loc>
     <lastmod>2023-08-03T22:23:12+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/series/vim/vim5/</loc>
-    <lastmod>2023-08-03T22:23:12+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/post/vim4-markdownwritingsetup/</loc>
-    <lastmod>2023-08-03T09:26:43+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/series/vim/vim4/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/vim/vim4-markdownwritingsetup/</loc>
     <lastmod>2023-08-03T09:26:43+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/tags/vimrc/</loc>
     <lastmod>2023-08-03T09:11:30+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/post/vim3-xdgforvim/</loc>
-    <lastmod>2023-08-03T09:11:30+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/series/vim/vim3/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/vim/vim3-xdgforvim/</loc>
     <lastmod>2023-08-03T09:11:30+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/tags/config/</loc>
@@ -89,23 +77,11 @@
     <loc>https://sokinpui.github.io/Blog/tags/git/</loc>
     <lastmod>2023-08-02T22:49:02+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/post/vim2-gityourconfig/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/vim/vim2-gityourconfig/</loc>
     <lastmod>2023-08-02T22:49:02+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/series/vim/vim2/</loc>
-    <lastmod>2023-08-02T22:49:02+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/post/vim1-usingvimintro/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/vim/vim1-usingvimintro/</loc>
     <lastmod>2023-08-02T13:18:11+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/series/vim/vim1/</loc>
-    <lastmod>2023-08-02T13:18:11+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/series/vim/</loc>
-    <lastmod>2023-08-01T23:03:06+08:00</lastmod>
-  </url><url>
-    <loc>https://sokinpui.github.io/Blog/series/</loc>
-    <lastmod>2023-08-01T20:37:57+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/tags/lazy.nvim/</loc>
     <lastmod>2023-07-29T23:58:37+08:00</lastmod>
@@ -203,7 +179,7 @@
     <loc>https://sokinpui.github.io/Blog/tags/78-keyboard/</loc>
     <lastmod>2023-04-07T17:43:58+08:00</lastmod>
   </url><url>
-    <loc>https://sokinpui.github.io/Blog/post/3-dyn-num-sym/</loc>
+    <loc>https://sokinpui.github.io/Blog/post/kmonad/3-dyn-num-sym/</loc>
     <lastmod>2023-04-07T17:43:58+08:00</lastmod>
   </url><url>
     <loc>https://sokinpui.github.io/Blog/tags/keyboard/</loc>
