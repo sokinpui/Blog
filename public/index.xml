@@ -5,7 +5,23 @@
     <link>https://sokinpui.github.io/Blog/</link>
     <description>Recent content in Home on So</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 07 Sep 2023 08:48:57 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Sep 2023 12:49:55 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Things to consider before switch from Vim to Emacs</title>
+      <link>https://sokinpui.github.io/Blog/post/vim/vim-or-emacs/</link>
+      <pubDate>Thu, 14 Sep 2023 12:49:55 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/vim/vim-or-emacs/</guid>
+      <description>Things to consider before switch from Vim to Emacs</description>
+      <content:encoded><![CDATA[<p>Is emacs evil the another Lisp based Vim?</p>
+<p>I love tweaking the editor, though it is meaningless. I recently finish the merging from Vim to Neovim, mainly because the plugin <a href="https://github.com/nvim-treesitter/nvim-treesitter">tree-sitter</a> so to make such switching. Just because making the editor prefect my wired behaviour is suffer, I have to read tones of docs just to discover if there is already some API allow me to do so. Before the Neovim become stable, I have played with Emacs a little bit(Purely treat it as toy, haven&rsquo;t do any editing with it). I just find that emacs seem to be similiar to Vim after the plugin <a href="https://github.com/emacs-evil/evil">evil</a> is installed. Though Emacs has disappeared in my editor list, since I know I am trying to convert Emacs becoming the second Vim.</p>
+<p>After try to get with emacs serval more times, I discover the reason I can&rsquo;t get fluent in Emacs as in Vim even with the help of Evil.</p>
+<p>Although I have seen many discussion after evil or vim, some claims that the editing feeling in Evil is same as vim. This is only partial correct. Undoubly the editing style is the best clone of Vim among all vi-emulation. But you should care it is vi-emulation but not vim-emulation. When you use vim, are you only using the vi key bindings? Probability not, you are as well as using the vim-style tab completion, Vim UI, vim command and vim ecosystem. In other wrods, there is really different between the Vim way and Emacs way.</p>
+<p>The next point, the difference between GUI application and TUI application. Emacs has more advanced package that help you &ldquo;live in Emacs&rdquo;, where GUI seems to be a better choice than Terminal one in order to discover its full power. On the other hands, Vim is merely a Editor, not many will suspose it did more outside the scope of editing, so Terminal version is usually enough for most of the use case of Vim. However, this huge difference will affact how much you can accept the switching from TUI to GUi application. If you use a lot terminal application, Vim of course is more nature way to use with. However, if a terminal emulation inside editor is enough for you, switching to new editor will be much easier, since you don&rsquo;t have to re-shape your workflow entirely.</p>
+<p>The ecosystem of Vim and Emacs. The most important point everyone who want to switch from Vim to Emacs should know, Vim plugins are design for vim key bindings user, while Emacs plugins are not intended for evil key bindings user, you will have to do a lot remaps just to make it the vi way. If all you need is editing, you don&rsquo;t have to switch, because in my experience, it is all about finding an alternative plugins in Emacs. As I say, it is converting Emacs into Vim. When you want to add editing feature to evil-mode, you either have to pay if there exist a solution or you write it your own, I don&rsquo;t know how great the community of evil-mode is compare to Vim&rsquo;s. It is just higher probability that you will find implemented solution in Vim&rsquo;s community when talking about extend vi editing capability.</p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>DIY split keyboard with ergogen</title>
       <link>https://sokinpui.github.io/Blog/post/diy-keyboard/</link>
