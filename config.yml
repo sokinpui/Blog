@@ -129,10 +129,6 @@ params:
 
 menu:
     main:
-        #- identifier: search
-        #  name: Search
-        #  url: /search/
-        #  weight: 30
         - identifier: archives
           name: Archives
           url: /archives/
@@ -141,7 +137,10 @@ menu:
           name: Post
           url: /post/
           weight: 30
-          weight: 20
+        - identifier: post/Vim
+          name: Vim/Neovim
+          url: /post/Vim/
+          weight: 30
         #- identifier: example
         #  name: example.org
         #  url: https://example.org

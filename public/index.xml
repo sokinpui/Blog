@@ -5,7 +5,37 @@
     <link>https://sokinpui.github.io/Blog/</link>
     <description>Recent content in Home on So</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 14 Sep 2023 12:49:55 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Sep 2023 16:29:06 +0800</lastBuildDate><atom:link href="https://sokinpui.github.io/Blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vim10 Oil and Harpoon</title>
+      <link>https://sokinpui.github.io/Blog/post/vim/vim10-oil-and-harpoon/</link>
+      <pubDate>Mon, 25 Sep 2023 16:29:06 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/vim/vim10-oil-and-harpoon/</guid>
+      <description>Nvim plugins oil.nvim and harpoon</description>
+      <content:encoded><![CDATA[<p><a href="https://github.com/stevearc/oil.nvim">oil.nvim</a> and <a href="https://github.com/ThePrimeagen/harpoon">harpoon</a> are two neovim plugins(Vim user RIP). The former one is a file explorer or file manager. The latter one is a buffer marker that make buffer navigation much ergonomic and easier.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>[Vim/Neovim] Mapping Ctrl&#43;Backspace in Vim</title>
+      <link>https://sokinpui.github.io/Blog/post/vim/remap-ctrl-backspace/</link>
+      <pubDate>Sun, 17 Sep 2023 20:47:03 +0800</pubDate>
+      
+      <guid>https://sokinpui.github.io/Blog/post/vim/remap-ctrl-backspace/</guid>
+      <description>Don&amp;rsquo;t you note that remapping of have not effort? Instead, you should use .
+inoremap &amp;lt;C-H&amp;gt; &amp;lt;C-w&amp;gt; cnoremap &amp;lt;C-H&amp;gt; &amp;lt;C-w&amp;gt; tnoremap &amp;lt;C-H&amp;gt; &amp;lt;C-w&amp;gt; You can check the keycode in temrinal with showkey -a </description>
+      <content:encoded><![CDATA[<p>Don&rsquo;t you note that remapping of <!-- raw HTML omitted --> have not effort? Instead, you should use <!-- raw HTML omitted -->.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">inoremap</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">H</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">w</span><span class="p">&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">cnoremap</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">H</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">w</span><span class="p">&gt;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">tnoremap</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">H</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">w</span><span class="p">&gt;</span><span class="err">
+</span></span></span></code></pre></div><p>You can check the keycode in temrinal with <code>showkey -a</code>
+<img loading="lazy" src="/Blog/post/vim/remap-ctrl-backspace/img/c-bs.gif" type="" alt="./img/c-bs.gif"  /></p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Things to consider before switch from Vim to Emacs</title>
       <link>https://sokinpui.github.io/Blog/post/vim/vim-or-emacs/</link>
